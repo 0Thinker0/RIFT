@@ -1,0 +1,35 @@
+@media screen and (min-width: 1400px){
+	.observer {
+		transition: 0.5s;	
+		margin-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.observer {
+		transition: 0.5s;
+		margin-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+.utente-slot{
+	margin-top: 70px;
+	margin-left: 35px;
+	display: flex;
+	align-items: center;
+}
+
+.profile-photo{
+	width: 70px;
+}
+
+.pubb-da{
+	margin-bottom: 0px;
+	
+}
+
+.username-visited{
+	margin-top: 0px;
+}

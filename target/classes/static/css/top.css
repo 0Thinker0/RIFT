@@ -1,0 +1,66 @@
+.top{
+	display: flex;
+}
+
+div.body{
+	color: #E5E5E5;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.icon-menu{
+	position: fixed;
+	top: 38px;
+	left: 30px;
+	font-size: 30px;
+}
+
+.logo{
+	position: fixed;
+	margin-left: 48%;
+	margin-right: 50%;
+	margin-top: 27px;
+	font-size: 20px;
+}
+
+.icon-chat{
+	position: fixed;
+	top: 40px;
+	right: 30px;
+	font-size: 30px;
+}
+
+.nunito{
+	font-family: nunito;
+	font-weight: bold;
+}
+
+.icon-black{
+	-webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+.icon-search{
+	position: fixed;
+	top: 40px;
+	right: 75px;
+	font-size: 30px;
+	
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}

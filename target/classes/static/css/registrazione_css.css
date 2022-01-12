@@ -1,0 +1,166 @@
+@font-face{
+	font-family: Nunito;
+  	src: url(/font/Nunito-VariableFont_wght.ttf);
+}
+
+i{
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: left;
+	
+	display: inline-block;
+	position: relative;
+	
+	width: 20px;
+	height: 20px;
+}
+
+.email_icon{
+	background-image: url(/icon/E-mail.png);
+}
+
+.pass_icon{
+	background-image: url(/icon/Lock.png);
+}
+
+.nome_icon{
+	background-image: url(/icon/User_black.png);
+}
+
+.eye_icon{
+	background-image: url(/icon/Eye.png);
+
+	cursor: pointer;
+	float: right; 
+	opacity: 0.5; 
+}
+
+.eye_icon:hover{
+	opacity: 0.8; 
+}
+
+label{
+	font-weight: bold;
+	font-family: Nunito;
+	
+	display: inline-block;
+	
+	width: auto;
+	height: auto;
+}
+
+label[for="registrati"]{
+	margin-bottom: 40px;
+}
+
+
+label[for="accediAccount"]{
+	margin-top: 5px;
+	width: 100%;
+	
+	text-align: center;
+	font-size: 14;
+	font-weight: bold;
+	
+	cursor: pointer;
+}
+
+label[for="accediAccount"]:hover{
+	color: #4F5D75;
+}
+
+label[for="giaRegistrato"]{
+	margin-top: 5px;
+	width: 100%;
+	
+	text-align: center;
+	font-size: 14;
+	font-weight: normal;
+	
+	opacity: 0.5;
+}
+
+input{
+	border: 0;
+	width: 100%;
+	height: 40px;
+	
+	font-family: Nunito;
+	
+	padding: 10px;
+	
+	outline: none;
+	
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+input[name="email_input"], input[name="nome_input"]{
+	border-radius: 10px;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 30px;
+}
+
+input[name="pass_input"], input[name="repass_input"]{
+	width: 90%;
+	margin-top: 0px;
+}
+
+.registrazione_form{
+	width: 50%;
+	display: block;
+	margin: auto;
+}
+
+.pass_div, .repass_div{
+	margin-top: 10px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 30px;
+}
+
+.repass_div{
+	margin-bottom: 0px;
+}
+
+
+.registrati_button{
+	border: none;
+	border-radius: 10px;
+	
+	background: #2D3142;
+	color: white;
+	
+	padding: 10px 32px;
+	
+	text-align: center;
+	font-family: Nunito;
+	font-size: 16px;
+	
+	display: block;
+	margin: auto;
+	margin-top: 60px;
+	
+	cursor: pointer;
+}
+
+.registrati_button:hover{
+	border: none;
+	border-radius: 10px;
+	
+	background: #4F5D75;
+	color: white;
+	
+	padding: 10px 32px;
+	
+	text-align: center;
+	font-family: Nunito;
+	font-size: 16px;
+	
+	display: block;
+	margin: auto;
+	margin-top: 60px;
+	
+	cursor: pointer;
+}
