@@ -1,0 +1,130 @@
+<html>
+<head>
+	<link rel="stylesheet" href="fontawesome/css/all.css">
+	<link rel="stylesheet" href="/css/nota_css.css">
+</head>
+
+<body>
+	<input type="text" placeholder="Inserisci il titolo della nota..." id="titolo_nota">
+	<iframe id="output" name="textfield"></iframe><br>
+	
+	<div class="button_div">
+	<i class="fas fa-font" style="opacity: 0.5;"></i>
+	<select name="fonts" id="fontSelect" onchange="textfield.document.execCommand('fontName', false, this.value);" style="margin-right: 10px;">
+		<option value="Arial">Arial</option>
+		<option value="Fantasy">Fantasy</option>
+    	<option value="Nunito">Nunito</option>
+    	<option value="Serif">Serif</option>
+    	<option value="Sans-Serif">Sans-Serif</option>
+  	</select>
+  	
+	<i class="fas fa-text-height" style="opacity: 0.5;"></i>
+	<select name="fontsSize" id="fontSizeSelect" onchange="textfield.document.execCommand('fontSize', false, this.value);">
+		<option value="7">H1</option>
+		<option value="6">H2</option>
+		<option value="5">H3</option>
+		<option value="4">Paragrafo grande</option>
+    	<option value="3">Paragrafo normale</option>
+    	<option value="2">Paragrafo piccolo</option>
+    	<option value="1">Citazione</option>
+  	</select>
+	<button type="button" data-cmd="bold">
+		<i class="fas fa-bold" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="italic">
+		<i class="fas fa-italic" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="underline">
+		<i class="fas fa-underline" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="copy">
+		<i class="far fa-copy" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="cut">
+		<i class="fas fa-cut" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="paste">
+		<i class="far fa-paste" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="justifyLeft">
+		<i class="fas fa-align-left" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="justifyCenter">
+		<i class="fas fa-align-center" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="justifyRight">
+		<i class="fas fa-align-right" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="justifyFull">
+		<i class="fas fa-align-justify" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="insertOrderedList">
+		<i class="fas fa-list-ol" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="insertUnorderedList">
+		<i class="fas fa-list" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="undo">
+		<i class="fas fa-undo" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="redo">
+		<i class="fas fa-redo" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="insertImage" onclick="document.getElementById('input_image').click();">
+		<i class="far fa-image" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="showCode">
+		<i class="fas fa-code" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="download">
+		<i class="fas fa-download" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="restore" onclick="document.getElementById('input').click();">
+		<i class="far fa-window-restore" aria-hidden="true"></i>
+	</button>
+	<input type="file" id="input" hidden="true">
+	<input type="file" id="input_image" hidden="true" accept="image/*">
+	</div>
+	
+	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+	<script>	
+		const buttons = document.querySelectorAll('button');
+		textfield.document.designMode = "On";
+		textfield.document.body.style.overflowWrap = "break-word";
+		for(let i = 0; i < buttons.length; i++){
+			buttons[i].addEventListener('click', ()=>{
+				let cmd = buttons[i].getAttribute('data-cmd');
+				if(buttons[i].name === "active"){
+					buttons[i].classList.toggle('active');
+				}
+				
+				if(cmd === "restore"){
+					let file = document.getElementById('input').files[0];
+
+					  let reader = new FileReader();
+
+					  reader.readAsText(file);
+
+					  reader.onload = function() {
+						  var iframe = document.getElementById('output');
+						  iframe = iframe.contentWindow || ( iframe.contentDocument.document || iframe.contentDocument);
+
+						  iframe.document.open();
+						  iframe.document.write(reader.result);
+						  iframe.document.close();
+					  };
+				}else{
+					if(cmd === "download"){
+						var nameFile = document.getElementById('titolo_nota').value;
+						var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
+						var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
+						saveAs(file);
+					}else{
+						textfield.document.execCommand(cmd, false, null);
+					}
+				}
+			})
+		}
+	</script>
+</body>
+</html>

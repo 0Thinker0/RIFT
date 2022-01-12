@@ -1,0 +1,177 @@
+@media screen and (min-width: 1400px){
+	.libreria{
+		transition: 0.5s;	
+		margin-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.libreria {
+		transition: 0.5s;
+		margin-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+.libreria-text{
+	position: fixed;
+	font-size: 20px;
+	top: 45px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.riferimenti{
+	color: grey;
+	font-size: 12px;
+	padding-left: 3px;
+}
+
+
+
+.qs-tendina,.ns-tendina{
+	margin-right: auto;
+}
+
+.opt-nota{
+	margin-right: 18 !important;
+}
+
+.conteggio-note{
+	position: relative;
+	right: 10px;	
+}
+
+.opt-mt{
+	position: relative;
+	margin-right: 20px;
+}
+
+.container-libreria{
+	margin-left: 20px;
+	margin-right: 0px;
+}
+
+.container-blocchi{
+	margin-top: 0px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	background-color: rgb(230,230,230,0.2);
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+.quaderni,.note{
+	overflow:auto;
+	height: 85%;
+	margin-left: 10px;	
+	margin-top: 95px;	
+}
+
+.note{
+	overscroll-behavior: auto;
+	position: relative;
+	margin-top: 0px !important;
+	height: 30%;
+	flex-basis: 100%;
+}
+
+.anteprima-nota{
+	flex-basis: 100%;
+	margin: 0;
+}
+
+.quaderno,.nota{
+	flex-wrap: wrap;
+}
+
+.quaderno,.nota{
+	width: auto;
+	display: flex;
+	align-items: center;
+	margin-left: 7px;
+	padding-top: 0px;
+}
+
+.container-new-quaderno,.container-approved{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: black;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.new-quaderno,.create-newquaderno{
+	position: fixed;
+	bottom: 32px;
+	right: 32px;
+	width: 26px;
+}
+
+
+/*elementi lista*/
+.dropdown >.list li {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.listbar-ns,.listbar-nl{
+	visibility: hidden;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	top: 10px;
+	right: 30px;
+	background-color: #f0f0f0;
+	border-radius: 10%;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.layout-newquaderno{
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0,0,0,0.85);	
+}
+	
+.crea-text{
+	padding-left: 40px;
+}
+
+.estetica-barra{
+	margin-top: 5px;
+	margin-left: 40%;
+	margin-right: 40%;
+	width: auto;
+	height: 10px;
+	background-color: rgba(200,200,200,0.8);
+	border-radius: 10px;
+}
+
+.inserisci-titoloquaderno{
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-left: 10px;
+	width: 80%;
+	height: 50px;
+	background-color: white;
+	border-radius: 40px;
+	box-shadow: 5px 5px 25px grey;
+}
+
+.bottom-layout-newquaderno{
+	position: fixed;
+	top: 70%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border-radius: 20px;
+}

@@ -1,0 +1,111 @@
+<html>
+<head>
+	<link rel="stylesheet" href="/css/login_css.css">
+	<link rel="stylesheet" href="/css/menu.css">
+</head>
+
+<body>
+	<div class="header_mobile" style="right: 0px; left: 0px;">
+		<i class="hamburger_icon" onclick="open_navbar()" id="hamburger"></i>
+		<i class="logo_black_icon" id="logo" onclick="location.href='index.html'"></i>
+		<i class="messaggi_icon" id="messaggi"></i>
+		<i class="cerca_black_icon" id="cerca" onclick="location.href='Search.html'"></i>
+	</div>
+
+	<div class="header">
+	
+		<div class="elementi_cerca_div">
+			<i class="cerca_black_icon" style="right: 0px; left: 0px; top: 5px;"></i>
+			<input type="text" placeholder="Cerca..." name="cerca_input" onchange="location.href='Search.html'">
+		</div>
+
+		<i class="messaggi_icon" style="right: 0px; left: 0px; top: 10px;"></i>
+	</div>
+
+	<div class="sidenav_hamburger" style="left: 0px; top: 0px; bottom: 0px;" id="sidenav_hamburger">
+		<i class="close_icon" onclick="close_navbar()"></i><br><br>
+
+		<div class="centered_element_mobile">
+			<i class="cerca_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Search.html" class="link">Cerca</a><br> 
+			
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a><br>
+		</div>
+
+		<div class="bottom_element_mobile">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br> 
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<div class="sidenav" style="left: 0px; top: 0px; bottom: 0px;">
+		<i class="logo_icon" onclick="location.href='index.html'"></i><br><br>
+
+		<div class="centered_element_sidenav">
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a>
+		</div>
+
+		<div class="bottom_element_sidenav">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br>
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<script>
+		function open_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "block";
+			document.getElementById("hamburger").style.visibility = "hidden";
+		}
+
+		function close_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "none";
+			document.getElementById("hamburger").style.visibility = "visible";
+		}
+	</script>
+	
+
+	<div class="login_form">
+	<div class="element_login_form">
+		<label for="accedi">Accedi</label><br> 
+		<i class="email_icon" style="right: 0px; left: 0px; top: 5px;"></i>
+		<label for="email">Email</label><br>
+
+		<input type="text" placeholder="Inserisci la tua email" name="email_input"><br>
+
+		<i class="pass_icon" style="right: 0px; left: 0px; top: 5px;"></i> 
+		<label for="pass">Password</label><br>
+
+		<div class="pass_div">
+		<input type="password" placeholder="Inserisci la tua password" name="pass_input">
+		<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;"></i>
+		</div>
+		<br> 
+		<label for="dimenticato">Hai dimenticato la password?</label><br> 
+		
+		<button class="accedi_button">Accedi</button><br> 
+		<label for="nonAncoraRegistrato">Non sei ancora registrato?</label><br> 
+		<label for="creaUnAccount">Crea un nuovo account</label>
+	</div>
+	</div>
+</body>
+</html>

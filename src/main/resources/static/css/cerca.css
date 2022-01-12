@@ -1,0 +1,190 @@
+@media screen and (min-width: 1400px){
+	.cerca{
+		transition: 0.5s;	
+		margin-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.cerca {
+		transition: 0.5s;
+		margin-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+.icon-search{
+	position: relative;
+	top: 1px;
+	left: 15px;
+}
+
+.search-box{
+	position: fixed;
+	top: 37px;
+	right: 65px;
+	width: 30%;
+	height: 30px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.search-txt{
+	position: relative;
+	margin-left: 20px;
+	width: 70%;
+	border: none;
+	background: none;
+	outline: none;
+	font-size: 16px;
+	line-height: 40px;
+	bottom: 5px;
+}
+
+.intestazione{
+	font-size: 20px;
+}
+
+.riferimenti{
+	color: grey;
+	font-size: 12px;
+	padding-left: 3px;
+	padding-top: 2px;
+}
+
+.hide-scrollbar{
+	overflow: hidden;
+}
+
+
+.note-personali-container,.note-online-container{
+	overflow:auto;
+	height: 25%;
+	margin-left: 10px;	
+}
+
+
+.nota-contenuto {
+    position: relative;
+    bottom: 40px;
+    left: 15px;
+}
+
+
+.container-int{
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	height: 35px;
+}
+
+.nota-contenuto{
+	width: 80%;
+}
+
+.container-online-int{
+	display: flex;
+	align-items: center;	
+}
+
+.container{
+	height: 100px;
+	margin: 8;
+    background-color: white;
+    border-radius: 10px;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  	z-index: 1;
+}
+
+.container1{
+	position: relative;
+	display: flex;
+	align-items: center;
+	bottom: 5px;
+	margin-left: 10px;
+}
+
+
+
+
+.elem{
+	padding-right: 10px;
+}
+
+.dropdown{	
+	display: block;
+	position: absolute;
+	right: 17;
+	margin-right: 15px;
+}
+
+/*elementi lista*/
+.dropdown >.list li {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.s-tendina{
+	position: relative;
+	display: block;
+	padding-left: 5px;
+	padding-top: 2px;
+}
+
+.nota-autore{
+	margin-left:auto ;
+}
+
+.opt-mt1{
+	margin-right: 20px;
+}
+.opt-mt{
+	margin-left: auto;
+	margin-right: 20px;
+}
+
+.autore-onl{
+	color: grey;
+	margin-left: auto;
+	padding-right: 10px;
+}
+
+.listbar-ns,.listbar-nso{
+  	visibility: hidden;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	bottom: -63px;
+	right: 32px;
+	background-color: #f0f0f0;
+	border-radius: 10%;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+}
+
+/*il cursore passa suggli elementi della list*/
+.list li:hover {
+	background-color: #f9f9f9;
+	border-radius: 10%;
+}
+
+/*freccia*/
+.listbar-ns:after,.listbar-nso:after{
+	left: 100%;
+	bottom: 45%;
+	border: solid transparent;
+	content: "";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(0, 0, 0, 0);
+	border-left-color: #f0f0f0;
+	border-width: 10px;
+	margin-top: -10px;
+}

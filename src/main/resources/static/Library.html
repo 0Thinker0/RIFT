@@ -1,0 +1,220 @@
+<head>
+	<!-- comuni a tutte le pagine-->
+	<title>Rift</title>
+  	<meta charset="UTF-8">
+	
+	<!-- CSS -->
+	<link href="css/top.css" rel="stylesheet"/>
+	<link href="css/libreria.css" rel="stylesheet"/>
+	<link href="css/menu.css" rel="stylesheet"/>
+	
+	<!-- Javascripts -->
+	<script src="Javascripts/main.js"></script>
+	<!-- JQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- font nunito -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+	<!-- icone di ionicon -->
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<!-- Export as PDF -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+	
+</head>
+<body class="stop-scrolling">
+	<!--  per il colore background -->
+	<div class="body"></div>
+
+	<div class="header_mobile" style="right: 0px; left: 0px;">
+		<i class="hamburger_icon" onclick="open_navbar()" id="hamburger"></i>
+		<i class="logo_black_icon" id="logo" onclick="location.href='index.html'"></i>
+		<i class="messaggi_icon" id="messaggi"></i>
+		<i class="cerca_black_icon" id="cerca" onclick="location.href='Search.html'"></i>
+	</div>
+
+	<div class="header">
+	
+		<div class="elementi_cerca_div">
+			<i class="cerca_black_icon" style="right: 0px; left: 0px; top: 5px;"></i>
+			<input type="text" placeholder="Cerca..." name="cerca_input" onchange="location.href='Search.html'">
+		</div>
+
+		<i class="messaggi_icon" style="right: 0px; left: 0px; top: 10px;"></i>
+	</div>
+
+	<div class="sidenav_hamburger" style="left: 0px; top: 0px; bottom: 0px;" id="sidenav_hamburger">
+		<i class="close_icon" onclick="close_navbar()"></i><br><br>
+
+		<div class="centered_element_mobile">
+			<i class="cerca_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Search.html" class="link">Cerca</a><br> 
+			
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Trash.html" class="link">Cestino</a><br>
+		</div>
+
+		<div class="bottom_element_mobile">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br> 
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<div class="sidenav" style="left: 0px; top: 0px; bottom: 0px;">
+		<i class="logo_icon" onclick="location.href='index.html'"></i><br><br>
+
+		<div class="centered_element_sidenav">
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Trash.html" class="link">Cestino</a>
+		</div>
+
+		<div class="bottom_element_sidenav">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br>
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<script>
+		function open_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "block";
+			document.getElementById("hamburger").style.visibility = "hidden";
+		}
+
+		function close_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "none";
+			document.getElementById("hamburger").style.visibility = "visible";
+		}
+	</script>
+		
+	<!-- layout centrale -->
+	<div class="libreria">
+	
+		<p class="libreria-text nunito intestazione">Libreria</p>	
+		<div class="container-libreria">
+			<div class="quaderni menu-aperti1 show">
+				<div class="container-blocchi">
+						<!-- ISTRUZIONI: Inserisci quaderno e note nello stesso livello  O solo note se non ha un quaderno di riferimento-->
+						<div class="quaderno">
+							<p class="nunito">Fisica</p>
+							<ion-icon class="qs-tendina" id="s1" name="chevron-forward-outline"></ion-icon>	
+							<p class="conteggio-note nunito riferimenti">(2 note)</p>
+							<ion-icon class="opt-mt opt-mtsq" id="s1" name="ellipsis-horizontal-outline"></ion-icon>		
+							<div class="dropdown">
+								<ul class="list listbar-ns" id="droplist-ns1">
+									<li>Esporta in pdf</li>
+									<li>Elimina</li>
+								</ul>
+							</div>
+						</div>	
+						
+						<!-- Sezione note -->
+						<div class="note menu-aperti2" id="nl1" style="overscroll-behavior: none;">
+							<div class="container-blocchi">
+								<!-- Inserisci note -->
+								<div class="nota" id="nl1">
+									<p class="ns-tendina nunito">Moto del proiettile</p>
+									<ion-icon class="opt-mt opt-nota" id="l1" name="ellipsis-horizontal-outline"></ion-icon>	
+									<div class="dropdown">
+										<ul class="list listbar-nl" id="droplist-nl1">
+											<li>Apri</li>
+											<li>Esporta in pdf</li>
+											<li>Crea una copia</li>
+											<li>Elimina nota</li>
+										</ul>
+									</div>
+									<p class="anteprima-nota"> testoooooooooooooooooooooooo...<br> asdasdasdasdsda</p>
+								</div>
+							</div>	
+							<div class="container-blocchi">
+								<!-- Inserisci note -->
+								<div class="nota" id="nl1">
+									<p class="ns-tendina nunito">Moto del proiettile</p>
+									<ion-icon class="opt-mt opt-nota" id="l1" name="ellipsis-horizontal-outline"></ion-icon>	
+									<div class="dropdown">
+										<ul class="list listbar-nl" id="droplist-nl1">
+											<li>Apri</li>
+											<li>Esporta in pdf</li>
+											<li>Crea una copia</li>
+											<li>Elimina nota</li>
+										</ul>
+									</div>
+									<p class="anteprima-nota"> testoooooooooooooooooooooooo...<br> asdasdasdasdsda</p>
+								</div>
+							</div>	
+							
+							
+						</div>
+						
+					</div>		
+					
+					<div class="container-blocchi">
+						<!-- ISTRUZIONI: Inserisci quaderno e note nello stesso livello  O solo note se non ha un quaderno di riferimento-->
+						<div class="quaderno">
+							<p class="nunito">Fisica</p>
+							<ion-icon class="qs-tendina" id="s1" name="chevron-forward-outline"></ion-icon>	
+							<p class="conteggio-note nunito riferimenti">(2 note)</p>
+							<ion-icon class="opt-mt opt-mtsq" id="s1" name="ellipsis-horizontal-outline"></ion-icon>		
+							<div class="dropdown">
+								<ul class="list listbar-ns" id="droplist-ns1">
+									<li>Esporta in pdf</li>
+									<li>Elimina</li>
+								</ul>
+							</div>
+						</div>	
+						
+						<!-- Sezione note -->
+						<div class="note menu-aperti2" id="nl1" style="overscroll-behavior: none;">
+							<div class="container-blocchi">
+								<!-- Inserisci note -->
+								<div class="nota" id="nl1">
+									<p class="ns-tendina nunito">Moto del proiettile</p>
+									<ion-icon class="opt-mt opt-nota" id="l1" name="ellipsis-horizontal-outline"></ion-icon>	
+									<div class="dropdown">
+										<ul class="list listbar-nl" id="droplist-nl1">
+											<li>Apri</li>
+											<li>Esporta in pdf</li>
+											<li>Crea una copia</li>
+											<li>Elimina nota</li>
+										</ul>
+									</div>
+									<p class="anteprima-nota"> testoooooooooooooooooooooooo...<br> asdasdasdasdsda</p>
+								</div>
+								
+							</div>	
+						</div>
+					</div>	
+			</div>		
+		</div>
+	</div>	
+	<!-- Pulsante Crea quaderno -->
+	<div class="container-new-quaderno">
+		<img class="new-quaderno" src="icon/Folder_add.png">	
+		<div class="layout-newquaderno" id="b-menu"style="visibility: hidden;" >
+			<div class="bottom-layout-newquaderno">
+				<div class="estetica-barra"></div>
+				<h2 class="crea-text nunito">Crea Quaderno</h2>
+				<input class="inserisci-titoloquaderno" type="text" placeholder="Inserisci il titolo..">
+				<div class="container-approved">
+					<img class="create-newquaderno" src="icon/Check_ring.png" style="z-index: 1;">	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,107 @@
+@media screen and (min-width: 1400px){
+	.cestino{
+		transition: 0.5s;	
+		margin-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.cestino {
+		transition: 0.5s;
+		margin-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+.alert{
+	display: flex;
+	align-items: center;
+	margin-left: 5px;
+}
+
+.icon-trash{
+	width: 20px;		
+}
+
+.text-trash{
+	font-size: 12px;
+	margin-left: 8px;
+}
+
+.riferimenti{
+	color: grey;
+	font-size: 12px;
+	padding-left: 3px;
+}
+
+.qs-tendina,.ns-tendina{
+	margin-right: auto;
+}
+
+
+.conteggio-note{
+	position: relative;
+	right: 10px;	
+}
+
+
+.container-blocchi{
+	margin-top: 0px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	background-color: rgb(230,230,230,0.2);
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+.quaderni,.note{
+	overflow:auto;
+	height: 85%;
+	margin-left: 10px;	
+}
+
+.note{
+	overscroll-behavior: auto;
+	position: relative;
+	margin-top: 0px !important;
+	height: 30%;
+	flex-basis: 100%;
+}
+
+.anteprima-nota{
+	flex-basis: 100%;
+	margin: 0;
+}
+
+.quaderno,.nota{
+	flex-wrap: wrap;
+}
+
+.quaderno,.nota{
+	width: auto;
+	display: flex;
+	align-items: center;
+	margin-left: 7px;
+}
+
+.container-new-quaderno,.container-approved{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: black;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.new-quaderno,.create-newquaderno{
+	position: fixed;
+	bottom: 32px;
+	right: 32px;
+	width: 26px;
+}
+
+	
+
+
