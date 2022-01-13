@@ -150,6 +150,20 @@ function pickbytitoloquaderno(x,text){
 	return s;
 }
 
+function pickbyautore(x,text){
+	const nomi= new Array();
+	const s= new Array();
+	for(var i=0;i<x.length;i++){
+		//se il titolo della nota ha il testo della searchbar e non è cestinato
+		if(x[i].creato_da.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&
+		  !nomi.includes(x[i].creato_da.toLocaleLowerCase())&&!x[i].cestinato){
+			nomi.push(x[i].creato_da.toLocaleLowerCase());
+			s.push(x[i]);
+		}
+	}
+	return s;
+}
+
 function pickbycontenuto(x,text){
 	const nomi= new Array();
 	const s= new Array();
@@ -164,28 +178,59 @@ function pickbycontenuto(x,text){
 	return s;
 }
 
-function notepersonali(y){
+function enlighttext(b,wt,text){
+	if(b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase())!==-1){
+		let arr=new Array();
+		let string1="";
+		//token
+		for(var h=0;h<text.length;h++){
+			string1+="§";
+		}
+		let tmp;
+		if (b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) != -1){
+			tmp=wt.substring(b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()),b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase())+text.length);
+		}
+		while (b.indexOf(tmp) != -1) {
+			arr.push(tmp);
+			b = b.replace(tmp,string1);
+			if (b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) != -1){
+				tmp=wt.substring(b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()),b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase())+text.length);
+			}
+		}
+  		while (b.indexOf(string1) != -1) {
+    		b = b.replace(string1, '<span style="color:red;">' + arr[0] + '</span>');
+			arr.shift();
+  		}
+	}
+	return b;
+}
+
+function notepersonali(y,text){
 	for(let i=0;i<y.length;i++){
 		var container= document.createElement("div");
 		container.classList.add("container");
 			//nota
 			var container1= document.createElement("div");
 			container1.classList.add("container1");
-				//titolo quaderno
-				var quad=document.createElement("h4");
-				quad.classList.add("quaderno-titolo");
+				//titolo nota
+				var tit=document.createElement("h4");
+				tit.classList.add("quaderno-titolo");
+				tit.classList.add("nunito");
+				tit.classList.add("elem");
+				let wt=y[i].titolo;
+				let b=y[i].titolo;			
+				$(tit).html(enlighttext(b,wt,text));
+				container1.appendChild(tit);
+				//titolo nota			
+				var quad=document.createElement("h5");
+				quad.classList.add("nota-titoloquaderno");
 				quad.classList.add("nunito");
 				quad.classList.add("elem");	
-				quad.textContent=y[i].quaderno;
+				quad.setAttribute("style","color: grey;");
+				wt=y[i].quaderno;
+				b=y[i].quaderno;			
+				$(quad).html(enlighttext(b,wt,text));
 				container1.appendChild(quad);
-				//titolo nota			
-				var nota=document.createElement("h5");
-				nota.classList.add("nota-titoloquaderno");
-				nota.classList.add("nunito");
-				nota.classList.add("elem");	
-				nota.setAttribute("style","color: grey;");
-				nota.textContent=y[i].titolo;
-				container1.appendChild(nota);
 				//immagine menu
 				var img=document.createElement("ion-icon");
 				img.classList.add("opt-mt");	
@@ -232,7 +277,7 @@ function notepersonali(y){
 	}
 }
 
-function noteonline(y){
+function noteonline(y,text){
 	for(let i=0;i<y.length;i++){
 		var container= document.createElement("div");
 		container.classList.add("container");
@@ -240,27 +285,33 @@ function noteonline(y){
 			var container1= document.createElement("div");
 			container1.classList.add("container1");
 				//titolo quaderno
-				var quad=document.createElement("h4");
-				quad.classList.add("quaderno-titolo");
+				var tit=document.createElement("h4");
+				tit.classList.add("quaderno-titolo");
+				tit.classList.add("nunito");
+				tit.classList.add("elem");	
+				let wt=y[i].titolo;
+				let b=y[i].titolo;			
+				$(tit).html(enlighttext(b,wt,text));
+				container1.appendChild(tit);
+				//titolo nota			
+				var quad=document.createElement("h5");
+				quad.classList.add("nota-titoloquaderno");
 				quad.classList.add("nunito");
 				quad.classList.add("elem");	
-				quad.textContent=y[i].quaderno;
+				quad.setAttribute("style","color: grey;");
+				wt=y[i].quaderno;
+				b=y[i].quaderno;			
+				$(quad).html(enlighttext(b,wt,text));
 				container1.appendChild(quad);
-				//titolo nota			
-				var nota=document.createElement("h5");
-				nota.classList.add("nota-titoloquaderno");
-				nota.classList.add("nunito");
-				nota.classList.add("elem");	
-				nota.setAttribute("style","color: grey;");
-				nota.textContent=y[i].titolo;
-				container1.appendChild(nota);
 				//autore
 				var creatoda=document.createElement("h5");
 				creatoda.classList.add("nota-autore");
 				creatoda.classList.add("nunito");
 				creatoda.classList.add("elem");	
 				creatoda.setAttribute("style","color: grey;");
-				creatoda.textContent="Pubblicato da "+y[i].creato_da;
+				wt=y[i].creato_da;
+				b=y[i].creato_da;			
+				$(creatoda).html("Pubblicato da "+enlighttext(b,wt,text));
 				container1.appendChild(creatoda);
 				//immagine menu
 				var img=document.createElement("ion-icon");
@@ -324,6 +375,7 @@ function nps(x,text,t){
 		//selezione delle note
 		let z=pickbytitolo(x,text);	
 		let w=pickbytitoloquaderno(x,text);
+		
 		let y=pickbycontenuto(x,text);
 		//rimuovo i cloni facendo un merge
 		for(let i=0;i<z.length;i++){
@@ -334,6 +386,14 @@ function nps(x,text,t){
 		for(let i=0;i<w.length;i++){
  			if(y.indexOf(w[i]) == -1){
    	 			y.push(w[i]);
+			}
+		}
+		if(t=="Online"){
+			let s=pickbyautore(x,text);
+			for(let i=0;i<s.length;i++){
+ 				if(y.indexOf(s[i]) == -1){
+   	 				y.push(s[i]);
+				}
 			}
 		}
 		//rimuovo le stesse note con più pagine
@@ -347,11 +407,11 @@ function nps(x,text,t){
 		
 		//creo le note personali
 		if(t=="Personali"){
-			notepersonali(y);
+			notepersonali(y,text);
 		}
 		//creo le note online
 		else{
-			noteonline(y);
+			noteonline(y,text);
 		}
 		document.getElementById("rif-"+t).textContent=" ( riferimenti "+y.length+" )";
 		assegnato=true;
@@ -368,6 +428,7 @@ function notesearch(text,t) {
  	xhttp.onreadystatechange = function() {
     	if (this.readyState == 4 && this.status == 200) {
 			var x=JSON.parse([this.response]);
+			console.log("log");
 			nps(x,text,t);
  		}
 	};

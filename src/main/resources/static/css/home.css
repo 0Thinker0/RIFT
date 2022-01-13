@@ -15,7 +15,7 @@
 }
 
 .container-nv{
-	margin-top: 110px;
+	margin-top: 30px;
 }
 
 .notaveloce-container{
@@ -38,9 +38,7 @@
 }
 
 .notaveloce{
-	position: fixed;
-	top: 70px;
-	left: 40px;
+	margin-left: 40px;
 	color: black;
 }
 
