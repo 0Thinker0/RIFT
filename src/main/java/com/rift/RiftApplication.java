@@ -8,7 +8,7 @@ public class RiftApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RiftApplication.class, args);
-		System.out.println("e");
+		System.out.println("Test invio");
 	}
 
 }
