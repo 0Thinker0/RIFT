@@ -41,5 +41,9 @@ public class GestioneNote {
 		return Database.getIstance().getNotaDao().findOnline(username);
 	}
 	
-	
+	@GetMapping("/getNoteCestinate")
+	public List<Nota> getNoteTrash(HttpServletRequest request) {
+		String username= "Giuseppe";
+		return Database.getIstance().getNotaDao().findByUsername(username);
+	}
 }
