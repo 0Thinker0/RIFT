@@ -211,47 +211,6 @@ function autoheight(){
 	}
 }
 
-function moveto(obj){
-	if(obj.target.classList.contains("movetosearch")){
-		window.location.href="Search.html";
-	}
-	if(obj.target.classList.contains("movetolibrary")){
-		window.location.href="Library.html";
-	}
-	if(obj.target.classList.contains("movetotrash")){
-		window.location.href="Trash.html";	
-	}
-}
-
-function login(obj){
-	if(obj.target.classList.contains("exit-button-p")){
-		var x=document.getElementsByClassName("profilo-ml");;
-		x[0].innerHTML="Accedi";
-		x[0].classList.toggle("login");
-		var y=document.getElementsByClassName("accedi-ml");
-		y[0].style.bottom= "0px";
-		var z=document.getElementsByClassName("bottom-container-exit");
-		z[0].style.opacity= 0;
-		
-	}
-	else if(obj.target.classList.contains("login")){
-		obj.target.classList.remove("login");
-		obj.target.innerHTML="Profilo";
-		var y=document.getElementsByClassName("accedi-ml");
-		y[0].style.bottom= "50px";
-		var z=document.getElementsByClassName("bottom-container-exit");
-		z[0].style.opacity= 1;
-	}
-}
-
-
-
-window.onload = function(){
-	if(document.location.pathname==="/"){
-		noterecenti();
-	}
-}
-
 window.onclick = function(obj){
 	//tutte
 	menulaterale(obj);
@@ -261,12 +220,10 @@ window.onclick = function(obj){
 	menuatendina(obj);
 	
 	//funzioni
-	moveto(obj);
 	newquaderno(obj);
 	svuotanv(obj);
 	eliminanotarc(obj);
 	esportaPDF(obj);
-	login(obj);
 	
 	
 		

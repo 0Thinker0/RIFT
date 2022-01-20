@@ -128,7 +128,7 @@ function pickbytitolo(x,text){
 	const s= new Array();
 	for(var i=0;i<x.length;i++){
 		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].titolo.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!nomi.includes(x[i].titolo.toLocaleLowerCase())&&!x[i].cestinato){
+		if(x[i].titolo.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
 			nomi.push(x[i].titolo.toLocaleLowerCase());
 			s.push(x[i]);
 		}
@@ -141,8 +141,7 @@ function pickbytitoloquaderno(x,text){
 	const s= new Array();
 	for(var i=0;i<x.length;i++){
 		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].quaderno.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&
-		  !nomi.includes(x[i].quaderno.toLocaleLowerCase())&&!x[i].cestinato){
+		if(x[i].quaderno.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
 			nomi.push(x[i].quaderno.toLocaleLowerCase());
 			s.push(x[i]);
 		}
@@ -155,23 +154,8 @@ function pickbyautore(x,text){
 	const s= new Array();
 	for(var i=0;i<x.length;i++){
 		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].creato_da.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&
-		  !nomi.includes(x[i].creato_da.toLocaleLowerCase())&&!x[i].cestinato){
+		if(x[i].creato_da.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
 			nomi.push(x[i].creato_da.toLocaleLowerCase());
-			s.push(x[i]);
-		}
-	}
-	return s;
-}
-
-function pickbycontenuto(x,text){
-	const nomi= new Array();
-	const s= new Array();
-	for(var i=0;i<x.length;i++){
-		//se il contenuto della nota ha il testo della searchbar e non è cestinato
-		if(x[i].contenuto.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&
-		  !nomi.includes(x[i].contenuto.toLocaleLowerCase())&&!x[i].cestinato){
-			nomi.push(x[i].contenuto.toLocaleLowerCase());
 			s.push(x[i]);
 		}
 	}
@@ -209,6 +193,7 @@ function notepersonali(y,text){
 	for(let i=0;i<y.length;i++){
 		var container= document.createElement("div");
 		container.classList.add("container");
+		container.setAttribute("id",y[i].id);
 			//nota
 			var container1= document.createElement("div");
 			container1.classList.add("container1");
@@ -281,6 +266,7 @@ function noteonline(y,text){
 	for(let i=0;i<y.length;i++){
 		var container= document.createElement("div");
 		container.classList.add("container");
+		container.setAttribute("id",y[i].id);
 			//nota
 			var container1= document.createElement("div");
 			container1.classList.add("container1");
@@ -374,18 +360,12 @@ function nps(x,text,t){
 	if(text!=""){
 		//selezione delle note
 		let z=pickbytitolo(x,text);	
-		let w=pickbytitoloquaderno(x,text);
+		let y=pickbytitoloquaderno(x,text);
 		
-		let y=pickbycontenuto(x,text);
 		//rimuovo i cloni facendo un merge
 		for(let i=0;i<z.length;i++){
 	 		if(y.indexOf(z[i]) == -1){
 	   	 		y.push(z[i]);
-			}
-		}
-		for(let i=0;i<w.length;i++){
- 			if(y.indexOf(w[i]) == -1){
-   	 			y.push(w[i]);
 			}
 		}
 		if(t=="Online"){
@@ -396,15 +376,7 @@ function nps(x,text,t){
 				}
 			}
 		}
-		//rimuovo le stesse note con più pagine
-		for(let i=0;i<y.length;i++){
-			for(let j=0;j<y.length;j++){
-				if(i!=j&&y[i].titolo==y[j].titolo&&y[i].quaderno==y[j].quaderno){
-					y.splice(i,1);
-				}
-			}
-		}
-		
+	
 		//creo le note personali
 		if(t=="Personali"){
 			notepersonali(y,text);
@@ -428,7 +400,6 @@ function notesearch(text,t) {
  	xhttp.onreadystatechange = function() {
     	if (this.readyState == 4 && this.status == 200) {
 			var x=JSON.parse([this.response]);
-			console.log("log");
 			nps(x,text,t);
  		}
 	};
