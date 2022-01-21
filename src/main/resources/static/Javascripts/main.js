@@ -22,24 +22,10 @@ function svuotanv(obj){
 }
 
 function eliminanotarc(obj){
-	if(obj.target.classList.contains("elimina")){
+	if(obj.target.classList.contains("elimina-nr")){
 		obj.target.parentNode.parentNode.parentNode.remove();
+		noterecenti();
 	}	
-}
-
-
-function menulaterale(obj){
-	if(obj.target.classList.contains("icon-menu")||obj.target.classList.contains("cross-menulaterale")){
-		var y=document.getElementsByClassName("menulaterale");
-		if(y[0].classList.contains("show")){
-			y[0].classList.remove("show");
-			y[0].style.visibility = 'hidden';
-		}
-		else{
-			y[0].classList.toggle("show");
-			y[0].style.visibility = 'visible';		
-		}
-	}
 }
 
 function optmenu(obj){
@@ -200,21 +186,18 @@ function autoheight(){
 				z[0].style.height=x[0].offsetHeight-80+"px";
 			}
 			else if(x.length>0){
-				x[0].style.height="480px";
-				z[0].style.height="400px";
+				x[0].style.height="440px";
+				z[0].style.height="360px";
 			}
 		}
 		else{
-			x[0].style.height="480px";
-			z[0].style.height="400px";
+			x[0].style.height="440px";
+			z[0].style.height="360px";
 		}
 	}
 }
 
 window.onclick = function(obj){
-	//tutte
-	menulaterale(obj);
-	
 	//quasi tutte
 	optmenu(obj);
 	menuatendina(obj);

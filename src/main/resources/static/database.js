@@ -1,31 +1,3 @@
-function getNote(){
-	var xhttp = new XMLHttpRequest();
-  	
-	xhttp.open("GET","/getNote", true);
-	xhttp.send();
- 	xhttp.onreadystatechange = function() {
-    	if (this.readyState == 4 && this.status == 200) {
-			var x=JSON.parse([this.response]);
-			console.log(x[0].titolo+" entra");
-			getQuaderni();
- 		}
-	};
-}
-
-function getQuaderni(){
-	var xhttp = new XMLHttpRequest();
-
-	xhttp.open("GET","/getQuaderni", true);
- 	xhttp.send();
-  	xhttp.onreadystatechange = function() {
-	    if (this.readyState == 4 && this.status == 200) {
-			var x=JSON.parse([this.response]);
-			console.log(x[0].titolo +" entra2");
-			log();
-   		 }
-  	};
-}
-
 function pick4different(x){
 	const nomi= new Array();
 	const s= new Array();
@@ -40,11 +12,58 @@ function pick4different(x){
 	}
 	return s;
 }
+
+
+function pickbytitolo(x,text){
+	const nomi= new Array();
+	const s= new Array();
+	for(var i=0;i<x.length;i++){
+		//se il titolo della nota ha il testo della searchbar e non è cestinato
+		if(x[i].titolo.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
+			nomi.push(x[i].titolo.toLocaleLowerCase());
+			s.push(x[i]);
+		}
+	}
+	return s;
+}
+
+function pickbytitoloquaderno(x,text){
+	const nomi= new Array();
+	const s= new Array();
+	for(var i=0;i<x.length;i++){
+		//se il titolo della nota ha il testo della searchbar e non è cestinato
+		if(x[i].quaderno.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
+			nomi.push(x[i].quaderno.toLocaleLowerCase());
+			s.push(x[i]);
+		}
+	}
+	return s;
+}
+
+function pickbyautore(x,text){
+	const nomi= new Array();
+	const s= new Array();
+	for(var i=0;i<x.length;i++){
+		//se il titolo della nota ha il testo della searchbar e non è cestinato
+		if(x[i].creato_da.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
+			nomi.push(x[i].creato_da.toLocaleLowerCase());
+			s.push(x[i]);
+		}
+	}
+	return s;
+}
 //Home
 function creablocchinoterecenti(s){
 	//massimo 4, scarta i cestinati, ed evita i doppioni
 	let x=pick4different(s);
-
+	//rimuovo gli esistenti
+	var e = document.getElementById("nr-sel");
+    var child = e.lastElementChild; 
+    while (child) {
+    	e.removeChild(child);
+        child = e.lastElementChild;
+    }
+	//creo i nuovi cercati
 	for(var i=0;i<x.length;i++){
 		var blocco= document.createElement("div");
 		blocco.classList.add("notarecente-container");
@@ -107,6 +126,7 @@ function creablocchinoterecenti(s){
 	var container= document.getElementsByClassName("note-recenti");
 	container[0].appendChild(blocco);
 	}
+	autoheight();
 }
 
 function noterecenti() {	
@@ -122,45 +142,6 @@ function noterecenti() {
 }
 
 /////Search page
-
-function pickbytitolo(x,text){
-	const nomi= new Array();
-	const s= new Array();
-	for(var i=0;i<x.length;i++){
-		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].titolo.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
-			nomi.push(x[i].titolo.toLocaleLowerCase());
-			s.push(x[i]);
-		}
-	}
-	return s;
-}
-
-function pickbytitoloquaderno(x,text){
-	const nomi= new Array();
-	const s= new Array();
-	for(var i=0;i<x.length;i++){
-		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].quaderno.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
-			nomi.push(x[i].quaderno.toLocaleLowerCase());
-			s.push(x[i]);
-		}
-	}
-	return s;
-}
-
-function pickbyautore(x,text){
-	const nomi= new Array();
-	const s= new Array();
-	for(var i=0;i<x.length;i++){
-		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].creato_da.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
-			nomi.push(x[i].creato_da.toLocaleLowerCase());
-			s.push(x[i]);
-		}
-	}
-	return s;
-}
 
 function enlighttext(b,wt,text){
 	if(b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase())!==-1){
@@ -189,80 +170,7 @@ function enlighttext(b,wt,text){
 	return b;
 }
 
-function notepersonali(y,text){
-	for(let i=0;i<y.length;i++){
-		var container= document.createElement("div");
-		container.classList.add("container");
-		container.setAttribute("id",y[i].id);
-			//nota
-			var container1= document.createElement("div");
-			container1.classList.add("container1");
-				//titolo nota
-				var tit=document.createElement("h4");
-				tit.classList.add("quaderno-titolo");
-				tit.classList.add("nunito");
-				tit.classList.add("elem");
-				let wt=y[i].titolo;
-				let b=y[i].titolo;			
-				$(tit).html(enlighttext(b,wt,text));
-				container1.appendChild(tit);
-				//titolo nota			
-				var quad=document.createElement("h5");
-				quad.classList.add("nota-titoloquaderno");
-				quad.classList.add("nunito");
-				quad.classList.add("elem");	
-				quad.setAttribute("style","color: grey;");
-				wt=y[i].quaderno;
-				b=y[i].quaderno;			
-				$(quad).html(enlighttext(b,wt,text));
-				container1.appendChild(quad);
-				//immagine menu
-				var img=document.createElement("ion-icon");
-				img.classList.add("opt-mt");	
-				img.setAttribute("id","s"+i);
-				img.setAttribute("name","ellipsis-horizontal-outline");
-				container1.appendChild(img);
-		container.appendChild(container1);
-			//contenuto
-			var cont= document.createElement("h5");
-			cont.classList.add("nota-contenuto");
-			cont.classList.add("nunito");
-			cont.textContent=y[i].contenuto;
-			container.appendChild(cont);
-
-			//lista
-			var listcontainer= document.createElement("div");
-			listcontainer.classList.add("dropdown");	
-				var list= document.createElement("ul");
-				list.classList.add("list");		
-				list.classList.add("listbar-ns");	
-				list.setAttribute("id","droplist-ns"+i);
-					var sposta= document.createElement("li");	
-					sposta.classList.add("sposta");	
-					sposta.textContent="Sposta in..";
-					list.appendChild(sposta);
-					var vis= document.createElement("li");	
-					vis.classList.add("visibility");
-					vis.textContent="Rendi pubblica";
-					if(y[i].pubblico){	
-						vis.textContent="Rendi privata";
-					}
-					list.appendChild(vis);
-					var PDF= document.createElement("li");	
-					PDF.classList.add("esporta");	
-					PDF.textContent="Sposta in..";
-					list.appendChild(PDF);
-					var elim= document.createElement("li");	
-					elim.classList.add("elimina");	
-					elim.textContent="Sposta in..";
-					list.appendChild(elim);
-			listcontainer.appendChild(list);
-		container.appendChild(listcontainer);
-		document.getElementById("nps27").appendChild(container);
-	}
-}
-
-function noteonline(y,text){
+function notericerca(y,text,id_){
 	for(let i=0;i<y.length;i++){
 		var container= document.createElement("div");
 		container.classList.add("container");
@@ -290,19 +198,28 @@ function noteonline(y,text){
 				$(quad).html(enlighttext(b,wt,text));
 				container1.appendChild(quad);
 				//autore
-				var creatoda=document.createElement("h5");
-				creatoda.classList.add("nota-autore");
-				creatoda.classList.add("nunito");
-				creatoda.classList.add("elem");	
-				creatoda.setAttribute("style","color: grey;");
-				wt=y[i].creato_da;
-				b=y[i].creato_da;			
-				$(creatoda).html("Pubblicato da "+enlighttext(b,wt,text));
-				container1.appendChild(creatoda);
+				if(id_=="nps65"){
+					var creatoda=document.createElement("h5");
+					creatoda.classList.add("nota-autore");
+					creatoda.classList.add("nunito");
+					creatoda.classList.add("elem");	
+					creatoda.setAttribute("style","color: grey;");
+					wt=y[i].creato_da;
+					b=y[i].creato_da;			
+					$(creatoda).html("Pubblicato da "+enlighttext(b,wt,text));
+					container1.appendChild(creatoda);
+				}
 				//immagine menu
 				var img=document.createElement("ion-icon");
-				img.classList.add("opt-mt1");	
-				img.setAttribute("id","so"+i);
+				img.classList.add("opt-mt1");
+				img.classList.add("opt-mt");
+				if(id_=="nps65"){
+					img.setAttribute("id","so"+i);
+				}
+				else{
+					img.setAttribute("id","s"+i);
+					
+				}
 				img.setAttribute("name","ellipsis-horizontal-outline");
 			container1.appendChild(img);
 		container.appendChild(container1);
@@ -316,9 +233,15 @@ function noteonline(y,text){
 				var listcontainer= document.createElement("div");
 				listcontainer.classList.add("dropdown");	
 					var list= document.createElement("ul");
-					list.classList.add("list");		
-					list.classList.add("listbar-nso");	
-					list.setAttribute("id","droplist-nso"+i);
+					list.classList.add("list");
+					if(id_=="nps65"){
+						list.classList.add("listbar-nso");	
+						list.setAttribute("id","droplist-nso"+i);
+					}
+					else{
+						list.classList.add("listbar-ns");	
+						list.setAttribute("id","droplist-ns"+i);						
+					}
 						var sposta= document.createElement("li");	
 						sposta.classList.add("sposta");	
 						sposta.textContent="Sposta in..";
@@ -332,15 +255,15 @@ function noteonline(y,text){
 						list.appendChild(vis);
 						var PDF= document.createElement("li");	
 						PDF.classList.add("esporta");	
-						PDF.textContent="Sposta in..";
+						PDF.textContent="Esporta in PDF";
 						list.appendChild(PDF);
 						var elim= document.createElement("li");	
 						elim.classList.add("elimina");	
-						elim.textContent="Sposta in..";
+						elim.textContent="Elimina";
 						list.appendChild(elim);
 				listcontainer.appendChild(list);
 			container.appendChild(listcontainer);
-			document.getElementById("nps65").appendChild(container);
+			document.getElementById(id_).appendChild(container);
 	}
 }
 
@@ -379,11 +302,11 @@ function nps(x,text,t){
 	
 		//creo le note personali
 		if(t=="Personali"){
-			notepersonali(y,text);
+			notericerca(y,text,"nps27");
 		}
 		//creo le note online
 		else{
-			noteonline(y,text);
+			notericerca(y,text,"nps65");
 		}
 		document.getElementById("rif-"+t).textContent=" ( riferimenti "+y.length+" )";
 		assegnato=true;
@@ -414,3 +337,94 @@ function cercalenote(txt){
 	}
 }
 
+///// Library Page
+function quaderniLib(quaderni,note){
+	for(let i=0;i<quaderni.length;i++){
+		if(!quaderni[i].cestinato){
+			//container
+			var container= document.createElement("div");
+			container.classList.add("container-blocchi");
+			//parte quaderno	
+			var quaderno= document.createElement("div");
+			quaderno.classList.add("quaderno");
+				var titoloQ= document.createElement("p");
+				titoloQ.classList.add("nunito");
+				titoloQ.textContent=quaderni[i].titolo;
+				quaderno.appendChild(titoloQ);
+				var tendina= document.createElement("ion-icon");
+				tendina.classList.add("qs-tendina");
+				tendina.setAttribute("name","chevron-forward-outline")
+				quaderno.appendChild(tendina);
+				var contN= document.createElement("p");
+				contN.classList.add("conteggio-note");
+				contN.classList.add("riferimenti");
+				contN.classList.add("nunito");
+				quaderno.appendChild(contN);
+				var options= document.createElement("ion-icon");
+				options.classList.add("opt-mt");
+				options.classList.add("opt-mtsq");
+				options.setAttribute("id","s"+i);
+				options.setAttribute("name","ellipsis-horizontal-outline");
+				quaderno.appendChild(options);
+				//Droplist
+				var dropdown= document.createElement("div");
+				dropdown.classList.add("dropdown");
+					var list= document.createElement("ul");
+					list.classList.add("listbar-ns");
+					list.classList.add("list");
+					list.setAttribute("id","droplist-ns"+i);
+						//elementi in lista
+						var PDF= document.createElement("li");	
+						PDF.classList.add("esporta");	
+						PDF.textContent="Esporta in PDF";
+						list.appendChild(PDF);
+						var elim= document.createElement("li");	
+						elim.classList.add("elimina");	
+						elim.textContent="Elimina";
+						list.appendChild(elim);
+				dropdown.appendChild(list);
+				quaderno.appendChild(dropdown);
+			var c=0;
+			//creo quaderno container
+			for(let j=0;j<note.length;j++){
+				if(note[j].titolo==quaderni[i].titolo){
+					c++;
+					//creo note container e le aggiungo al quaderno container corrente
+				
+				}
+			}
+			contN.textContent="( "+c+" note )";
+			container.appendChild(quaderno);
+		}
+	}
+}
+
+
+
+
+
+function getNoteLib(quaderni){
+	var xhttp = new XMLHttpRequest();
+  	
+	xhttp.open("GET","/getNotePersonali", true);
+	xhttp.send();
+ 	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			var note=JSON.parse([this.response]);
+			quaderniLib(quaderni,note);			
+ 		}
+	};
+}
+
+function quaderniLibreria(){
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.open("GET","/getQuaderniPersonali", true);
+ 	xhttp.send();
+  	xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+			var quaderni=JSON.parse([this.response]);
+			getNoteLib(quaderni);
+   		 }
+  	};
+}
