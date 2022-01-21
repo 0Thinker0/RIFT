@@ -87,7 +87,33 @@
 	</div>
 	
 	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
-	<script>	
+	<script>
+	function getBase64(file) {
+		   var reader = new FileReader();
+		   reader.readAsDataURL(file);
+		   reader.onload = function () {
+			 dataURLtoFile(reader.result,'hello.html')
+		     console.log(reader.result);
+		   };
+		   reader.onerror = function (error) {
+		     console.log('Error: ', error);
+		   };
+		}
+	
+	function dataURLtoFile(dataurl, filename) {
+		 
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+            
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        saveAs(new File([u8arr], filename, {type:mime}));
+    }
+	
 		const buttons = document.querySelectorAll('button');
 		textfield.document.designMode = "On";
 		textfield.document.body.style.overflowWrap = "break-word";
@@ -118,7 +144,8 @@
 						var nameFile = document.getElementById('titolo_nota').value;
 						var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
 						var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
-						saveAs(file);
+						
+						getBase64(file);
 					}else{
 						textfield.document.execCommand(cmd, false, null);
 					}
