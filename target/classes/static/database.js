@@ -1,12 +1,10 @@
 function pick4different(x){
-	const nomi= new Array();
 	const s= new Array();
 	for(var i=x.length-1;i>=0;i--){
-		if(!nomi.includes(x[i].titolo)&&!x[i].cestinato){
-			nomi.push(x[i].titolo);
+		if(!x[i].cestinato){
 			s.push(x[i]);
 		}
-		if(nomi.length>3){
+		if(s.length>3){
 			break;
 		}
 	}
@@ -67,6 +65,7 @@ function creablocchinoterecenti(s){
 	for(var i=0;i<x.length;i++){
 		var blocco= document.createElement("div");
 		blocco.classList.add("notarecente-container");
+		blocco.setAttribute("id",x[i].id);
 		//nota
 			var nota= document.createElement("div");
 			nota.classList.add("notarecente-container-attributi");
@@ -127,6 +126,38 @@ function creablocchinoterecenti(s){
 	container[0].appendChild(blocco);
 	}
 	autoheight();
+}
+
+function deletenota(id,t) {	
+    var xhttp = new XMLHttpRequest();
+	xhttp.open("POST","/deleteNota?id="+id, true);
+	xhttp.send();
+ 	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			if(t==0){
+				noterecenti();
+ 			}
+			if(t==1){
+				cercalenote(document.querySelector('input[name="cerca_input"]').value);
+			}
+		}
+	};
+}
+
+function changevis(id,t) {	
+    var xhttp = new XMLHttpRequest();
+	xhttp.open("POST","/changeVisibility?id="+id, true);
+	xhttp.send();
+ 	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			if(t==0){
+				noterecenti();
+ 			}
+			if(t==1){
+				cercalenote(document.querySelector('input[name="cerca_input"]').value);
+			}
+ 		}
+	};
 }
 
 function noterecenti() {	
@@ -215,10 +246,10 @@ function notericerca(y,text,id_){
 				img.classList.add("opt-mt");
 				if(id_=="nps65"){
 					img.setAttribute("id","so"+i);
+					img.classList.add("opt-mt2");	
 				}
 				else{
 					img.setAttribute("id","s"+i);
-					
 				}
 				img.setAttribute("name","ellipsis-horizontal-outline");
 			container1.appendChild(img);
@@ -237,31 +268,44 @@ function notericerca(y,text,id_){
 					list.classList.add("list");
 					if(id_=="nps65"){
 						list.classList.add("listbar-nso");	
+						list.classList.add("listbar-sot");	
 						list.setAttribute("id","droplist-nso"+i);
 					}
 					else{
 						list.classList.add("listbar-ns");	
 						list.setAttribute("id","droplist-ns"+i);						
 					}
-						var sposta= document.createElement("li");	
-						sposta.classList.add("sposta");	
-						sposta.textContent="Sposta in..";
-						list.appendChild(sposta);
-						var vis= document.createElement("li");	
-						vis.classList.add("visibility");
-						vis.textContent="Rendi pubblica";
-						if(y[i].pubblico){	
-							vis.textContent="Rendi privata";
+						if(id_=="nps65"){
+							var contatta= document.createElement("li");	
+							contatta.classList.add("contatta");	
+							contatta.textContent="Contatta";
+							list.appendChild(contatta);
+							var copia= document.createElement("li");	
+							copia.classList.add("copy");
+							copia.textContent="Crea una copia";
+							list.appendChild(copia);
 						}
-						list.appendChild(vis);
-						var PDF= document.createElement("li");	
-						PDF.classList.add("esporta");	
-						PDF.textContent="Esporta in PDF";
-						list.appendChild(PDF);
-						var elim= document.createElement("li");	
-						elim.classList.add("elimina");	
-						elim.textContent="Elimina";
-						list.appendChild(elim);
+						else{
+							var sposta= document.createElement("li");	
+							sposta.classList.add("sposta");	
+							sposta.textContent="Sposta in..";
+							list.appendChild(sposta);
+							var vis= document.createElement("li");	
+							vis.classList.add("visibility");
+							vis.textContent="Rendi pubblica";
+							if(y[i].pubblico){	
+								vis.textContent="Rendi privata";
+							}
+							list.appendChild(vis);
+							var PDF= document.createElement("li");	
+							PDF.classList.add("esporta");	
+							PDF.textContent="Esporta in PDF";
+							list.appendChild(PDF);
+							var elim= document.createElement("li");	
+							elim.classList.add("elimina");	
+							elim.textContent="Elimina";
+							list.appendChild(elim);
+						}
 				listcontainer.appendChild(list);
 			container.appendChild(listcontainer);
 			document.getElementById(id_).appendChild(container);

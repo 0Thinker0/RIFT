@@ -143,6 +143,9 @@
 .opt-mt1{
 	margin-right: 20px;
 }
+.opt-mt2{
+	margin-left: 0 !important;
+}
 .opt-mt{
 	margin-left: auto;
 	margin-right: 20px;
@@ -166,6 +169,11 @@
 	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
 	z-index: 1;
 	width: 140px;
+}
+
+.listbar-sot{
+	bottom: 50px !important;
+	right: 30px !important;
 }
 
 /*il cursore passa suggli elementi della list*/

@@ -2,7 +2,7 @@ package com.rift.model;
 
 import java.sql.Date;
 
-public class Nota{
+public class Nota implements Comparable<Nota>{
 	private String id;
 	private String titolo;
 	private boolean pubblico;
@@ -125,6 +125,12 @@ public class Nota{
 
 	public void setQuaderno(String quaderno) {
 		this.quaderno = quaderno;
+	}
+
+	@Override
+	public int compareTo(Nota o) {
+		// TODO Auto-generated method stub
+		return getUltima_modifica().compareTo(o.getUltima_modifica());
 	}
 
 }

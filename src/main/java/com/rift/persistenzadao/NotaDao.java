@@ -1,11 +1,12 @@
 package com.rift.persistenzadao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.rift.model.Nota;
@@ -40,7 +41,11 @@ public class NotaDao {
 			e.printStackTrace();
 		}
 
-		
+		Collections.sort(note, new Comparator<Nota>() {
+			  public int compare(Nota o1, Nota o2) {
+			      return o1.getUltima_modifica().compareTo(o2.getUltima_modifica());
+			  }
+		});	
 		return note;
 	}
 
@@ -71,4 +76,42 @@ public class NotaDao {
 		return note;
 	}
 	
+	public void removeNota(String id) {
+		 String sql = "DELETE FROM note WHERE id = '"+id+"'";
+		 try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean vis(String id) {
+		String query= "select * from note where id= '"+id+"'"; 
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()) {
+				boolean b=rs.getBoolean("pubblico");
+				return !b;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public void changeVisibilityNota(String id) {
+		boolean pubblica=vis(id);
+		String sql = "UPDATE note SET pubblico ='"+pubblica+"' WHERE id = '"+id+"'";
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

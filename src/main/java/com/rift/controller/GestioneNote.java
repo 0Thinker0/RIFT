@@ -36,8 +36,18 @@ public class GestioneNote {
 	}
 	
 	@GetMapping("/getNoteOnline")
-	public List<Nota> getNoteOn(HttpServletRequest request) {
+	public List<Nota> getNoteOn(String id,HttpServletRequest request) {
 		String username= "Giuseppe";
 		return Database.getIstance().getNotaDao().findOnline(username);
+	}
+	
+	@PostMapping("/deleteNota")
+	public void removeNota(String id,HttpServletRequest request) {
+		Database.getIstance().getNotaDao().removeNota(id);
+	}
+	
+	@PostMapping("/changeVisibility")
+	public void changeVisNota(String id,HttpServletRequest request) {
+		Database.getIstance().getNotaDao().changeVisibilityNota(id);
 	}
 }

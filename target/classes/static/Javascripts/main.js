@@ -12,7 +12,7 @@ function esportaPDF(obj){
 	}
 }
 
-function svuotanv(obj){
+function svuota(obj){
 	if(obj.target.classList.contains("svuotanota")){
 		var x=document.getElementsByClassName("textarea-nv");
 		var y=document.getElementsByClassName("notaveloce-titolo");
@@ -21,11 +21,22 @@ function svuotanv(obj){
 	}	
 }
 
-function eliminanotarc(obj){
+function eliminanota(obj){
 	if(obj.target.classList.contains("elimina-nr")){
-		obj.target.parentNode.parentNode.parentNode.remove();
-		noterecenti();
+		deletenota(obj.target.parentNode.parentNode.parentNode.id,0);
 	}	
+	if(obj.target.classList.contains("elimina")){
+		deletenota(obj.target.parentNode.parentNode.parentNode.id,1);
+	}	
+}
+
+function cambiavis(obj){
+	if(obj.target.classList.contains("visibility-nr")){
+		changevis(obj.target.parentNode.parentNode.parentNode.id,0);
+	}
+	if(obj.target.classList.contains("visibility")){
+		changevis(obj.target.parentNode.parentNode.parentNode.id,1);
+	}
 }
 
 function optmenu(obj){
@@ -204,8 +215,9 @@ window.onclick = function(obj){
 	
 	//funzioni
 	newquaderno(obj);
-	svuotanv(obj);
-	eliminanotarc(obj);
+	svuota(obj);
+	cambiavis(obj);
+	eliminanota(obj);
 	esportaPDF(obj);
 	
 	
