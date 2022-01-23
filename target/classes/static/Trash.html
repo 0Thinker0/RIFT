@@ -1,5 +1,5 @@
 <head>
-	<!-- comuni a tutte le pagine-->
+		<!-- comuni a tutte le pagine-->
 	<title>Rift</title>
   	<meta charset="UTF-8">
 	
@@ -10,6 +10,7 @@
 	
 	<!-- Javascripts -->
 	<script src="Javascripts/main.js"></script>
+	<script src="database.js"></script>
 	<!-- JQuery -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- font nunito -->
@@ -113,48 +114,12 @@
 		</div>
 		
 		<div class="container-cestino">
-			<div class="quaderni menu-aperti1 show">
-				<div class="container-blocchi">
-						<!-- ISTRUZIONI: Inserisci quaderno e note nello stesso livello  O solo note se non ha un quaderno di riferimento-->
-						<div class="quaderno">
-							<p class="nunito">Fisica</p>
-							<ion-icon class="qs-tendina" id="s1" name="chevron-forward-outline"></ion-icon>	
-							<p class="conteggio-note nunito riferimenti">(2 note)</p>
-							<img class="restore-quaderno" src="icon/restore_from_trash_black_24dp.png">
-							<img class="delete-quaderno" src="icon/delete_forever_black_24dp.png">
-						</div>	
-						
-						<!-- Sezione note -->
-						<div class="note menu-aperti2" id="nl1" style="overscroll-behavior: none;">
-							<div class="container-blocchi">
-								<!-- Inserisci note -->
-								<div class="nota" id="nl1">
-									<p class="ns-tendina nunito">Moto del proiettile</p>
-									<img class="restore-nota" src="icon/restore_from_trash_black_24dp.png">
-									<img class="delete-nota" src="icon/delete_forever_black_24dp.png">
-									<p class="anteprima-nota"> testoooooooooooooooooooooooo...<br> asdasdasdasdsda</p>
-								</div>
-							</div>	
-							<div class="container-blocchi">
-								<!-- Inserisci note -->
-								<div class="nota" id="nl1">
-									<p class="ns-tendina nunito">Moto del proiettile</p>
-									<img class="restore-nota" src="icon/restore_from_trash_black_24dp.png">
-									<img class="delete-nota" src="icon/delete_forever_black_24dp.png">
-									<p class="anteprima-nota"> testoooooooooooooooooooooooo...<br> asdasdasdasdsda</p>
-								</div>
-							</div>	
-							
-							
-						</div>
-						
-					</div>		
-
+			<div class="quaderni menu-aperti1 show" id="q35">
+				<!-- aggiunta blocchi -->
 			</div>		
 		</div>
 	</div>	
-	<!-- Pulsante svuota tutto -->
-	<div class="container-new-quaderno">
-		<img class="new-quaderno" src="icon/shredder-svgrepo-com 1.png">	
-	</div>
+	
+	<script>quaderniCestino();</script>
+	
 </body>

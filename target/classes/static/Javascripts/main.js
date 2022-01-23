@@ -21,6 +21,15 @@ function svuota(obj){
 	}	
 }
 
+function restore(obj){
+	if(obj.target.classList.contains("restore-nota")){
+		restoreN(obj.target.parentNode.parentNode.id);
+	}
+	if(obj.target.classList.contains("restore-quaderno")){
+		restoreQ(obj.target.parentNode.parentNode.id);
+	}
+}
+
 function eliminanota(obj){
 	if(obj.target.classList.contains("elimina-nr")){
 		deletenota(obj.target.parentNode.parentNode.parentNode.id,0);
@@ -28,6 +37,19 @@ function eliminanota(obj){
 	if(obj.target.classList.contains("elimina")){
 		deletenota(obj.target.parentNode.parentNode.parentNode.id,1);
 	}	
+	if(obj.target.classList.contains("elimina-l")){
+		deletenota(obj.target.parentNode.parentNode.parentNode.id,2);
+	}
+	if(obj.target.classList.contains("elimina-q")){
+		deleteQ(obj.target.parentNode.parentNode.parentNode.parentNode.id,3);
+	}
+	if(obj.target.classList.contains("delete-nota")){
+		console.log("entra");
+		removeN(obj.target.parentNode.parentNode.id);
+	}
+	if(obj.target.classList.contains("delete-quaderno")){
+		removeQ(obj.target.parentNode.parentNode.id);
+	}
 }
 
 function cambiavis(obj){
@@ -36,6 +58,12 @@ function cambiavis(obj){
 	}
 	if(obj.target.classList.contains("visibility")){
 		changevis(obj.target.parentNode.parentNode.parentNode.id,1);
+	}
+	if(obj.target.classList.contains("visibility-l")){
+		changevis(obj.target.parentNode.parentNode.parentNode.id,2);
+	}
+	if(obj.target.classList.contains("visibility-q")){
+		changevisQ(obj.target.parentNode.parentNode.parentNode.parentNode.id,3);
 	}
 }
 
@@ -217,6 +245,7 @@ window.onclick = function(obj){
 	newquaderno(obj);
 	svuota(obj);
 	cambiavis(obj);
+	restore(obj);
 	eliminanota(obj);
 	esportaPDF(obj);
 	

@@ -35,7 +35,7 @@
 	padding-left: 3px;
 }
 
-.qs-tendina,.ns-tendina{
+.titoloQ,.ns-tendina{
 	margin-right: auto;
 }
 
@@ -85,7 +85,7 @@
 	margin-left: 7px;
 }
 
-.container-new-quaderno,.container-approved{
+.container-remove-quaderno{
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
@@ -95,7 +95,7 @@
 	height: 50px;
 }
 
-.new-quaderno,.create-newquaderno{
+.remove-all{
 	position: fixed;
 	bottom: 32px;
 	right: 32px;

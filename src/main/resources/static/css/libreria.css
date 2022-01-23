@@ -30,7 +30,7 @@
 
 
 
-.qs-tendina,.ns-tendina{
+.titoloQ,.ns-tendina{
 	margin-right: auto;
 }
 
@@ -77,16 +77,24 @@
 	flex-basis: 100%;
 }
 
-.anteprima-nota{
-	flex-basis: 100%;
-	margin: 0;
-}
-
 .quaderno,.nota{
 	flex-wrap: wrap;
 }
 
-.quaderno,.nota{
+.toflex{
+	height: 40px;
+}
+
+.anteprima-nota{
+	margin-top: 0;
+	margin-left: 10px;
+}
+
+.nota{
+	height:100px;
+}
+
+.quaderno,.toflex{
 	width: auto;
 	display: flex;
 	align-items: center;
@@ -112,6 +120,10 @@
 }
 
 
+.dropdown{
+	position: fixed;
+}
+
 /*elementi lista*/
 .dropdown >.list li {
   padding: 12px 16px;
@@ -119,17 +131,23 @@
   display: block;
 }
 
+.listbar-nl{
+	left: 655px !important;
+	bottom: -30px !important;
+}
+
 .listbar-ns,.listbar-nl{
 	visibility: hidden;
 	position: absolute;
 	padding: 0;
 	margin: 0;
-	top: 10px;
-	right: 30px;
+	bottom: -60px;
+	left: 625px;
 	background-color: #f0f0f0;
 	border-radius: 10%;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
+	width: 150px;
 }
 
 .layout-newquaderno{

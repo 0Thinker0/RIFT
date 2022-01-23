@@ -48,6 +48,41 @@ public class GestioneNote {
 	
 	@PostMapping("/changeVisibility")
 	public void changeVisNota(String id,HttpServletRequest request) {
-		Database.getIstance().getNotaDao().changeVisibilityNota(id);
+		Database.getIstance().getNotaDao().changeVisibilityNota(id,-1);
+	}
+	
+	@PostMapping("/deleteQuaderno")
+	public void removeQuaderno(String titolo,HttpServletRequest request) {
+		String username= "Giuseppe";
+		Database.getIstance().getQuadernoDao().removeQuaderno(titolo,username);
+	}
+	
+	@PostMapping("/changeVisibilityQ")
+	public void changeVisQuaderno(String titolo,HttpServletRequest request) {
+		String username= "Giuseppe";
+		Database.getIstance().getQuadernoDao().changeVisibilityNota(titolo,username,-1);
+	}
+	
+	@PostMapping("/spostaNelCestinoNota")
+	public void spostaCestNota(String id,HttpServletRequest request) {
+		Database.getIstance().getNotaDao().moveOnTrashNota(id);
+	}
+	
+	@PostMapping("/spostaNelCestinoQuaderno")
+	public void spostaCestQuaderno(String titolo,HttpServletRequest request) {
+		String username= "Giuseppe";
+		Database.getIstance().getQuadernoDao().moveOnTrashQuaderno(titolo,username);
+	}
+	
+	@PostMapping("/ripristinaNota")
+	public void ripristinaNot(String id,HttpServletRequest request) {
+		String username= "Giuseppe";
+		Database.getIstance().getNotaDao().restoreNota(id);
+	}
+	
+	@PostMapping("/ripristinaQuaderno")
+	public void ripristinaQ(String titolo,HttpServletRequest request) {
+		String username= "Giuseppe";
+		Database.getIstance().getQuadernoDao().restoreQuaderno(titolo, username);
 	}
 }

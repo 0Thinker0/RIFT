@@ -77,8 +77,8 @@ public class NotaDao {
 	}
 	
 	public void removeNota(String id) {
-		 String sql = "DELETE FROM note WHERE id = '"+id+"'";
-		 try {
+		String sql = "DELETE FROM note WHERE id = '"+id+"'";
+		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -103,12 +103,63 @@ public class NotaDao {
 		return false;
 	}
 	
-	public void changeVisibilityNota(String id) {
-		boolean pubblica=vis(id);
+	public void changeVisibilityNota(String id,int b) {
+		boolean pubblica=false;
+		if(b==-1) {
+			pubblica=vis(id);
+		}
+		else if(b==1){
+			pubblica=true;
+		}
 		String sql = "UPDATE note SET pubblico ='"+pubblica+"' WHERE id = '"+id+"'";
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void statusNota(String id,boolean cestinato) {
+		String sql = "UPDATE note SET cestinato ='"+cestinato+"' WHERE id = '"+id+"'";
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
+	public void moveOnTrashNota(String id) {
+		// TODO Auto-generated method stub
+		
+		String query= "select * from note where id = '"+id+"'"; 
+		Statement st;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()) {
+				changeVisibilityNota(id,0);
+				statusNota(id,true);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void restoreNota(String id) {
+		String query= "select * from note where id = '"+id+"'"; 
+		Statement st;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()) {
+				changeVisibilityNota(id,1);
+				statusNota(id,false);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
