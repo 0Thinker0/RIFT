@@ -1,9 +1,24 @@
-<html>
 <head>
+	<link href="css/top.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="/css/note.css">
 	<link rel="stylesheet" href="/css/menu.css">
-</head>
+	<link href="css/cerca.css" rel="stylesheet"/>
+	
+	<!-- Javascripts -->
+	<script src="Javascripts/main.js"></script>
+	<script src="database.js"></script>
 
+	<!-- JQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- font nunito -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+	<!-- icone di ionicon -->
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<!-- Export as PDF -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+	
+</head>
 
 <body>
 	<div class="header_mobile" style="right: 0px; left: 0px;">
@@ -87,39 +102,15 @@
 	
 	
 	<div class="elenco_note">
-		<div>
-  <div class="home-container">
-    <div class="home-note">
-      <div class="home-notetestobox">
-        <span class="home-notetesto">Note</span>
-        <img
-          src="icon/Vector 127.png"
-          alt="image"
-          class="home-elenconoteicon"
-        />
-      </div>
-      <div class="home-nota">
-        <div class="home-headernota">
-          <div class="home-notaequaderno">
-            <span class="home-nomenota">Text</span>
-            <span class="home-nomequaderno">Text</span>
-          </div>
-          <img
-            src="icon/Vector 127.png"
-            alt="image"
-            class="home-mostracontenutonota"
-          />
-          <img
-            src="icon/more_horizontal.png"
-            alt="image"
-            class="home-opzioninota"
-          />
-        </div>
-        <iframe class="home-iframe"></iframe>
-      </div>
-    </div>
-  </div>
-</div>
+    	<span class="libreria-text nunito intestazione nunito">Note</span>
+
+	    <div class="container-blocchi" id="q35">
+	
+	        <iframe class="home-iframe"></iframe>
+	
+	    </div>
 	</div>
+	
+	<script>getNoteByNote();</script>
+
 </body>
-</html>
