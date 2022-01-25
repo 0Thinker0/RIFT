@@ -1,0 +1,117 @@
+.elenco_note{
+	padding-left: 20px;
+}
+
+@media screen and (min-width: 1400px){
+	.elenco_note{
+		transition: 0.5s;	
+		margin-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.elenco_note {
+		transition: 0.5s;
+		margin-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+
+.home-container {
+	font-family: Nunito;
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-note {
+  width: 100%;
+  height: 222px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-notetestobox {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.home-notetesto {
+	font-weight: bold;
+  margin-right: 5px;
+  margin-bottom: 20px;
+}
+.home-elenconoteicon {
+	margin-top: 10px;
+  width: 7px;
+  height: 3px;
+  object-fit: cover;
+}
+.home-nota {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.home-headernota {
+  width: 1162px;
+  height: 51px;
+  display: flex;
+  position: relative;
+  margin-top: 0px;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 0px;
+  justify-content: flex-start;
+}
+.home-notaequaderno {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.home-nomenota {
+	margin-right: 5px;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+.home-nomequaderno {
+  font-size: 12px;
+}
+.home-mostracontenutonota {
+	margin-top: 10px;
+  width: 7px;
+  height: 3px;
+  align-self: flex-start;
+  object-fit: cover;
+}
+.home-opzioninota {
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.home-iframe {
+	border: none;
+  width: 1180px;
+  height: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

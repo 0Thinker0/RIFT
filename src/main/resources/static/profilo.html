@@ -1,0 +1,177 @@
+<html>
+<head>
+	<link rel="stylesheet" href="/css/profilo.css">
+	<link rel="stylesheet" href="/css/menu.css">
+</head>
+
+<body>
+<div class="header_mobile" style="right: 0px; left: 0px;">
+		<i class="hamburger_icon" onclick="open_navbar()" id="hamburger"></i>
+		<i class="logo_black_icon" id="logo" onclick="location.href='index.html'"></i>
+		<i class="messaggi_icon" id="messaggi"></i>
+		<i class="cerca_black_icon" id="cerca" onclick="location.href='Search.html'"></i>
+	</div>
+
+	<div class="header">
+	
+		<div class="elementi_cerca_div">
+			<i class="cerca_black_icon" style="right: 0px; left: 0px; top: 5px;"></i>
+			<input type="text" placeholder="Cerca..." name="cerca_input" onchange="location.href='Search.html'">
+		</div>
+
+		<i class="messaggi_icon" style="right: 0px; left: 0px; top: 10px;"></i>
+	</div>
+
+	<div class="sidenav_hamburger" style="left: 0px; top: 0px; bottom: 0px;" id="sidenav_hamburger">
+		<i class="close_icon" onclick="close_navbar()"></i><br><br>
+
+		<div class="centered_element_mobile">
+			<i class="cerca_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Search.html" class="link">Cerca</a><br> 
+			
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a><br>
+		</div>
+
+		<div class="bottom_element_mobile">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br> 
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<div class="sidenav" style="left: 0px; top: 0px; bottom: 0px;">
+		<i class="logo_icon" onclick="location.href='index.html'"></i><br><br>
+
+		<div class="centered_element_sidenav">
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a>
+		</div>
+
+		<div class="bottom_element_sidenav">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br>
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<script>
+		function open_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "block";
+			document.getElementById("hamburger").style.visibility = "hidden";
+		}
+
+		function close_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "none";
+			document.getElementById("hamburger").style.visibility = "visible";
+		}
+	</script>
+	
+	
+	<div class="informazioni">
+		<div>
+  <div class="home-container">
+    <div class="home-benvenutoutente">
+      <img
+        src="icon/UserExample.png"
+        alt="image"
+        class="home-immagineutente"
+      />
+      <span>
+        <span><b>Buongiorno Utente</b></span>
+        <br />
+        <span><font color="grey" size="3">00 Gen 00</font></span>
+      </span>
+    </div>
+    <div class="home-informazionipersonali">
+      <img
+        src="icon/E-mail.png"
+        alt="image"
+        class="home-iconemail"
+      />
+      <div class="home-boxemail">
+        <span class="home-emailtesto">Email</span>
+        <div class="home-emailview">
+          <span class="home-email">****@gmail.com</span>
+          <img
+            src="icon/Eye.png"
+            alt="image"
+            class="home-vediemail"
+          />
+          <img
+            src="icon/Edit_fill.png"
+            alt="image"
+            class="home-modificaemail"
+          />
+        </div>
+      </div>
+      <img
+        src="icon/Lock.png"
+        alt="image"
+        class="home-iconpassword"
+      />
+      <div class="home-boxpassword">
+        <span class="home-passwordtesto">Password</span>
+        <div class="home-passwordview">
+          <span class="home-password">***************</span>
+          <img
+            src="icon/Eye.png"
+            alt="image"
+            class="home-vedipassword"
+          />
+          <img
+            src="icon/Edit_fill.png"
+            alt="image"
+            class="home-modificapassword"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="home-areapubblicazioni">
+      <div class="home-pubblicazionitestobox">
+        <span class="home-pubblicazionitesto">Pubblicazioni</span>
+        <img
+          src="icon/Vector 127.png"
+          alt="image"
+          class="home-elencopubblicazioniicon"
+        />
+      </div>
+      <div class="home-notapubblicata">
+        <div class="home-headernotapubblicata">
+          <span class="home-nomenota">Text</span>
+          <img
+            src="icon/Vector 127.png"
+            alt="image"
+            class="home-mostracontenutonota"
+          />
+          <img
+            src="icon/more_horizontal.png"
+            alt="image"
+            class="home-opzioninota"
+          />
+        </div>
+        <iframe class="home-contenutonota"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+		
+	</div>
+</body>
+</html>

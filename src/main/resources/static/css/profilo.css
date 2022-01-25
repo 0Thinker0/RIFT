@@ -1,0 +1,237 @@
+.informazioni{
+	padding-left: 10px;
+}
+
+@media screen and (min-width: 1400px){
+	.informazioni{
+		transition: 0.5s;	
+		margin-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.informazioni {
+		transition: 0.5s;
+		margin-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+label[for="profilo"]{
+	font-family: Nunito;
+	font-weight: bold;
+	font-size: 18;
+}
+
+img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.welcome_user{
+	font-family: Nunito;
+	margin-top: 20px;
+	align-content: center;
+}
+
+.home-container {
+  font-family: Nunito;
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.home-benvenutoutente {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-immagineutente {
+  width: 100px;
+  align-self: flex-start;
+  margin-top: 10px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+.home-informazionipersonali {
+  width: 100%;
+  height: 72px;
+  display: flex;
+  margin-top: 50px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.home-iconemail {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.home-boxemail {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  margin-right: 60px;
+  flex-direction: column;
+}
+.home-emailtesto {
+  font-weight: bold;
+  width: var(--dl-size-size-xxlarge);
+  margin-bottom: 5px;
+}
+.home-emailview {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: undefined;
+}
+.home-email {
+	opacity:0.5;
+	font-size: 15px;
+  margin-right: 10px;
+  width: var(--dl-size-size-xlarge);
+  align-self: flex-start;
+}
+.home-vediemail {
+	opacity:0.3;
+	cursor: pointer;
+	margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.home-modificaemail {
+	cursor: pointer;
+  width: 20px;
+  height: 19px;
+  object-fit: cover;
+}
+.home-iconpassword {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.home-boxpassword {
+	
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.home-passwordtesto {
+	font-weight: bold;
+  width: var(--dl-size-size-xxlarge);
+  margin-bottom: 5px;
+}
+.home-passwordview {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.home-password {
+	opacity:0.5;
+	font-size: 15px;
+  margin-right: 10px;
+  width: var(--dl-size-size-xlarge);
+}
+.home-vedipassword {
+	opacity:0.3;
+	cursor: pointer;
+	margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.home-modificapassword {
+	cursor: pointer;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.home-areapubblicazioni {
+  width: 100%;
+  height: 222px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.home-pubblicazionitestobox {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.home-pubblicazionitesto {
+  margin-right: 5px;
+  margin-bottom: 20px;
+}
+.home-elencopubblicazioniicon {
+  width: 7px;
+  height: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+  object-fit: cover;
+}
+.home-notapubblicata {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.home-headernotapubblicata {
+  width: 1162px;
+  height: 28px;
+  display: flex;
+  position: relative;
+  margin-top: 0px;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 0px;
+  justify-content: flex-start;
+}
+.home-nomenota {
+  align-self: flex-start;
+  margin-right: 5px;
+}
+.home-mostracontenutonota {
+  width: 7px;
+  height: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+  align-self: flex-start;
+  object-fit: cover;
+}
+.home-opzioninota {
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.home-contenutonota {
+	border: none;
+  width: 1156px;
+  height: 196px;
+  align-self: center;
+}
