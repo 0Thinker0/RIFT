@@ -1,0 +1,153 @@
+@media screen and (min-width: 1400px){
+	.home-container{
+		transition: 0.5s;	
+		padding-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.home-container {
+		transition: 0.5s;
+		padding-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+.home-container {
+	font-family: Nunito;
+	padding: 0 20 0 20;
+	height: 90%;
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-container1 {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.home-header {
+  width: 95%;
+  height: 65px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding-left: 20px;
+}
+.home-backicon {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+.home-usericon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.home-nomeutente {
+  width: 90%;
+  font-weight: bold;
+}
+.home-cancellachaticon {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.home-messaggiobox {
+  flex: 1;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+  padding-bottom: 40px;
+  justify-content: flex-start;
+}
+.home-messaggiobox1 {
+  flex: 0 0 auto;
+  width: 50%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  border-radius: 15px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #f5f5f5;
+  border-bottom-left-radius: 0;
+}
+
+.home-messaggiobox2 {
+  flex: 0 0 auto;
+  width: 50%;
+  display: flex;
+  align-self: flex-end;
+  align-items: flex-start;
+  border-radius: 15px;
+  padding-right: 10px;
+  flex-direction: column;
+  padding-bottom: 10px;
+  justify-content: flex-start;
+  background-color: #f7f027;
+  border-bottom-left-radius: 15;
+  border-bottom-right-radius: 0;
+}
+.home-testomessaggio1 {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.home-orariomessaggio1 {
+  color: rgba(0, 0, 0, 0.4);
+  align-self: flex-end;
+}
+.home-testomessaggio {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.home-orariomessaggio {
+  color: rgba(0, 0, 0, 0.4);
+  align-self: flex-end;
+}
+.home-inviomessaggiobox {
+  width: 90%;
+  height: 40px;
+  min-height: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  border-radius: 20px;
+  justify-content: center;
+}
+.home-inputtesto {
+	outline: none;
+	border: none;
+  width: 90%;
+  height:20px;
+  border-width: 0px;
+  margin-right: 10px;
+  border-radius: 0px;
+}
+.home-invioicon {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}

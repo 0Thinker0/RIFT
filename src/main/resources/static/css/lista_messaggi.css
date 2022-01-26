@@ -1,0 +1,121 @@
+@media screen and (min-width: 1400px){
+	.home-container{
+		transition: 0.5s;	
+		padding-top: 30px;
+		margin-left: 290px;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	.home-container {
+		transition: 0.5s;
+		padding-top: 30px;	
+		margin-left: 0px;
+	}
+}
+
+.home-container {
+	font-family: Nunito;
+  height: 90%;
+  display: flex;
+  overflow: auto;
+  align-items: flex-start;
+  padding-top: 0px;
+  padding-left: 0px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.home-container1 {
+  flex: 1;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 20px;
+  padding-left: 20px;
+  flex-direction: column;
+}
+.home-messaggitesto {
+	font-weight: bold;
+  margin-bottom: 50px;
+}
+.home-conversazionebox {
+  flex: 0 0 auto;
+  width: 100%;
+  height: var(--dl-size-size-large);
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  padding-top: 10px;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+.home-usericon {
+  width: 100px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.home-testoconversazionebox {
+  flex: 0 0 auto;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+.home-nomeutente {
+	font-weight: bold;
+  margin-bottom: 10px;
+}
+.home-option {
+  height: 24px;
+  width: 24px;
+  object-fit: cover;
+}
+.home-conversazionebox1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: var(--dl-size-size-large);
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  padding-top: 10px;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
+  padding-bottom: 30px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+.home-usericon1 {
+  width: 100px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.home-testoconversazionebox1 {
+  flex: 0 0 auto;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+.home-nomeutente1 {
+	font-weight: bold;
+  margin-bottom: 10px;
+}
+.home-option1 {
+	height: 24px;
+  width: 24px;
+  object-fit: cover;
+}
+.home-testofinale {
+  color: rgba(0, 0, 0, 0.3);
+  align-self: center;
+  margin-top: 20px;
+}

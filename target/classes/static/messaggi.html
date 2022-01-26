@@ -1,0 +1,151 @@
+<html>
+<head>
+	<link rel="stylesheet" href="/css/messaggi.css">
+	<link rel="stylesheet" href="/css/menu.css">
+</head>
+
+<body>
+	<div class="header_mobile" style="right: 0px; left: 0px;">
+		<i class="hamburger_icon" onclick="open_navbar()" id="hamburger"></i>
+		<i class="logo_black_icon" id="logo" onclick="location.href='index.html'"></i>
+		<i class="messaggi_icon" id="messaggi"></i>
+		<i class="cerca_black_icon" id="cerca" onclick="location.href='Search.html'"></i>
+	</div>
+
+	<div class="header">
+	
+		<div class="elementi_cerca_div">
+			<i class="cerca_black_icon" style="right: 0px; left: 0px; top: 5px;"></i>
+			<input type="text" placeholder="Cerca..." name="cerca_input" onchange="location.href='Search.html'">
+		</div>
+
+		<i class="messaggi_icon" style="right: 0px; left: 0px; top: 10px;"></i>
+	</div>
+
+	<div class="sidenav_hamburger" style="left: 0px; top: 0px; bottom: 0px;" id="sidenav_hamburger">
+		<i class="close_icon" onclick="close_navbar()"></i><br><br>
+
+		<div class="centered_element_mobile">
+			<i class="cerca_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Search.html" class="link">Cerca</a><br> 
+			
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a><br>
+		</div>
+
+		<div class="bottom_element_mobile">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br> 
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<div class="sidenav" style="left: 0px; top: 0px; bottom: 0px;">
+		<i class="logo_icon" onclick="location.href='index.html'"></i><br><br>
+
+		<div class="centered_element_sidenav">
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a>
+		</div>
+
+		<div class="bottom_element_sidenav">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br>
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<script>
+		function open_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "block";
+			document.getElementById("hamburger").style.visibility = "hidden";
+		}
+
+		function close_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "none";
+			document.getElementById("hamburger").style.visibility = "visible";
+		}
+	</script>
+
+	<div class="home-container">
+    <div class="home-container1">
+      <div class="home-header">
+        <img
+          src="icon/Expand_left.png"
+          alt="image"
+          class="home-backicon"
+        />
+        <img
+          src="icon/UserExample.png"
+          alt="image"
+          class="home-usericon"
+        />
+        <span class="home-nomeutente">Nome Utente</span>
+        <img
+          src="icon/Broken_heart.png"
+          alt="image"
+          class="home-cancellachaticon"
+        />
+      </div>
+      <div class="home-messaggiobox">
+        <div class="home-messaggiobox1">
+          <span class="home-testomessaggio">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry&apos;s standard dummy
+            text ever since the 1500s, when an unknown printer took a galley of
+            type and scrambled it to make a type specimen book. It has survived
+            not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in
+            the 1960s with the release of Letraset sheets containing Lorem Ipsum
+            passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+          </span>
+          <span class="home-orariomessaggio">10:34 10/10/2021</span>
+        </div>
+        <div class="home-messaggiobox2">
+          <span class="home-testomessaggio1">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry&apos;s standard dummy
+            text ever since the 1500s, when an unknown printer took a galley of
+            type and scrambled it to make a type specimen book. It has survived
+            not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in
+            the 1960s with the release of Letraset sheets containing Lorem Ipsum
+            passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+          </span>
+          <span class="home-orariomessaggio1">10:34 10/10/2021</span>
+        </div>
+      </div>
+      <div class="home-inviomessaggiobox">
+        <input
+          type="text"
+          placeholder="Digita il tuo testo qui ..."
+          class="home-inputtesto input"
+        />
+        <img
+          src="icon/Send_hor_fill.png"
+          alt="image"
+          class="home-image"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+</html>
