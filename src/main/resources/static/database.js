@@ -873,3 +873,94 @@ function quaderniCestino(){
   	};
 }
 
+//Note page
+function quaderniNote(y){
+	//elimino esistenti
+	var e = document.getElementById("q35");
+    var child = e.lastElementChild; 
+    while (child) {
+    	e.removeChild(child);
+        child = e.lastElementChild;
+    }
+
+	for(let i=0;i<y.length;i++){
+		var container= document.createElement("div");
+		container.classList.add("container");
+		container.setAttribute("id",y[i].id);
+			//nota
+			var container1= document.createElement("div");
+			container1.classList.add("container1");
+				//titolo quaderno
+				var tit=document.createElement("h4");
+				tit.classList.add("quaderno-titolo");
+				tit.classList.add("nunito");
+				tit.classList.add("elem");	
+				tit.textContent=y[i].titolo;			
+				container1.appendChild(tit);
+				//titolo nota			
+				var quad=document.createElement("h5");
+				quad.classList.add("nota-titoloquaderno");
+				quad.classList.add("nunito");
+				quad.classList.add("elem");	
+				quad.setAttribute("style","color: grey;");
+				quad.textContent=y[i].quaderno;	
+				container1.appendChild(quad);
+				//immagine menu
+				var img=document.createElement("ion-icon");
+				img.classList.add("opt-mt1");
+				img.classList.add("opt-mt");
+				img.setAttribute("id","s"+i);
+				img.setAttribute("name","ellipsis-horizontal-outline");
+			container1.appendChild(img);
+		container.appendChild(container1);
+			//contenuto
+			var cont= document.createElement("h5");
+			cont.classList.add("nota-contenuto");
+			cont.classList.add("nunito");
+			//sostituire con Iframe?
+			cont.textContent=y[i].contenuto;
+			container.appendChild(cont);
+				//lista
+				var listcontainer= document.createElement("div");
+				listcontainer.classList.add("dropdown");	
+					var list= document.createElement("ul");
+					list.classList.add("list");
+					list.classList.add("listbar-ns");	
+					list.setAttribute("id","droplist-ns"+i);						
+						var sposta= document.createElement("li");	
+						sposta.classList.add("sposta");	
+						sposta.textContent="Sposta in..";
+						list.appendChild(sposta);
+						var vis= document.createElement("li");	
+						vis.classList.add("visibility");
+						vis.textContent="Rendi pubblica";
+						if(y[i].pubblico){	
+							vis.textContent="Rendi privata";
+						}
+						list.appendChild(vis);
+						var PDF= document.createElement("li");	
+						PDF.classList.add("esporta");	
+						PDF.textContent="Esporta in PDF";
+						list.appendChild(PDF);
+						var elim= document.createElement("li");	
+						elim.classList.add("elimina");	
+						elim.textContent="Elimina";
+						list.appendChild(elim);
+				listcontainer.appendChild(list);
+			container.appendChild(listcontainer);
+			document.getElementById("q35").appendChild(container);
+	}
+}
+
+function getNoteByNote(){
+	var xhttp = new XMLHttpRequest();
+  	
+	xhttp.open("GET","/getNotePersonali", true);
+	xhttp.send();
+ 	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			var note=JSON.parse([this.response]);
+			quaderniNote(note);			
+ 		}
+	};
+}
