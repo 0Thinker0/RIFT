@@ -7,9 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rift.model.Nota;
 import com.rift.model.Quaderno;
-import com.rift.model.Utente;
 
 public class QuadernoDao {
 	private Connection con;

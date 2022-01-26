@@ -16,10 +16,9 @@
 		
         var reader = new FileReader();
 		reader.readAsText(file, "UTF-8");
-		 reader.onload = function () {
-		     frameDoc.documentElement.innerHTML = reader.result;
-		     console.log(reader.result);
-		   };
+		reader.onload = function () {
+			frameDoc.documentElement.innerHTML = reader.result;
+		};
     }
 
 function generaPDF(titolo,testo){

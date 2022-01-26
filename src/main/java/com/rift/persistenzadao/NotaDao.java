@@ -1,9 +1,12 @@
 package com.rift.persistenzadao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -155,11 +158,27 @@ public class NotaDao {
 		Statement st;
 		try {
 			st = con.createStatement();
-			ResultSet rs = st.executeQuery(query);
+			ResultSet rs = st.executeQuery(query); 
 			while(rs.next()) {
 				changeVisibilityNota(id,1);
 				statusNota(id,false);
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void addNota(String titolo, String contenuto, boolean pubblico,String username) {
+		// TODO Auto-generated method stub
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+		LocalDateTime now = LocalDateTime.now();
+		String query="insert into note(titolo,contenuto,pubblico,ultima_modifica,creato_da) values ('"+
+		titolo+"','"+contenuto+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"')";
+		Statement st;
+		try {
+			st = con.createStatement();
+			st.execute(query);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

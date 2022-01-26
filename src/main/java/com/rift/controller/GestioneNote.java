@@ -16,11 +16,13 @@ import com.rift.model.Quaderno;
 
 @RestController
 public class GestioneNote {
-	@PostMapping("/addNota")
-	public void aggiungiNota(Nota nota,HttpServletRequest req) {
-		if (req.getSession().getAttribute("username") != null) {			
-
+	@PostMapping("/creaNota")
+	public void aggiungiNota(String titolo,String contenuto,boolean pubblico,HttpServletRequest req) {
+		if (req.getSession().getAttribute("username") != null) {
 		}
+		String username= "Giuseppe";
+		Database.getIstance().getNotaDao().addNota(titolo,contenuto,pubblico,username);
+	
 	}
 	
 	@GetMapping("/getNotePersonali")
@@ -28,7 +30,7 @@ public class GestioneNote {
 		String username= "Giuseppe";
 		return Database.getIstance().getNotaDao().findByUsername(username);
 	}
-	
+	 
 	@GetMapping("/getQuaderniPersonali")
 	public List<Quaderno> getQuaderni(HttpServletRequest request) {
 		String username= "Giuseppe";

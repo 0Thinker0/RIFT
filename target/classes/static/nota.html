@@ -90,42 +90,38 @@
 	<script>
 	
 	//Converte da file a stringa (Questa è da tenere in nota.html)
-	function getBase64(file, visibilità) {
+	function getBase64(file,nameFile,visibilità) {
 		   var reader = new FileReader();
 		   reader.readAsDataURL(file);
-		   reader.onload = function () {
-			   var now = new Date();
-			   now.format("yyyy/MM/dd");
-			   
-			   var nameFile = document.getElementById('titolo_nota').value;
-			   var xhttp = new XMLHttpRequest();
-				xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+reader.result + "&pubblico="+visibilità + "&ultima_modifica="+now, true);
+		   reader.onload = function () {	   
+			    var xhttp = new XMLHttpRequest();
+				xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+reader.result + "&pubblico="+visibilità, true);
 				xhttp.send();
 		   };
 		   reader.onerror = function (error) {
 		     console.log('Error: ', error);
 		   };
-		}
+	}
 	
-		const buttons = document.querySelectorAll('button');
-		textfield.document.designMode = "On";
-		textfield.document.body.style.overflowWrap = "break-word";
-		for(let i = 0; i < buttons.length; i++){
-			buttons[i].addEventListener('click', ()=>{
-				let cmd = buttons[i].getAttribute('data-cmd');
-				if(buttons[i].name === "active"){
-					buttons[i].classList.toggle('active');
-				}
-				
-				if(cmd === "restore"){
-					let file = document.getElementById('input').files[0];
+	const buttons = document.querySelectorAll('button');
+	textfield.document.designMode = "On";
+	textfield.document.body.style.overflowWrap = "break-word";
+	for(let i = 0; i < buttons.length; i++){
+		buttons[i].addEventListener('click', ()=>{
+			let cmd = buttons[i].getAttribute('data-cmd');
+			if(buttons[i].name === "active"){
+				buttons[i].classList.toggle('active');
+			}
+			
+			if(cmd === "restore"){
+				let file = document.getElementById('input').files[0];
 
-					  let reader = new FileReader();
+				let reader = new FileReader();
 
-					  reader.readAsText(file);
+				reader.readAsText(file);
 
-					  reader.onload = function() {
-						  var iframe = document.getElementById('output');
+                reader.onload = function() {
+				var iframe = document.getElementById('output');
 						  iframe = iframe.contentWindow || ( iframe.contentDocument.document || iframe.contentDocument);
 
 						  iframe.document.open();
@@ -134,10 +130,11 @@
 					  };
 				}else{
 					if(cmd === "download"){
+						var nameFile = document.getElementById('titolo_nota').value;
 						var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
 						var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
 						
-						getBase64(file, false);
+						getBase64(file,nameFile, true);
 					}else{
 						textfield.document.execCommand(cmd, false, null);
 					}
