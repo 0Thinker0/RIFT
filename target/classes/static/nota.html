@@ -6,7 +6,7 @@
 
 <body>
 	<input type="text" placeholder="Inserisci il titolo della nota..." id="titolo_nota">
-	<iframe id="output" name="textfield"></iframe><br>
+	<iframe id="output" name="textfield" src=""></iframe><br>
 	
 	<div class="button_div">
 	<i class="fas fa-font" style="opacity: 0.5;"></i>
@@ -88,31 +88,24 @@
 	
 	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
 	<script>
-	function getBase64(file) {
+	
+	//Converte da file a stringa (Questa è da tenere in nota.html)
+	function getBase64(file, visibilità) {
 		   var reader = new FileReader();
 		   reader.readAsDataURL(file);
 		   reader.onload = function () {
-			 dataURLtoFile(reader.result,'hello.html')
-		     console.log(reader.result);
+			   var now = new Date();
+			   now.format("yyyy/MM/dd");
+			   
+			   var nameFile = document.getElementById('titolo_nota').value;
+			   var xhttp = new XMLHttpRequest();
+				xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+reader.result + "&pubblico="+visibilità + "&ultima_modifica="+now, true);
+				xhttp.send();
 		   };
 		   reader.onerror = function (error) {
 		     console.log('Error: ', error);
 		   };
 		}
-	
-	function dataURLtoFile(dataurl, filename) {
-		 
-        var arr = dataurl.split(','),
-            mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]), 
-            n = bstr.length, 
-            u8arr = new Uint8Array(n);
-            
-        while(n--){
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        saveAs(new File([u8arr], filename, {type:mime}));
-    }
 	
 		const buttons = document.querySelectorAll('button');
 		textfield.document.designMode = "On";
@@ -141,11 +134,10 @@
 					  };
 				}else{
 					if(cmd === "download"){
-						var nameFile = document.getElementById('titolo_nota').value;
 						var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
 						var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
 						
-						getBase64(file);
+						getBase64(file, false);
 					}else{
 						textfield.document.execCommand(cmd, false, null);
 					}

@@ -1,3 +1,27 @@
+	function dataURLtoFile(dataurl, id) {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+        
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        
+        var file = new File([u8arr], "content" + id + ".html", {type:mime});
+        var frame = document.getElementById(id),
+        frameDoc = frame.contentDocument || frame.contentWindow.document;
+        frameDoc.documentElement.innerHTML = "";
+		
+        var reader = new FileReader();
+		reader.readAsText(file, "UTF-8");
+		 reader.onload = function () {
+		     frameDoc.documentElement.innerHTML = reader.result;
+		     console.log(reader.result);
+		   };
+    }
+
 function generaPDF(titolo,testo){
 	var doc = new jsPDF();
 	doc.text(10, 10,testo);
