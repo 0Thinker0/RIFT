@@ -104,27 +104,46 @@
     </div>
 	
 	<iframe id="output" name="textfield" src=""></iframe><br>
+	<div class="container-font">
+	<div class="fontName" id="fontName">
+		<label for="Arial" style="font-family: arial" onclick="textfield.document.execCommand('fontName', false, 'Arial')">Arial</label>
+		<label for="Cursive" style="font-family: Cursive" onclick="textfield.document.execCommand('fontName', false, 'Cursive')">Cursive</label>
+		<label for="Fantasy" style="font-family: Fantasy" onclick="textfield.document.execCommand('fontName', false, 'Fantasy')">Fantasy</label>
+		<label for="Nunito" style="font-family: Nunito" onclick="textfield.document.execCommand('fontName', false, 'Nunito')">Nunito</label>
+		<label for="Roboto" style="font-family: Roboto" onclick="textfield.document.execCommand('fontName', false, 'Roboto')">Roboto</label>
+		<label for="Sans-serif" style="font-family: Sans-serif" onclick="textfield.document.execCommand('fontName', false, 'Sans-serif')">Sans-serif</label>
+		<label for="Serif" style="font-family: Serif" onclick="textfield.document.execCommand('fontName', false, 'Serif')">Serif</label>
+	</div>
 	
+	<div class="fontHeight" id="fontHeight">
+		<label for="7" style="font-family: Nunito; font-size: 15px;" onclick="textfield.document.execCommand('fontSize', false, '7')">H1</label>
+		<label for="6" style="font-family: Nunito; font-size: 15px;" onclick="textfield.document.execCommand('fontSize', false, '6')">H2</label>
+		<label for="5" style="font-family: Nunito; font-size: 15px;" onclick="textfield.document.execCommand('fontSize', false, '5')">H3</label>
+		<label for="4" style="font-family: Nunito; font-size: 15px;" onclick="textfield.document.execCommand('fontSize', false, '4')">Testo grande</label>
+		<label for="3" style="font-family: Nunito; font-size: 15px;" onclick="textfield.document.execCommand('fontSize', false, '3')">Testo normale</label>
+		<label for="2" style="font-family: Nunito; font-size: 15px;" onclick="textfield.document.execCommand('fontSize', false, '2')">Testo piccolo</label>
+		<label for="1" style="font-family: Nunito; font-size: 15px;" onclick="textfield.document.execCommand('fontSize', false, '1')">Citazione</label>
+	</div>
+	
+	<div class="fontColor" id="fontColor">
+		<span id="#f54542" onclick="textfield.document.execCommand('foreColor', false, 'f54542')" style="width: 20px; height: 20px; border-radius: 20px; background-color: #f54542; cursor: pointer; display: inline-block;"></span>
+		<span id="#f5d520" onclick="textfield.document.execCommand('foreColor', false, 'f5d520')" style="width: 20px; height: 20px; border-radius: 20px; background-color: #f5d520; cursor: pointer; display: inline-block;"></span>
+		<span id="#42f56f" onclick="textfield.document.execCommand('foreColor', false, '42f56f')" style="width: 20px; height: 20px; border-radius: 20px; background-color: #42f56f; cursor: pointer; display: inline-block;"></span>
+		<span id="#428af5" onclick="textfield.document.execCommand('foreColor', false, '428af5')" style="width: 20px; height: 20px; border-radius: 20px; background-color: #428af5; cursor: pointer; display: inline-block;"></span>
+		<span id="#e942f5" onclick="textfield.document.execCommand('foreColor', false, 'e942f5')" style="width: 20px; height: 20px; border-radius: 20px; background-color: #e942f5; cursor: pointer; display: inline-block;"></span>
+		<span id="#000000" onclick="textfield.document.execCommand('foreColor', false, '000000')" style="width: 20px; height: 20px; border-radius: 20px; background-color: #000000; cursor: pointer; display: inline-block;"></span>
+	</div>
+	</div>
 	<div class="button_div">
-	<i class="fas fa-font" style="opacity: 1;"></i>
-	<select name="fonts" id="fontSelect" onchange="textfield.document.execCommand('fontName', false, this.value);"  style="margin-right: 10px;">
-		<option value="Serif">Serif</option>
-		<option value="Nunito">Nunito</option>
-		<option value="Arial">Arial</option>
-		<option value="Fantasy">Fantasy</option>
-    	<option value="Sans-Serif">Sans-Serif</option>
-  	</select>
-  	
-	<i class="fas fa-text-height" style="opacity: 1;"></i>
-	<select name="fontsSize" id="fontSizeSelect" onchange="textfield.document.execCommand('fontSize', false, this.value);">
-		<option value="3">Paragrafo normale</option>
-		<option value="4">Paragrafo grande</option>
-		<option value="2">Paragrafo piccolo</option>
-		<option value="7">H1</option>
-		<option value="6">H2</option>
-		<option value="5">H3</option>
-    	<option value="1">Citazione</option>
-  	</select>
+  	<button type="button" data-cmd="fontName">
+		<i class="fas fa-font" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="fontHeight">
+		<i class="fas fa-text-height" aria-hidden="true"></i>
+	</button>
+	<button type="button" data-cmd="fontColor">
+		<i class="fas fa-paint-brush" aria-hidden="true"></i>
+	</button>
 	<button type="button" data-cmd="bold">
 		<i class="fas fa-bold" aria-hidden="true"></i>
 	</button>
@@ -203,6 +222,43 @@
 		document.getElementById("conferma").style.display = "none";
 	}
 	
+	function fontPanel(id){
+		switch(id){
+		case "fontName":
+			document.getElementById("fontColor").style.display = "none";
+			document.getElementById("fontHeight").style.display = "none";
+			if(document.getElementById(id).style.display == "block"){
+				document.getElementById(id).style.display = "none";
+			}else{
+				document.getElementById(id).style.display = "block";
+			}
+			break;
+		case "fontColor":
+			document.getElementById("fontName").style.display = "none";
+			document.getElementById("fontHeight").style.display = "none";
+			if(document.getElementById(id).style.display == "block"){
+				document.getElementById(id).style.display = "none";
+			}else{
+				document.getElementById(id).style.display = "block";
+			}
+			break;
+		case "fontHeight":
+			document.getElementById("fontName").style.display = "none";
+			document.getElementById("fontColor").style.display = "none";
+			if(document.getElementById(id).style.display == "block"){
+				document.getElementById(id).style.display = "none";
+			}else{
+				document.getElementById(id).style.display = "block";
+			}
+			break;
+		case "all":
+			document.getElementById("fontName").style.display = "none";
+			document.getElementById("fontColor").style.display = "none";
+			document.getElementById("fontHeight").style.display = "none";
+			break;
+		}	
+	}
+	
 	//Converte da file a stringa (Questa è da tenere in nota.html)
 	function getBase64(file,nameFile,visibilità) {
 		   var reader = new FileReader();
@@ -222,9 +278,8 @@
 		var contentWindow = iframe.contentWindow,
     	contentDocument = contentWindow.document,
     	contentBody = contentDocument.body;
-		contentBody.innerHTML = '<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap);</style>';
+		contentBody.innerHTML = '<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap); @import url(https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap);</style>';
 	};
-	
 	
 	const buttons = document.querySelectorAll('button');
 	textfield.document.designMode = "On";
@@ -236,15 +291,30 @@
 				buttons[i].classList.toggle('active');
 			}
 			
-			if(cmd == 'insertImage' || cmd == 'createLink'){
-				let url = prompt('Inserisci il link che vuoi inserire', '');
-				textfield.document.execCommand(cmd, false, url);
+			if(cmd == 'fontName' || cmd == 'fontColor' || cmd == 'fontHeight'){
+				if(cmd == 'fontName'){
+					fontPanel("fontName");
+				}
+				if(cmd == 'fontColor'){
+					fontPanel("fontColor");
+				}
+				if(cmd == 'fontHeight'){
+					fontPanel("fontHeight");
+				}
 			}else{
-				textfield.document.execCommand(cmd, false, null);
-			}
+				fontPanel("all");
 				
-			})
-		}
+				if(cmd == 'insertImage' || cmd == 'createLink'){
+					let url = prompt('Inserisci il link che vuoi inserire', '');
+					if(url != null){
+						textfield.document.execCommand(cmd, false, url);
+					}
+				}else{
+					textfield.document.execCommand(cmd, false, null);
+				}
+			}
+		})
+	}
 	</script>
 </body>
 </html>
