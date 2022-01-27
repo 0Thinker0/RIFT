@@ -4,30 +4,125 @@
   	<meta charset="UTF-8">
 	<link rel="stylesheet" href="fontawesome/css/all.css">
 	<link rel="stylesheet" href="/css/nota_css.css">
+	<link rel="stylesheet" href="/css/menu.css">
 </head>
 
-<body>
-	<input type="text" placeholder="Inserisci il titolo della nota..." id="titolo_nota">
+<body onload="font()">
+
+	<div class="header_mobile" style="right: 0px; left: 0px;">
+		<i class="hamburger_icon" onclick="open_navbar()" id="hamburger"></i>
+		<i class="logo_black_icon" id="logo" onclick="location.href='index.html'"></i>
+		<i class="messaggi_icon" id="messaggi"></i>
+		<i class="cerca_black_icon" id="cerca" onclick="location.href='Search.html'"></i>
+	</div>
+
+	<div class="header">
+	
+		<div class="elementi_cerca_div">
+			<i class="cerca_black_icon" style="right: 0px; left: 0px; top: 5px;"></i>
+			<input type="text" placeholder="Cerca..." name="cerca_input" onchange="location.href='Search.html'">
+		</div>
+
+		<i class="messaggi_icon" style="right: 0px; left: 0px; top: 10px;"></i>
+	</div>
+
+	<div class="sidenav_hamburger" style="left: 0px; top: 0px; bottom: 0px;" id="sidenav_hamburger">
+		<i class="close_icon" onclick="close_navbar()"></i><br><br>
+
+		<div class="centered_element_mobile">
+			<i class="cerca_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Search.html" class="link">Cerca</a><br> 
+			
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a><br>
+		</div>
+
+		<div class="bottom_element_mobile">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br> 
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<div class="sidenav" style="left: 0px; top: 0px; bottom: 0px;">
+		<i class="logo_icon" onclick="location.href='index.html'"></i><br><br>
+
+		<div class="centered_element_sidenav">
+			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Note</a><br> 
+			
+			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="Library.html" class="link">Libreria</a><br> 
+			
+			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
+			<a href="#" class="link">Cestino</a>
+		</div>
+
+		<div class="bottom_element_sidenav">
+			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link">Accedi</a><br>
+			
+			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i>
+			<a href="#" class="link" style="color: red;">Esci</a>
+		</div>
+	</div>
+
+	<script>
+		function open_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "block";
+			document.getElementById("hamburger").style.visibility = "hidden";
+		}
+
+		function close_navbar() {
+			document.getElementById("sidenav_hamburger").style.display = "none";
+			document.getElementById("hamburger").style.visibility = "visible";
+		}
+	</script>
+
+<div class="content">
+<div class="home-container1">
+      <input type="text" placeholder="Inserisci il titolo della nota..." id="titolo_nota">
+      <img
+        alt="image"
+        src="icon/Check_ring_round.png"
+        class="home-save"
+        onclick="showConferma()"
+      />
+      <img
+        alt="image"
+        src="icon/more_horizontal.png"
+        class="home-moreoption"
+      />
+    </div>
+	
 	<iframe id="output" name="textfield" src=""></iframe><br>
 	
 	<div class="button_div">
-	<i class="fas fa-font" style="opacity: 0.5;"></i>
-	<select name="fonts" id="fontSelect" onchange="textfield.document.execCommand('fontName', false, this.value);" style="margin-right: 10px;">
+	<i class="fas fa-font" style="opacity: 1;"></i>
+	<select name="fonts" id="fontSelect" onchange="textfield.document.execCommand('fontName', false, this.value);"  style="margin-right: 10px;">
+		<option value="Serif">Serif</option>
+		<option value="Nunito">Nunito</option>
 		<option value="Arial">Arial</option>
 		<option value="Fantasy">Fantasy</option>
-    	<option value="Nunito">Nunito</option>
-    	<option value="Serif">Serif</option>
     	<option value="Sans-Serif">Sans-Serif</option>
   	</select>
   	
-	<i class="fas fa-text-height" style="opacity: 0.5;"></i>
+	<i class="fas fa-text-height" style="opacity: 1;"></i>
 	<select name="fontsSize" id="fontSizeSelect" onchange="textfield.document.execCommand('fontSize', false, this.value);">
+		<option value="3">Paragrafo normale</option>
+		<option value="4">Paragrafo grande</option>
+		<option value="2">Paragrafo piccolo</option>
 		<option value="7">H1</option>
 		<option value="6">H2</option>
 		<option value="5">H3</option>
-		<option value="4">Paragrafo grande</option>
-    	<option value="3">Paragrafo normale</option>
-    	<option value="2">Paragrafo piccolo</option>
     	<option value="1">Citazione</option>
   	</select>
 	<button type="button" data-cmd="bold">
@@ -44,9 +139,6 @@
 	</button>
 	<button type="button" data-cmd="cut">
 		<i class="fas fa-cut" aria-hidden="true"></i>
-	</button>
-	<button type="button" data-cmd="paste">
-		<i class="far fa-paste" aria-hidden="true"></i>
 	</button>
 	<button type="button" data-cmd="justifyLeft">
 		<i class="fas fa-align-left" aria-hidden="true"></i>
@@ -72,24 +164,44 @@
 	<button type="button" data-cmd="redo">
 		<i class="fas fa-redo" aria-hidden="true"></i>
 	</button>
-	<button type="button" data-cmd="insertImage" onclick="document.getElementById('input_image').click();">
+	<button type="button" data-cmd="insertImage">
 		<i class="far fa-image" aria-hidden="true"></i>
 	</button>
-	<button type="button" data-cmd="showCode">
-		<i class="fas fa-code" aria-hidden="true"></i>
+	<button type="button" data-cmd="createLink">
+		<i class="fas fa-link" aria-hidden="true"></i>
 	</button>
-	<button type="button" data-cmd="download">
-		<i class="fas fa-download" aria-hidden="true"></i>
-	</button>
-	<button type="button" data-cmd="restore" onclick="document.getElementById('input').click();">
-		<i class="far fa-window-restore" aria-hidden="true"></i>
-	</button>
-	<input type="file" id="input" hidden="true">
-	<input type="file" id="input_image" hidden="true" accept="image/*">
+	</div>
+	 <div class="home-conferma" id="conferma">
+      <label class="home-domanda">
+        Vuoi pubblicare la nota sul portale Rif, rendendola visibile anche agli
+        altri utenti?
+      </label>
+      <div class="home-risposte">
+        <label class="home-pubblica" onclick="hideConferma(true)">Pubblica</label>
+        <label class="home-nonpubblicare" onclick="hideConferma(false)">Non pubblicare</label>
+      </div>
+      	<label class="annulla" onclick="exitConferma()">Annulla operazione</label>
+    </div>
 	</div>
 	
 	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
 	<script>
+	function showConferma(){
+		document.getElementById("conferma").style.display = "flex";
+	}
+	
+	function hideConferma(visibilità){
+		var nameFile = document.getElementById('titolo_nota').value;
+		var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
+		var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
+		console.log(frameContent);
+		getBase64(file,nameFile, visibilità);
+		document.getElementById("conferma").style.display = "none";	
+	}
+	
+	function exitConferma(){
+		document.getElementById("conferma").style.display = "none";
+	}
 	
 	//Converte da file a stringa (Questa è da tenere in nota.html)
 	function getBase64(file,nameFile,visibilità) {
@@ -105,6 +217,15 @@
 		   };
 	}
 	
+	function font(){
+		var iframe = document.getElementById("output");
+		var contentWindow = iframe.contentWindow,
+    	contentDocument = contentWindow.document,
+    	contentBody = contentDocument.body;
+		contentBody.innerHTML = '<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap);</style>';
+	};
+	
+	
 	const buttons = document.querySelectorAll('button');
 	textfield.document.designMode = "On";
 	textfield.document.body.style.overflowWrap = "break-word";
@@ -115,32 +236,13 @@
 				buttons[i].classList.toggle('active');
 			}
 			
-			if(cmd === "restore"){
-				let file = document.getElementById('input').files[0];
-
-				let reader = new FileReader();
-
-				reader.readAsText(file);
-
-                reader.onload = function() {
-				var iframe = document.getElementById('output');
-						  iframe = iframe.contentWindow || ( iframe.contentDocument.document || iframe.contentDocument);
-
-						  iframe.document.open();
-						  iframe.document.write(reader.result);
-						  iframe.document.close();
-					  };
-				}else{
-					if(cmd === "download"){
-						var nameFile = document.getElementById('titolo_nota').value;
-						var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
-						var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
-						console.log(frameContent);
-						getBase64(file,nameFile, true);
-					}else{
-						textfield.document.execCommand(cmd, false, null);
-					}
-				}
+			if(cmd == 'insertImage' || cmd == 'createLink'){
+				let url = prompt('Inserisci il link che vuoi inserire', '');
+				textfield.document.execCommand(cmd, false, url);
+			}else{
+				textfield.document.execCommand(cmd, false, null);
+			}
+				
 			})
 		}
 	</script>
