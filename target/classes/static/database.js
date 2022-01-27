@@ -189,6 +189,9 @@ function creablocchinoterecenti(s){
 				titoloquaderno.classList.add("notarecente-titoloquaderno");
 				titoloquaderno.classList.add("nunito");
 				titoloquaderno.textContent=x[i].quaderno;
+				if(x[i].quaderno==null){
+					titoloquaderno.textContent=" ";
+				}
 				nota.appendChild(titoloquaderno);
 				var data=document.createElement("h5");
 				data.classList.add("notarecente-data");
@@ -204,7 +207,7 @@ function creablocchinoterecenti(s){
 				icona.classList.add("opt-mt-nr");
 				icona.setAttribute("id","r"+i);
 				icona.setAttribute("name","ellipsis-horizontal-outline");
-				bloccolista.appendChild(icona);
+				nota.appendChild(icona);
 				var lista= document.createElement("ul");
 				lista.classList.add("list");
 				lista.classList.add("listbar-nr");
@@ -552,11 +555,7 @@ function quaderniLib(quaderni,note){
 								toflex.appendChild(optionsN);
 							nota.appendChild(toflex);
 								//Contenuto
-								var anteprima= document.createElement("p");
-								anteprima.classList.add("anteprima-nota");
-								//sostituire con Iframe?
-								anteprima.textContent=note[j].contenuto;
-								nota.appendChild(anteprima);
+								nota.appendChild(dataURLtoFile(note[j].contenuto,note[j].id));
 								//Droplist
 								var dropdownN= document.createElement("div");
 								dropdownN.classList.add("dropdown");
@@ -695,11 +694,7 @@ function sezioneTrash(quaderni,note){
 							removeN.classList.add("delete-nota");
 							nota.appendChild(removeN);
 							//Contenuto
-							var anteprima= document.createElement("p");
-							anteprima.classList.add("anteprima-nota");
-							//sostituire con Iframe?
-							anteprima.textContent=note[j].contenuto;
-							nota.appendChild(anteprima);
+							nota.appendChild(dataURLtoFile(note[j].contenuto,note[j].id));
 						containerblocchi.appendChild(nota);	
 					noteN.appendChild(containerblocchi);
 				}
@@ -787,11 +782,7 @@ function sezioneTrash(quaderni,note){
 						removeN.classList.add("delete-nota");
 						nota.appendChild(removeN);
 						//Contenuto
-						var anteprima= document.createElement("p");
-						anteprima.classList.add("anteprima-nota");
-						//sostituire con Iframe?
-						anteprima.textContent=note[j].contenuto;
-						nota.appendChild(anteprima);
+						nota.appendChild(dataURLtoFile(note[j].contenuto,note[j].id));
 					containerblocchi.appendChild(nota);	
 				noteN.appendChild(containerblocchi);
 			}
@@ -833,11 +824,7 @@ function sezioneTrash(quaderni,note){
 						removeN.classList.add("delete-nota");
 						nota.appendChild(removeN);
 						//Contenuto
-						var anteprima= document.createElement("p");
-						anteprima.classList.add("anteprima-nota");
-						//sostituire con Iframe?
-						anteprima.textContent=note[j].contenuto;
-						nota.appendChild(anteprima);
+						nota.appendChild(dataURLtoFile(note[j].contenuto,note[j].id));
 					containerblocchi.appendChild(nota);	
 				noteN.appendChild(containerblocchi);
 			}
@@ -914,12 +901,10 @@ function quaderniNote(y){
 			container1.appendChild(img);
 		container.appendChild(container1);
 			//contenuto
-			var cont= document.createElement("h5");
-			cont.classList.add("nota-contenuto");
-			cont.classList.add("nunito");
-			//sostituire con Iframe?
-			cont.textContent=y[i].contenuto;
-			container.appendChild(cont);
+			var ifr = document.createElement('iframe');
+			ifr.setAttribute("id","nota"+y[i].id);
+			dataURLtoFile(y[i].contenuto,"nota"+y[i].id); 
+			container.appendChild(ifr);	
 				//lista
 				var listcontainer= document.createElement("div");
 				listcontainer.classList.add("dropdown");	

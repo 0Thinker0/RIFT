@@ -34,7 +34,6 @@ public class NotaDao {
 									rs.getBoolean("cestinato"),
 									rs.getString("quaderno"),
 									rs.getDate("ultima_modifica"),
-									rs.getInt("pagina"),
 									rs.getString("contenuto"),
 									rs.getString("creato_da"));
 				note.add(nota);
@@ -65,7 +64,6 @@ public class NotaDao {
 									rs.getBoolean("cestinato"),
 									rs.getString("quaderno"),
 									rs.getDate("ultima_modifica"),
-									rs.getInt("pagina"),
 									rs.getString("contenuto"),
 									rs.getString("creato_da"));
 				if(nota.isPubblico()) {				

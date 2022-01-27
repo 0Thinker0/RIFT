@@ -197,9 +197,9 @@
 }
 
 .notarecente-container-attributi{
-	position: relative;
+	display: flex;
+	align-items: center;
 	left: 20px;
-	position: relative;
 	bottom: -9px;
 }
 
@@ -210,22 +210,21 @@
 }
 
 .notarecente-titoloquaderno{
-	margin-left: 10px;
+	margin-left: 5px;
+	margin-right: auto;
 	color: grey;
 	position: relative;
-	bottom: 30px;
+	bottom: 4px;
 }
 
 .notarecente-data{
-	position: absolute;
-	right: 70px;	
 	bottom: 16.5px;
 	color: grey;
 }
 
 .opt-mt-nr{
 	position: relative;
-	bottom: 84px;
+	bottom: 3px;
 }
 
 div.container-new-nota{

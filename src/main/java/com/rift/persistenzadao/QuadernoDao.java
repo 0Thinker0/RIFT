@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -271,6 +273,22 @@ public class QuadernoDao {
 		for(String id: idNote) {
 			changeVisibilityNota(titolo,username,1);
 			statusNota(id,false);
+		}
+	}
+
+	public void addQuaderno(String titolo, boolean pubblico, String username) {
+		// TODO Auto-generated method stub
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+		LocalDateTime now = LocalDateTime.now();
+		String query="insert into quaderno(titolo,pubblico,ultima_modifica,creato_da) values ('"+
+		titolo+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"')";
+		Statement st;
+		try {
+			st = con.createStatement();
+			st.execute(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

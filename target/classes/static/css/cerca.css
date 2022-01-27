@@ -92,7 +92,7 @@
 }
 
 .container{
-	height: 100px;
+	height: max-content;	
 	margin: 8;
     background-color: white;
     border-radius: 10px;

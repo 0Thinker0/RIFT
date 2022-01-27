@@ -1,5 +1,7 @@
 <html>
 <head>
+	<title>Rift</title>
+  	<meta charset="UTF-8">
 	<link rel="stylesheet" href="fontawesome/css/all.css">
 	<link rel="stylesheet" href="/css/nota_css.css">
 </head>
@@ -89,13 +91,13 @@
 	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
 	<script>
 	
-	//Converte da file a stringa (Questa Ë da tenere in nota.html)
-	function getBase64(file,nameFile,visibilit‡) {
+	//Converte da file a stringa (Questa √® da tenere in nota.html)
+	function getBase64(file,nameFile,visibilit√†) {
 		   var reader = new FileReader();
 		   reader.readAsDataURL(file);
 		   reader.onload = function () {	   
 			    var xhttp = new XMLHttpRequest();
-				xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+reader.result + "&pubblico="+visibilit‡, true);
+				xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+reader.result + "&pubblico="+visibilit√†, true);
 				xhttp.send();
 		   };
 		   reader.onerror = function (error) {
@@ -133,7 +135,7 @@
 						var nameFile = document.getElementById('titolo_nota').value;
 						var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
 						var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
-						
+						console.log(frameContent);
 						getBase64(file,nameFile, true);
 					}else{
 						textfield.document.execCommand(cmd, false, null);

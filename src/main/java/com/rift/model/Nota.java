@@ -8,7 +8,6 @@ public class Nota implements Comparable<Nota>{
 	private boolean pubblico;
 	private boolean cestinato;
 	private String quaderno;
-	private int pagina;
 	private String creato_da;
 	private Date ultima_modifica;
 	private String contenuto;
@@ -16,7 +15,7 @@ public class Nota implements Comparable<Nota>{
 	
 
 	public Nota(String id, String titolo, boolean pubblico, boolean cestinato, String quaderno, Date ultima_modifica,
-			int pagina, String contenuto, String creato_da) {
+			String contenuto, String creato_da) {
 		// TODO Auto-generated constructor stub
 		this.id=id;
 		this.setTitolo(titolo);
@@ -24,7 +23,6 @@ public class Nota implements Comparable<Nota>{
 		this.setCestinato(cestinato);
 		this.setQuaderno(quaderno);
 		this.setUltima_modifica(ultima_modifica);
-		this.setPagina(pagina);
 		this.setContenuto(contenuto);
 		this.setCreato_da(creato_da);
 	}
@@ -78,20 +76,6 @@ public class Nota implements Comparable<Nota>{
 	public void setCestinato(boolean cestinato) {
 		this.cestinato = cestinato;
 	}
-
-
-
-	public int getPagina() {
-		return pagina;
-	}
-
-
-
-	public void setPagina(int pagina) {
-		this.pagina = pagina;
-	}
-
-
 
 	public String getCreato_da() {
 		return creato_da;
