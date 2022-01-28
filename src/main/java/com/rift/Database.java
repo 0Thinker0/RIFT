@@ -23,7 +23,7 @@ public class Database {
 	private Database() {
 		try {
 			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", 
-					"postgres", "postgres");
+					"postgres", "abc123");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

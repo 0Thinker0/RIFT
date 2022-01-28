@@ -160,6 +160,8 @@ input[name="pass_input"]{
 
 /* bottoni */
 .accedi_button{
+	width: 150px;
+	height: 40px;
 	border: none;
 	border-radius: 10px;
 	

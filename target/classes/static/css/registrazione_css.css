@@ -128,7 +128,8 @@ input[name="pass_input"], input[name="repass_input"]{
 .registrati_button{
 	border: none;
 	border-radius: 10px;
-	
+	width: 200px;
+	height: 40px;
 	background: #2D3142;
 	color: white;
 	
