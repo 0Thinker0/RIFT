@@ -932,7 +932,7 @@ function quaderniNote(y){
 			//contenuto
 			var ifr = document.createElement('iframe');
 			ifr.setAttribute("id","nota"+y[i].id);
-			dataURLtoFile(y[i].contenuto,"nota"+y[i].id); 
+			ifr.setAttribute("src", dataURLtoFile(y[i].contenuto));
 			container.appendChild(ifr);	
 				//lista
 				var listcontainer= document.createElement("div");

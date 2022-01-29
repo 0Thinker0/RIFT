@@ -8,24 +8,10 @@ function close_navbar() {
 	document.getElementById("hamburger").style.visibility = "visible";
 }
 
-function dataURLtoFile(dataurl, id) {
-	var mime = "data:text/plain;charset=utf-8;base64";
-	var bstr = atob(dataurl); 
-    var n = bstr.length; 
-    var u8arr = new Uint8Array(n);
-        
-    while(n--){
-    	u8arr[n] = bstr.charCodeAt(n);
-    }
-    console.log(u8arr);
-	var file = new File([u8arr], "content" + id + ".html", {type:mime});
-	var reader = new FileReader();
-	reader.readAsText(file, "UTF-8");
-	
-	reader.onloadend = function () {
-		console.log(reader.result);
-		document.getElementById(id).contentWindow.document.write("<html><body>"+reader.result+"</body></html>");
-	};
+function dataURLtoFile(dataurl) {
+	var mime = "data:text/html;base64,";
+
+	return mime+dataurl;
 }
 
 function generaPDF(titolo,testo){
