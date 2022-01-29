@@ -220,6 +220,7 @@
 	function hideConferma(visibilità){
 		var nameFile = document.getElementById('titolo_nota').value;
 		var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
+		console.log(frameContent);
 		var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});		
 		getBase64(file,nameFile,visibilità);
 		document.getElementById("conferma").style.display = "none";	
@@ -273,7 +274,8 @@
 		   reader.readAsDataURL(file);
 		   reader.onload = function () {	   
 			    var xhttp = new XMLHttpRequest();
-				xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+reader.result + "&pubblico="+visibilità, true);
+			    var data = (reader.result).substring(37, (reader.result).lenght);
+				xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+data+ "&pubblico="+visibilità, true);
 				xhttp.send();
 		   };
 		   reader.onerror = function (error) {
@@ -285,7 +287,7 @@
 		var iframe = document.getElementById("output");
 		var contentWindow = iframe.contentWindow,
     	contentDocument = contentWindow.document,
-    	contentBody = contentDocument.body;
+    	contentBody = contentDocument.head;
 		contentBody.innerHTML = '<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap); @import url(https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap);</style>';
 	};
 	

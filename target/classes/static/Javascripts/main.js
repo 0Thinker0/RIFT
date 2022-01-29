@@ -9,17 +9,15 @@ function close_navbar() {
 }
 
 function dataURLtoFile(dataurl, id) {
-	console.log(dataurl.split(","));
-	var arr = dataurl.split(','),
-    mime = arr[0].match(/:(.*?);/)[1],
-	bstr = atob(arr[1]), 
-    n = bstr.length, 
-    u8arr = new Uint8Array(n);
+	var mime = "data:text/plain;charset=utf-8;base64";
+	var bstr = atob(dataurl); 
+    var n = bstr.length; 
+    var u8arr = new Uint8Array(n);
         
     while(n--){
     	u8arr[n] = bstr.charCodeAt(n);
     }
-    
+    console.log(u8arr);
 	var file = new File([u8arr], "content" + id + ".html", {type:mime});
 	var reader = new FileReader();
 	reader.readAsText(file, "UTF-8");
