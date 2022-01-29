@@ -852,7 +852,8 @@ function sezioneTrash(quaderni,note){
 						//Contenuto
 						var ifr = document.createElement('iframe');
 						ifr.setAttribute("id","nota"+y[i].id);
-						dataURLtoFile(y[i].contenuto,"nota"+y[i].id); 
+						var mime = "data:text/html;base64,";
+						ifr.setAttribute("src", mime+y[i].contenuto);
 						nota.appendChild(ifr);
 					containerblocchi.appendChild(nota);	
 				noteN.appendChild(containerblocchi);
@@ -932,7 +933,10 @@ function quaderniNote(y){
 			//contenuto
 			var ifr = document.createElement('iframe');
 			ifr.setAttribute("id","nota"+y[i].id);
-			ifr.setAttribute("src", dataURLtoFile(y[i].contenuto));
+			var mime = "data:text/html;base64,";
+			console.log(mime+y[i].contenuto);
+			ifr.setAttribute("src", mime+y[i].contenuto);
+			
 			container.appendChild(ifr);	
 				//lista
 				var listcontainer= document.createElement("div");

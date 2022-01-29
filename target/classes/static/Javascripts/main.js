@@ -8,12 +8,6 @@ function close_navbar() {
 	document.getElementById("hamburger").style.visibility = "visible";
 }
 
-function dataURLtoFile(dataurl) {
-	var mime = "data:text/html;base64,";
-
-	return mime+dataurl;
-}
-
 function generaPDF(titolo,testo){
 	var doc = new jsPDF();
 	doc.text(10, 10,testo);
