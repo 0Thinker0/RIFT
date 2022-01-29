@@ -5,7 +5,7 @@
 @media screen and (min-width: 1400px){
 	.informazioni{
 		transition: 0.5s;	
-		margin-top: 30px;
+		padding-top: 90px;
 		margin-left: 290px;
 	}
 }
@@ -13,7 +13,7 @@
 @media screen and (max-width: 1400px){
 	.informazioni {
 		transition: 0.5s;
-		margin-top: 30px;	
+		padding-top: 90px;	
 		margin-left: 0px;
 	}
 }
@@ -24,7 +24,7 @@ label[for="profilo"]{
 	font-size: 18;
 }
 
-img {
+.home-benvenutoutente img[alt="image"] {
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -39,9 +39,9 @@ img {
 .home-container {
   font-family: Nunito;
   width: 100%;
+  height: 80%;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;

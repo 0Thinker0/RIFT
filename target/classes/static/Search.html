@@ -27,83 +27,92 @@
 	<!--  per il colore background -->
 	<div class="body"></div>
 	
-	<div class="header_mobile" style="right: 0px; left: 0px;">
-		<i class="hamburger_icon" onclick="open_navbar()" id="hamburger"></i>
-		<i class="logo_black_icon" id="logo" onclick="location.href='index.html'"></i>
-		<i class="messaggi_icon" id="messaggi"></i>
-		<i class="cerca_black_icon" id="cerca" onclick="location.href='Search.html'"></i>
-	</div>
-
-	<div class="header">
-	
-		<div class="elementi_cerca_div">
-			<i class="cerca_black_icon" style="right: 0px; left: 0px; top: 5px;"></i>
-			<input type="text" placeholder="Cerca..." name="cerca_input" onchange="cercalenote(this.value);">
-		</div>
-
-		<i class="messaggi_icon" style="right: 0px; left: 0px; top: 10px;"></i>
-	</div>
-
-	<div class="sidenav_hamburger" style="left: 0px; top: 0px; bottom: 0px;" id="sidenav_hamburger">
-		<i class="close_icon" onclick="close_navbar()"></i><br><br>
-
-		<div class="centered_element_mobile">
-			<i class="cerca_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="Search.html" class="link">Cerca</a><br> 
-			
-			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="#" class="link">Note</a><br> 
-			
-			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="Library.html" class="link">Libreria</a><br> 
-			
-			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="Trash.html" class="link">Cestino</a><br>
-		</div>
-
-		<div class="bottom_element_mobile">
-			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
-			<a href="#" class="link">Accedi</a><br> 
-			
-			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="#" class="link" style="color: red;">Esci</a>
-		</div>
-	</div>
-
-	<div class="sidenav" style="left: 0px; top: 0px; bottom: 0px;">
-		<i class="logo_icon" onclick="location.href='index.html'"></i><br><br>
-
-		<div class="centered_element_sidenav">
-			<i class="note_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="#" class="link">Note</a><br> 
-			
-			<i class="libreria_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="Library.html" class="link">Libreria</a><br> 
-			
-			<i class="cestino_icon" style="right: 0px; left: 0px; top: 2px;"></i> 
-			<a href="Trash.html" class="link">Cestino</a>
-		</div>
-
-		<div class="bottom_element_sidenav">
-			<i class="accedi_icon" style="right: 0px; left: 0px; top: 2px;"></i>
-			<a href="#" class="link">Accedi</a><br>
-			
-			<i class="esci_icon" style="right: 0px; left: 0px; top: 2px;"></i>
-			<a href="#" class="link" style="color: red;">Esci</a>
-		</div>
-	</div>
-
-	<script>
-		function open_navbar() {
-			document.getElementById("sidenav_hamburger").style.display = "block";
-			document.getElementById("hamburger").style.visibility = "hidden";
-		}
-
-		function close_navbar() {
-			document.getElementById("sidenav_hamburger").style.display = "none";
-			document.getElementById("hamburger").style.visibility = "visible";
-		}
-	</script>
+	<div class="header-mobile-extended-container" id="header-mobile-extended-container">
+    <div class="header-mobile-extended-container1">
+      <img src="icon/close_big.png" alt="image" class="header-mobile-extended-image" onclick="close_navbar()"/>
+      <div class="header-mobile-extended-container2">
+        <img src="/icon/File_dock.png" alt="image" class="menu-noteicon"/>
+        <a href="note.html"   style="margin-bottom: 10px;">Note</a>
+      </div>
+      <div class="header-mobile-extended-container3">
+        <img src="/icon/Folder_line.png" alt="image" class="menu-libreriaicon"/>
+        <a href="Library.html"   style="margin-bottom: 10px;">Libreria</a>
+      </div>
+      <div class="header-mobile-extended-container4">
+        <img src="/icon/coolicon.png" alt="image" class="menu-cestinoicon" />
+         <a href="Trash.html"   style="margin-bottom: 10px;">Cestino </a>
+      </div>
+      <div class="header-mobile-extended-container5">
+        <img src="/icon/User.png" alt="image" class="menu-profiloicon"/>
+        <a href="profilo.html"   style="margin-bottom: 10px;">Profilo</a>
+      </div>
+      <div class="header-mobile-extended-container6">
+        <img src="/icon/Sign_out_squre_fill.png" alt="image" class="menu-esciicon"/>
+        <a href="#"   class="esci">Esci</a>
+      </div>
+    </div>
+  </div>
+  
+<div class="header-mobile-container">
+    <div class="header-mobile-container1">
+      <div class="header-mobile-hamburgercontainer">
+        <img src="/icon/menu_alt_03.png" alt="image" class="header-mobile-hamburgericon" id="hamburger" onclick="open_navbar()"/>
+      </div>
+      <img src="/icon/Logo_icon.png" alt="image" class="header-mobile-logomobile" onclick="location.href='index.html'"/>
+      <div class="header-mobile-rightcontainer">
+        <input type="text" placeholder="Cerca ..." class="header-mobile-cercainput input" name="cerca_input_mobile" onchange="location.href='Search.html'"/>
+        <img src="/icon/Search_black_alt.png" alt="image" class="header-mobile-cercaiconmobile" onclick="location.href='Search.html'"/>
+        <img src="/icon/Send_fill.png" alt="image" class="header-mobile-messaggiiconmobile" onclick="location.href='lista_messaggi.html'"/>
+      </div>
+    </div>
+  </div>
+  
+ <div class="header-container">
+    <div class="header-container1">
+      <div class="header-cercacontainer">
+        <img src="/icon/Search_black_alt.png" alt="image" class="header-cercaicon" />
+        <input type="text" placeholder="Cerca ..." class="header-cercainput" name="cerca_input" onchange="location.href='Search.html'"/>
+      </div>
+      <img src="/icon/Send_fill.png" alt="image" class="header-messaggiicon" onclick="location.href='lista_messaggi.html'"/>
+    </div>
+  </div>
+  
+	<div class="menu-container">
+    <div class="menu-container1">
+      <div class="menu-logocontainer">
+        <img src="/icon/Logo_icon_white.png" alt="image" class="menu-logo" onclick="location.href='index.html'"/>
+      </div>
+      <div class="menu-middlecontainer">
+        <div class="menu-containerprincipallink">
+          <div class="menu-containernote">
+            <img src="/icon/File_dock.png" alt="image" class="menu-noteicon"/>
+            <a href="note.html"  >Note</a>
+          </div>
+          <div class="menu-containerlibreria">
+            <img src="/icon/Folder_line.png" alt="image" class="menu-libreriaicon"/>
+            <a href="Library.html"  >Libreria</a>
+          </div>
+          <div class="menu-containercestino">
+            <img src="/icon/coolicon.png" alt="image" class="menu-cestinoicon" />
+            <a href="Trash.html"  >Cestino </a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-bottomcontainer">
+        <div class="menu-containerlink">
+          <div class="menu-containerprofilo">
+            <img src="/icon/User.png" alt="image" class="menu-profiloicon"/>
+            <a href="profilo.html"  >Profilo</a>
+          </div>
+          <div class="menu-containeresci">
+            <img src="/icon/Sign_out_squre_fill.png" alt="image" class="menu-esciicon"/>
+            <a href="#"   class="esci">Esci</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="Javascripts/main.js"></script>
 	
 	<!-- layout centrale -->
 	<div class="cerca">

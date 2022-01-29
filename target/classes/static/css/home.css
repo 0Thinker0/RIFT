@@ -1,7 +1,7 @@
 @media screen and (min-width: 1400px){
-	.home {
+	.home{
 		transition: 0.5s;	
-		margin-top: 30px;
+		padding-top: 90px;
 		margin-left: 290px;
 	}
 }
@@ -9,7 +9,7 @@
 @media screen and (max-width: 1400px){
 	.home {
 		transition: 0.5s;
-		margin-top: 30px;	
+		padding-top: 90px;	
 		margin-left: 0px;
 	}
 }
@@ -38,11 +38,13 @@
 }
 
 .notaveloce{
-	margin-left: 40px;
+	margin-left: 20px;
 	color: black;
+	font-size: 20px;
 }
 
 .notaveloce-titolo{
+	outline: none;
 	width: 150px;
  	line-height: 2em;
  	color: black;
@@ -249,11 +251,13 @@ div.container-new-nota{
 	position: absolute;
 	right: 40px;
 	padding-top: 15px;
+	font-size: 14px;
 }
 
 
 
 .textarea-nv{
+	outline: none;
 	height: 100%;
 	border: none;
 	border-radius: 10px;

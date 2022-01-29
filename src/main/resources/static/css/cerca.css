@@ -1,16 +1,16 @@
 @media screen and (min-width: 1400px){
 	.cerca{
 		transition: 0.5s;	
-		margin-top: 30px;
-		margin-left: 290px;
+		padding-top: 105px;
+		margin-left: 310px;
 	}
 }
 
 @media screen and (max-width: 1400px){
 	.cerca {
 		transition: 0.5s;
-		margin-top: 30px;	
-		margin-left: 0px;
+		padding-top: 105px;	
+		margin-left: 20px;
 	}
 }
 

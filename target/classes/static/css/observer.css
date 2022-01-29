@@ -1,7 +1,7 @@
 @media screen and (min-width: 1400px){
-	.observer {
+	.observer{
 		transition: 0.5s;	
-		margin-top: 30px;
+		padding-top: 90px;
 		margin-left: 290px;
 	}
 }
@@ -9,7 +9,7 @@
 @media screen and (max-width: 1400px){
 	.observer {
 		transition: 0.5s;
-		margin-top: 30px;	
+		padding-top: 90px;	
 		margin-left: 0px;
 	}
 }

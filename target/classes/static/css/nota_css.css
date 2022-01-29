@@ -109,7 +109,7 @@
 @media screen and (min-width: 1400px){
 	.content{
 		transition: 0.5s;	
-		padding-top: 30px;
+		padding-top: 90px;
 		margin-left: 290px;
 	}
 }
@@ -117,7 +117,7 @@
 @media screen and (max-width: 1400px){
 	.content {
 		transition: 0.5s;
-		padding-top: 30px;	
+		padding-top: 90px;	
 		margin-left: 0px;
 	}
 }
@@ -147,7 +147,7 @@ iframe{
 	word-wrap: break-word;
 	border: none;
 	width: 100%;
-	height: 78%;
+	height: 75%;
 	margin: auto;
 }
 
@@ -163,7 +163,6 @@ iframe{
 	height: 30px;
   	width: 100%;
   	text-align: center;
-  	position: relative;
 }
 
 .fontColor, .fontHeight, .fontName{

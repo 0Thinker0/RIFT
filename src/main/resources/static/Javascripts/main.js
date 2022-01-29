@@ -1,3 +1,13 @@
+function open_navbar() {
+	document.getElementById("header-mobile-extended-container").style.display = "flex";
+	document.getElementById("hamburger").style.visibility = "hidden";
+}
+
+function close_navbar() {
+	document.getElementById("header-mobile-extended-container").style.display = "none";
+	document.getElementById("hamburger").style.visibility = "visible";
+}
+
 function dataURLtoFile(dataurl, id) {
 	console.log(dataurl.split(","));
 	var arr = dataurl.split(','),

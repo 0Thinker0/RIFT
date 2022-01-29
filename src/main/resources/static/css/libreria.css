@@ -1,7 +1,7 @@
 @media screen and (min-width: 1400px){
 	.libreria{
 		transition: 0.5s;	
-		margin-top: -40px;
+		padding-top: 90px;
 		margin-left: 290px;
 	}
 }
@@ -9,15 +9,13 @@
 @media screen and (max-width: 1400px){
 	.libreria {
 		transition: 0.5s;
-		margin-top: -30px;	
+		padding-top: 90px;	
 		margin-left: 0px;
 	}
 }
 
 .libreria-text{
-	position: fixed;
 	font-size: 20px;
-	top: 45px;
 	margin-left: 20px;
 	margin-bottom: 10px;
 }
@@ -185,6 +183,7 @@
 }
 
 .bottom-layout-newquaderno{
+	z-index: 99;
 	position: fixed;
 	top: 70%;
 	left: 0;
