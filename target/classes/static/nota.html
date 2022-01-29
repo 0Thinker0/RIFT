@@ -212,9 +212,8 @@
 	function hideConferma(visibilità){
 		var nameFile = document.getElementById('titolo_nota').value;
 		var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
-		var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});
-		console.log(frameContent);
-		getBase64(file,nameFile, visibilità);
+		var file = new File([frameContent], nameFile+".html", {type: "text/plain;charset=utf-8"});		
+		getBase64(file,nameFile,visibilità);
 		document.getElementById("conferma").style.display = "none";	
 	}
 	
@@ -259,6 +258,7 @@
 		}	
 	}
 	
+	
 	//Converte da file a stringa (Questa è da tenere in nota.html)
 	function getBase64(file,nameFile,visibilità) {
 		   var reader = new FileReader();
@@ -272,7 +272,7 @@
 		     console.log('Error: ', error);
 		   };
 	}
-	
+
 	function font(){
 		var iframe = document.getElementById("output");
 		var contentWindow = iframe.contentWindow,

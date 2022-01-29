@@ -1,5 +1,20 @@
 //Query
 
+function addquaderno() {		
+	
+	let id=document.getElementById("libadd").value;
+	console.log(id);    
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST","/creaQuaderno?titolo="+id+"&pubblico="+true, true);
+	xhttp.send();
+ 	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			quaderniLibreria();
+		}
+	};
+}
+
 function restoreQ(id) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/ripristinaQuaderno?titolo="+id, true);

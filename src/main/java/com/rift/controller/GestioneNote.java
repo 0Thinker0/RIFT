@@ -20,16 +20,20 @@ public class GestioneNote {
 	public void aggiungiNota(String titolo,String contenuto,boolean pubblico,HttpServletRequest req) {
 		if (req.getSession().getAttribute("username") != null) {
 		}
-		String username= "Giuseppe";
-		Database.getIstance().getNotaDao().addNota(titolo,contenuto,pubblico,username);
+		if(!titolo.isEmpty()) {
+			String username= "Giuseppe";
+			Database.getIstance().getNotaDao().addNota(titolo,contenuto,pubblico,username);
+		}
 	}
 	
 	@PostMapping("/creaQuaderno")
 	public void aggiungiQuaderno(String titolo,boolean pubblico,HttpServletRequest req) {
 		if (req.getSession().getAttribute("username") != null) {
 		}
-		String username= "Giuseppe";
-		Database.getIstance().getQuadernoDao().addQuaderno(titolo,pubblico,username);
+		if(!titolo.isEmpty()){
+			String username= "Giuseppe";
+			Database.getIstance().getQuadernoDao().addQuaderno(titolo,pubblico,username);
+		}
 	}
 	
 	@GetMapping("/getNotePersonali")
