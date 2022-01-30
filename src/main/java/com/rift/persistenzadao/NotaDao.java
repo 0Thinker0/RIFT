@@ -171,8 +171,8 @@ public class NotaDao {
 		// TODO Auto-generated method stub
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
 		LocalDateTime now = LocalDateTime.now();
-		String query="insert into note(titolo,contenuto,pubblico,ultima_modifica,creato_da) values ('"+
-		titolo+"','"+contenuto+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"')";
+		String query="insert into note(titolo,contenuto,pubblico,ultima_modifica,creato_da,cestinato) values ('"+
+		titolo+"','"+contenuto+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"','"+false+"')";
 		Statement st;
 		try {
 			st = con.createStatement();

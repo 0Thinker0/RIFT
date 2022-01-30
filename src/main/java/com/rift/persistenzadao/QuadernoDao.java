@@ -159,7 +159,8 @@ public class QuadernoDao {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
-				if(rs.getString("quaderno").equals(titolo)&&!rs.getBoolean("cestinato")) {
+				String tmp=rs.getString("quaderno");
+				if(tmp!=null&&tmp.equals(titolo)&&!rs.getBoolean("cestinato")) {
 					idNote.add(rs.getString("id"));
 				}
 			}
@@ -221,7 +222,7 @@ public class QuadernoDao {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
-				if(rs.getString("quaderno").equals(titolo)&&!rs.getBoolean("cestinato")) {
+				if(rs.getString("quaderno")!=null&&rs.getString("quaderno").equals(titolo)&&!rs.getBoolean("cestinato")) {
 					idNote.add(rs.getString("id"));
 				}
 			}
@@ -262,7 +263,7 @@ public class QuadernoDao {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
-				if(rs.getString("quaderno").equals(titolo)) {
+				if(rs.getString("quaderno")!=null&&rs.getString("quaderno").equals(titolo)) {
 					idNote.add(rs.getString("id"));
 				}
 			}
@@ -280,8 +281,8 @@ public class QuadernoDao {
 		// TODO Auto-generated method stub
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
 		LocalDateTime now = LocalDateTime.now();
-		String query="insert into quaderno(titolo,pubblico,ultima_modifica,creato_da) values ('"+
-		titolo+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"')";
+		String query="insert into quaderno(titolo,pubblico,ultima_modifica,creato_da,cestinato) values ('"+
+		titolo+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"','"+false+"')";
 		Statement st;
 		try {
 			st = con.createStatement();

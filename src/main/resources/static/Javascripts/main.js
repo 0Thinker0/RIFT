@@ -33,7 +33,7 @@ function svuota(obj){
 
 function restore(obj){
 	if(obj.target.classList.contains("restore-nota")){
-		restoreN(obj.target.parentNode.parentNode.id);
+		restoreN(obj.target.parentNode.parentNode.parentNode.id);
 	}
 	if(obj.target.classList.contains("restore-quaderno")){
 		restoreQ(obj.target.parentNode.parentNode.id);
@@ -53,9 +53,11 @@ function eliminanota(obj){
 	if(obj.target.classList.contains("elimina-q")){
 		deleteQ(obj.target.parentNode.parentNode.parentNode.parentNode.id,3);
 	}
+	if(obj.target.classList.contains("elimina-n1")){
+		deletenota(obj.target.parentNode.parentNode.parentNode.id,4);
+	}
 	if(obj.target.classList.contains("delete-nota")){
-		console.log("entra");
-		removeN(obj.target.parentNode.parentNode.id);
+		removeN(obj.target.parentNode.parentNode.parentNode.id);
 	}
 	if(obj.target.classList.contains("delete-quaderno")){
 		removeQ(obj.target.parentNode.parentNode.id);
@@ -75,6 +77,7 @@ function cambiavis(obj){
 	if(obj.target.classList.contains("visibility-q")){
 		changevisQ(obj.target.parentNode.parentNode.parentNode.parentNode.id,3);
 	}
+		
 }
 
 function optmenu(obj){

@@ -107,5 +107,15 @@
 }
 
 	
+.toflex{
+	display: flex;
+	align-items: center;
+}
 
+.nota{
+	display: block !important;
+}
 
+.menu-aperti2{
+	height: max-content;
+}

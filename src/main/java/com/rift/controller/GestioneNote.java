@@ -56,6 +56,7 @@ public class GestioneNote {
 	
 	@PostMapping("/deleteNota")
 	public void removeNota(String id,HttpServletRequest request) {
+		System.out.println(id);
 		Database.getIstance().getNotaDao().removeNota(id);
 	}
 	
@@ -89,7 +90,6 @@ public class GestioneNote {
 	
 	@PostMapping("/ripristinaNota")
 	public void ripristinaNot(String id,HttpServletRequest request) {
-		String username= "Giuseppe";
 		Database.getIstance().getNotaDao().restoreNota(id);
 	}
 	
