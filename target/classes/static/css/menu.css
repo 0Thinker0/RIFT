@@ -464,3 +464,25 @@ a{
 	font-size: 18;
 	font-weight: bold;
 }
+
+iframe{
+	border:none;
+	width: 96%;
+	height: 100%;
+	padding: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}

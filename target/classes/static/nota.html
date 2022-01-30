@@ -2,9 +2,10 @@
 <head>
 	<title>Rift</title>
   	<meta charset="UTF-8">
+  	<link rel="stylesheet" href="/css/menu.css">
 	<link rel="stylesheet" href="fontawesome/css/all.css">
 	<link rel="stylesheet" href="/css/nota_css.css">
-	<link rel="stylesheet" href="/css/menu.css">
+	
 </head>
 
 <body onload="if (document.referrer == '') self.location='login.html'; font();">
@@ -271,9 +272,9 @@
 	
 	//Converte da file a stringa (Questa è da tenere in nota.html)
 	function getBase64(nameFile,visibilità,frameContent) {
-		var data1= btoa(frameContent);
+		var data = btoa(frameContent);
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto="+data1+ "&pubblico="+visibilità, true);
+		xhttp.open("POST","/creaNota?titolo="+nameFile + "&contenuto=" + data + "&pubblico="+visibilità, true);
 		xhttp.send();
 	}
 
@@ -282,8 +283,7 @@
 		var contentWindow = iframe.contentWindow,
     	contentDocument = contentWindow.document,
     	contentBody = contentDocument.head;
-		contentBody.innerHTML = '<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap); @import url(https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap);</style>';
-	};
+		contentBody.innerHTML = '<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap); @import url(https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap);::-webkit-scrollbar {width: 10px;}::-webkit-scrollbar-track {background: #f1f1f1;}::-webkit-scrollbar-thumb {background: #888;border-radius: 10px;}</style>';};
 	
 	const buttons = document.querySelectorAll('button');
 	textfield.document.designMode = "On";

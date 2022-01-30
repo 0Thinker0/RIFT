@@ -931,6 +931,7 @@ function quaderniNote(y){
 			var container= document.createElement("div");
 			container.classList.add("container");
 			container.setAttribute("id",y[i].id);
+			container.setAttribute("style", "margin-bottom: 40px; overflow-x: auto;");
 				//nota
 				var container1= document.createElement("div");
 				container1.classList.add("container1");
@@ -962,7 +963,9 @@ function quaderniNote(y){
 				ifr.setAttribute("id","nota"+y[i].id);
 				var mime = "data:text/html;base64,";
 				console.log(mime+y[i].contenuto);
-				ifr.setAttribute("src", mime+y[i].contenuto);
+				var data = y[i].contenuto;
+				data = data.replaceAll(" ", "+");
+				ifr.setAttribute("src", mime+data);
 			
 			container.appendChild(ifr);	
 				//lista
