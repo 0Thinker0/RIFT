@@ -1,3 +1,6 @@
 
 target/classes/META-INF/maven/com.rift.application/Rift/pom.properties
 target/classes/META-INF/MANIFEST.MF
+src/main/java/com/rift/Database.java
+target/classes/com/rift/Database.class
+target/classes/META-INF/MANIFEST.MF
