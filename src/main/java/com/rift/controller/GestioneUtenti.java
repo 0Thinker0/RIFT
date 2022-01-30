@@ -40,7 +40,7 @@ public class GestioneUtenti{
 		
 		try {
 			if(Database.getIstance().getUtenteDao().saveOrUpdate(new Utente(name, email, password))){
-
+				response.addCookie(new Cookie("email", email));
 				response.sendRedirect("/login.html");
 
 			}else {
