@@ -21,8 +21,8 @@
 		<label for="pass">Password</label><br>
 
 		<div class="pass_div">
-		<input type="password" placeholder="Inserisci la tua password" name="pass_input">
-		<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;"></i>
+		<input type="password" placeholder="Inserisci la tua password" name="pass_input" id="password">
+		<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;" onclick="changeType()"></i>
 		</div>
 		<br> 
 		
@@ -30,16 +30,35 @@
 		<label for="repass">Re-inserisci password</label><br>
 		
 		<div class="repass_div">
-		<input type="password" placeholder="Re-inserisci la tua password" name="repass_input">
-		<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;"></i>
+		<input type="password" placeholder="Re-inserisci la tua password" name="repass_input" id="repassword">
+		<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;" onclick="changeTypeRe()"></i>
 		</div>
 		<br> 
 		
 		<input type="submit" class="registrati_button" value="Registrati" /><br> 
 		<label for="giaRegistrato">Sei già registrato?</label><br> 
-		<label for="accediAccount">Accedi</label>
+		<label for="accediAccount" onclick="location.href='login.html'">Accedi</label>
 		</form>
 	</div>
 
+
+	<script>
+		function changeType(){
+			if(document.getElementById("password").getAttribute("type") == "password"){
+				document.getElementById("password").setAttribute("type", "text");
+			}else{
+				document.getElementById("password").setAttribute("type", "password");
+			}
+			
+		}
+		
+		function changeTypeRe(){
+			if(document.getElementById("repassword").getAttribute("type") == "password"){
+				document.getElementById("repassword").setAttribute("type", "text");
+			}else{
+				document.getElementById("repassword").setAttribute("type", "password");
+			}
+		}
+	</script>
 </body>
 </html>

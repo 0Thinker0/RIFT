@@ -17,17 +17,29 @@
 			<label for="pass">Password</label><br>
 
 			<div class="pass_div">
-			<input type="password" placeholder="Inserisci la tua password" name="pass_input">
-			<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;"></i>
+			<input type="password" placeholder="Inserisci la tua password" name="pass_input" id="password">
+			<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;" onclick="changeType()"></i>
 			</div>
 			<br> 
-			<label for="dimenticato">Hai dimenticato la password?</label><br> 
+			<label for="dimenticato" onclick="location.href='recupero_password-1.html'">Hai dimenticato la password?</label><br> 
 		
 			<input type="submit" class="accedi_button" value="Accedi"/><br> 
 			<label for="nonAncoraRegistrato">Non sei ancora registrato?</label><br> 
-			<label for="creaUnAccount">Crea un nuovo account</label>
+			<label for="creaUnAccount" onclick="location.href='registrazione.html'">Crea un nuovo account</label>
 		</form>
 	</div>
 	</div>
+
+	
+	<script>
+		function changeType(){
+			if(document.getElementById("password").getAttribute("type") == "password"){
+				document.getElementById("password").setAttribute("type", "text");
+			}else{
+				document.getElementById("password").setAttribute("type", "password");
+			}
+			
+		}
+	</script>
 </body>
 </html>

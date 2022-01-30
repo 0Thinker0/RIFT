@@ -103,9 +103,9 @@
         class="home-immagineutente"
       />
       <span>
-        <span><b>Buongiorno Utente</b></span>
+        <span id="nome_utente_profilo"><b>Buongiorno Utente</b></span>
         <br />
-        <span><font color="grey" size="3">00 Gen 00</font></span>
+        <span id="data_attuale_profilo"><font color="grey" size="3">00 Gen 00</font></span>
       </span>
     </div>
     <div class="home-informazionipersonali">
@@ -182,5 +182,17 @@
 </div>
 		
 	</div>
+	
+	
+	<script>
+		const cookieValue = document.cookie.split('=')[1];
+		
+		document.getElementById("nome_utente_profilo").innerHTML = "<b>Benvenuto " + cookieValue + "</b>"; 
+	
+		var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+		var today  = new Date();
+		console.log(today.toLocaleDateString("it-IT", options));
+		document.getElementById("data_attuale_profilo").innerHTML= "<font color='grey' size='3'>"+today.toLocaleDateString("it-IT", options)+"</font>";
+	</script>
 </body>
 </html>
