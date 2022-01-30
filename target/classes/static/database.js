@@ -366,12 +366,10 @@ function notericerca(y,text,id_){
 			container1.appendChild(img);
 		container.appendChild(container1);
 			//contenuto
-			var cont= document.createElement("h5");
-			cont.classList.add("nota-contenuto");
-			cont.classList.add("nunito");
-			//sostituire con Iframe?
 			var ifr = document.createElement('iframe');
 			ifr.setAttribute("id","nota"+y[i].id);
+			var data = y[i].contenuto;
+			decode(ifr,data);
 			container.appendChild(ifr);
 				//lista
 				var listcontainer= document.createElement("div");
@@ -590,10 +588,13 @@ function quaderniLib(quaderni,note){
 								//Contenuto
 								var ifr = document.createElement('iframe');
 								ifr.setAttribute("id","nota"+note[j].id);
+								var data = note[j].contenuto;
+								decode(ifr,data);
 								nota.appendChild(ifr);
 								//Droplist
 								var dropdownN= document.createElement("div");
 								dropdownN.classList.add("dropdown");
+								dropdownN.classList.add("dropdown1");
 									var listN= document.createElement("ul");
 									listN.classList.add("listbar-ns");
 									listN.classList.add("list");
@@ -740,6 +741,9 @@ function sezioneTrash(quaderni,note){
 							//Contenuto
 							var ifr = document.createElement('iframe');
 							ifr.setAttribute("id","nota"+note[j].id);
+							var data = note[j].contenuto;
+							decode(ifr,data);
+							
 							nota.appendChild(ifr);			
 						containerblocchi.appendChild(nota);	
 					noteN.appendChild(containerblocchi);
@@ -832,6 +836,9 @@ function sezioneTrash(quaderni,note){
 							//Contenuto
 							var ifr = document.createElement('iframe');
 							ifr.setAttribute("id","nota"+note[j].id);
+							var data = y[i].contenuto;
+							decode(ifr,data);
+				
 							nota.appendChild(ifr);
 					containerblocchi.appendChild(nota);	
 				noteN.appendChild(containerblocchi);
@@ -878,8 +885,9 @@ function sezioneTrash(quaderni,note){
 						//contenuto
 						var ifr = document.createElement('iframe');
 						ifr.setAttribute("id","nota"+note[j].id);
-						var mime = "data:text/html;base64,";
-						ifr.setAttribute("src", mime+note[j].contenuto);
+						var data = note[j].contenuto;
+						decode(ifr,data);
+				
 						nota.appendChild(ifr);
 					containerblocchi.appendChild(nota);	
 				noteN.appendChild(containerblocchi);
@@ -961,12 +969,9 @@ function quaderniNote(y){
 				//contenuto
 				var ifr = document.createElement('iframe');
 				ifr.setAttribute("id","nota"+y[i].id);
-				var mime = "data:text/html;base64,";
-				console.log(mime+y[i].contenuto);
 				var data = y[i].contenuto;
-				data = data.replaceAll(" ", "+");
-				ifr.setAttribute("src", mime+data);
-			
+				decode(ifr,data);
+				
 			container.appendChild(ifr);	
 				//lista
 				var listcontainer= document.createElement("div");
