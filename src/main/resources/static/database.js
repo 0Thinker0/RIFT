@@ -104,7 +104,12 @@ function changevis(id,t) {
 				noterecenti();
  			}
 			if(t==1){
-				cercalenote(document.querySelector('input[name="cerca_input"]').value);
+				if(!document.querySelector('input[name="cerca_input"]').val===""){
+					cercalenote(document.querySelector('input[name="cerca_input"]').value);
+				}			
+				else{
+					cercalenote(document.querySelector('input[name="cerca_input_mobile"]').value);
+				}
 			}
 			if(t==2){
 				quaderniLibreria();
@@ -159,7 +164,7 @@ function pickbytitoloquaderno(x,text){
 	const s= new Array();
 	for(var i=0;i<x.length;i++){
 		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].quaderno.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
+		if(x[i].quaderno!==null&&x[i].quaderno.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
 			nomi.push(x[i].quaderno.toLocaleLowerCase());
 			s.push(x[i]);
 		}
@@ -275,6 +280,9 @@ function noterecenti() {
 /////Search page
 
 function enlighttext(b,wt,text){
+	if(b==null){
+		return b;
+	}
 	if(b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase())!==-1){
 		let arr=new Array();
 		let string1="";
@@ -361,7 +369,6 @@ function notericerca(y,text,id_){
 			//sostituire con Iframe?
 			var ifr = document.createElement('iframe');
 			ifr.setAttribute("id","nota"+y[i].id);
-			dataURLtoFile(y[i].contenuto,"nota"+y[i].id); 
 			container.appendChild(ifr);
 				//lista
 				var listcontainer= document.createElement("div");
@@ -438,6 +445,7 @@ function nps(x,text,t){
 	   	 		y.push(z[i]);
 			}
 		}
+		console.log(y);
 		if(t=="Online"){
 			let s=pickbyautore(x,text);
 			for(let i=0;i<s.length;i++){
@@ -608,13 +616,13 @@ function quaderniLib(quaderni,note){
 										elimN.textContent="Elimina";
 										listN.appendChild(elimN);
 								dropdownN.appendChild(listN);
-								containerblocchi.appendChild(dropdownN);
 						containerblocchi.appendChild(nota);	
 					noteN.appendChild(containerblocchi);
 				}
 				if(j==note.length-1&&noteN!=null&&c>0){
 					container.appendChild(quaderno);
 					container.appendChild(noteN);
+					container.appendChild(dropdownN);
 					contN.textContent="( "+c+" note )";
 					document.getElementById("q35").appendChild(container);
 				}
