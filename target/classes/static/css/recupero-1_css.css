@@ -73,6 +73,7 @@ input[name="email_input"]{
 }
 
 .recupero_button{
+	width: 150px;
 	border: none;
 	border-radius: 10px;
 	

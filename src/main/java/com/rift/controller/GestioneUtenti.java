@@ -60,6 +60,37 @@ public class GestioneUtenti{
 		}
 	}
 	
+	@PostMapping("/recupera_password")
+	public void recuperaPassword(HttpServletRequest request, HttpServletResponse response){
+		String email = request.getParameter("email_input");
+		
+		try {
+			if(Database.getIstance().getUtenteDao().findUtenteByEmail(email) != null){
+				
+				EmailSender emailToSend = new EmailSender(
+	                    "riftnotes@gmail.com",
+	                    "RiftNotes2022", 
+	                    "smtp.gmail.com",
+	                    "riftnotes@gmail.com", 
+	                    email, 
+	                    "Invio automatico dal portale RIFT (Recupero Password)", 
+	                    "Ci dispiace molto tu abbia dimenticato la password. \n Ma non preoccuparti, l'abbiamo salvata noi per te: " + Database.getIstance().getUtenteDao().findUtenteByEmail(email).getPassword(),
+	                    "src/main/resources/static/icon/ImmagineProfiloPersonale.jpeg"
+	                  );
+
+				emailToSend.inviaEmail();
+				
+				
+				response.sendRedirect("/login.html");
+				
+			}else {
+				response.sendRedirect("/registrazione.html");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@GetMapping("/esci")
 	public void login(HttpServletResponse response, HttpServletRequest request){
 		try {
