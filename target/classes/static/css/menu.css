@@ -89,6 +89,7 @@
 }
 
 .header-mobile-container {
+	background-color: white;
 	top:0%;
 	left:0%;
 	z-index: 3;
@@ -264,7 +265,7 @@ input[name="cerca_input_mobile"]{
 }
 
 .header-container {
-	
+	background-color: white;
 	top:0%;
 	left:0%;
 	z-index: 2;
@@ -299,6 +300,7 @@ input[name="cerca_input_mobile"]{
 		width: 0px;
 	}
 	.header-container {
+	background-color: white;
 		top:0%;
 		left:0%;
   		display: flex;
@@ -474,6 +476,7 @@ iframe{
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 /* Track */

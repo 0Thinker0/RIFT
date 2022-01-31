@@ -2,9 +2,24 @@
 <head>
 	<link rel="stylesheet" href="/css/profilo.css">
 	<link rel="stylesheet" href="/css/menu.css">
+	<link href="css/top.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="/css/menu.css">
+	<link href="css/cerca.css" rel="stylesheet"/>
+	
+	<!-- Javascripts -->
+	<script src="Javascripts/main.js"></script>
+	<script src="database.js"></script>
+
+	<!-- icone di ionicon -->
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<!-- Export as PDF -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript">if (document.cookie.indexOf('email=') == -1) self.location='login.html';</script>
 </head>
 
-<body onload="if (document.referrer == '') self.location='login.html';">
+<body>
 <div class="header-mobile-extended-container" id="header-mobile-extended-container">
     <div class="header-mobile-extended-container1">
       <img src="icon/close_big.png" alt="image" class="header-mobile-extended-image" onclick="close_navbar()"/>
@@ -26,7 +41,7 @@
       </div>
       <div class="header-mobile-extended-container6">
         <img src="/icon/Sign_out_squre_fill.png" alt="image" class="menu-esciicon"/>
-        <a href="#"   class="esci">Esci</a>
+        <a href="esci"   class="esci">Esci</a>
       </div>
     </div>
   </div>
@@ -84,7 +99,7 @@
           </div>
           <div class="menu-containeresci">
             <img src="/icon/Sign_out_squre_fill.png" alt="image" class="menu-esciicon"/>
-            <a href="#"   class="esci">Esci</a>
+            <a href="esci"   class="esci">Esci</a>
           </div>
         </div>
       </div>
@@ -98,7 +113,7 @@
   <div class="home-container">
     <div class="home-benvenutoutente">
       <img
-        src="icon/UserExample.png"
+        src="icon/ImmagineProfiloPersonale.jpeg"
         alt="image"
         class="home-immagineutente"
       />
@@ -117,16 +132,12 @@
       <div class="home-boxemail">
         <span class="home-emailtesto">Email</span>
         <div class="home-emailview">
-          <span class="home-email">****@gmail.com</span>
+          <input type="text" class="home-email" disabled="disabled" value="ciao" id="email_utente" placeholder="ciao">
           <img
             src="icon/Eye.png"
             alt="image"
             class="home-vediemail"
-          />
-          <img
-            src="icon/Edit_fill.png"
-            alt="image"
-            class="home-modificaemail"
+            onclick="showEmail()"
           />
         </div>
       </div>
@@ -138,16 +149,18 @@
       <div class="home-boxpassword">
         <span class="home-passwordtesto">Password</span>
         <div class="home-passwordview">
-          <span class="home-password">***************</span>
+          <input type="password" class="home-password" disabled="disabled" value="ciao" id="password_utente"/>
           <img
             src="icon/Eye.png"
             alt="image"
             class="home-vedipassword"
+            onclick="showPassword()"
           />
           <img
             src="icon/Edit_fill.png"
             alt="image"
             class="home-modificapassword"
+            onclick="editPassword()"
           />
         </div>
       </div>
@@ -161,22 +174,7 @@
           class="home-elencopubblicazioniicon"
         />
       </div>
-      <div class="home-notapubblicata">
-        <div class="home-headernotapubblicata">
-          <span class="home-nomenota">Text</span>
-          <img
-            src="icon/Vector 127.png"
-            alt="image"
-            class="home-mostracontenutonota"
-          />
-          <img
-            src="icon/more_horizontal.png"
-            alt="image"
-            class="home-opzioninota"
-          />
-        </div>
-        <iframe class="home-contenutonota"></iframe>
-      </div>
+      <div class="note_pubblicate" id="note_pubblicate" ></div>
     </div>
   </div>
 </div>
@@ -184,14 +182,40 @@
 	</div>
 	
 	
-	<script>
-		const cookieValue = document.cookie.split('=')[1];
-		
-		document.getElementById("nome_utente_profilo").innerHTML = "<b>Benvenuto " + cookieValue + "</b>"; 
+	<script>	
+	function editPassword(){
+		if(document.getElementById("password_utente").getAttribute("disabled") == null){
+			document.getElementById("password_utente").setAttribute("disabled", "disabled");
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST","/cambiaPassword?email=" + document.getElementById("email_utente").value + "&password=" + document.getElementById("password_utente").value , true);
+			xhttp.send();
+		}else{
+			document.getElementById("password_utente").removeAttribute("disabled");
+			document.getElementById("password_utente").setAttribute("type", "text");
+		}
+	}
 	
+	function showPassword(){
+		if(document.getElementById("password_utente").getAttribute("type") == "text")
+			document.getElementById("password_utente").setAttribute("type", "password");
+		else
+			document.getElementById("password_utente").setAttribute("type", "text");
+	}
+	
+	function showEmail(){
+		if(document.getElementById("email_utente").value.charAt(0) == '*'){
+			document.getElementById("email_utente").setAttribute("value", document.getElementById("email_utente").placeholder);
+		}else{
+			var emailUtente = document.getElementById("email_utente").placeholder.substring(document.getElementById("email_utente").placeholder.indexOf('@'), document.getElementById("email_utente").placeholder.length);
+			document.getElementById("email_utente").setAttribute("value", "*****"+emailUtente);
+		}
+			
+	}
+	
+	getNotePubblicate();
+	getDatiUtente();
 		var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 		var today  = new Date();
-		console.log(today.toLocaleDateString("it-IT", options));
 		document.getElementById("data_attuale_profilo").innerHTML= "<font color='grey' size='3'>"+today.toLocaleDateString("it-IT", options)+"</font>";
 	</script>
 </body>

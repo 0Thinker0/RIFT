@@ -1,5 +1,6 @@
 .informazioni{
 	padding-left: 10px;
+	height: 100%;
 }
 
 @media screen and (min-width: 1400px){
@@ -26,8 +27,10 @@ label[for="profilo"]{
 
 .home-benvenutoutente img[alt="image"] {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
+  z-index: -1;
+  opacity: 0.6;
 }
 
 .welcome_user{
@@ -39,7 +42,6 @@ label[for="profilo"]{
 .home-container {
   font-family: Nunito;
   width: 100%;
-  height: 80%;
   display: flex;
   overflow: auto;
   align-items: center;
@@ -54,11 +56,12 @@ label[for="profilo"]{
   justify-content: center;
 }
 .home-immagineutente {
-  width: 100px;
   align-self: flex-start;
   margin-top: 10px;
   object-fit: cover;
   margin-right: 5px;
+  top: 5%;
+  left: 40%;
 }
 .home-informazionipersonali {
   width: 100%;
@@ -95,10 +98,13 @@ label[for="profilo"]{
   justify-content: undefined;
 }
 .home-email {
+	font-family: Nunito;
+	border: none;
+	outline: none;
+	background-color: white;
 	opacity:0.5;
 	font-size: 15px;
   margin-right: 10px;
-  width: var(--dl-size-size-xlarge);
   align-self: flex-start;
 }
 .home-vediemail {
@@ -143,6 +149,10 @@ label[for="profilo"]{
   justify-content: flex-start;
 }
 .home-password {
+	font-family: Nunito;
+	border: none;
+	outline: none;
+	background-color: white;
 	opacity:0.5;
 	font-size: 15px;
   margin-right: 10px;
@@ -164,7 +174,6 @@ label[for="profilo"]{
 }
 .home-areapubblicazioni {
   width: 100%;
-  height: 222px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -234,4 +243,8 @@ label[for="profilo"]{
   width: 1156px;
   height: 196px;
   align-self: center;
+}
+
+.note_pubblicate{
+	width: 100%;
 }

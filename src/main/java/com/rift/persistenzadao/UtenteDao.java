@@ -36,6 +36,24 @@ public class UtenteDao {
 		return utenti;
 	}
 	
+	public Utente findUtenteByEmail(String email){
+		String query= "select * from utente where email='" + email + "'"; 
+		Utente utente = null;
+		try {	
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			
+			if(rs.next()) {
+				utente= new Utente(rs.getString("nome"),
+									rs.getString("email"),
+									rs.getString("password"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utente;
+	}
 	
 	public boolean findBy(String email, String password) {
 		String query = "select * from utente where email ='" + email + "' and password = '" + password + "'";
@@ -86,6 +104,28 @@ public class UtenteDao {
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void cambiaEmail(String oldEmail, String email) {
+		String query = "UPDATE utente SET email ='"+email+"' WHERE email = '" + oldEmail + "'";
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void cambiaPassword(String email, String password) {
+		String query = "UPDATE utente SET password ='"+password+"' WHERE email = '" + email + "'";
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(query);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

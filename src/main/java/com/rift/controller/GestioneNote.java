@@ -2,6 +2,7 @@ package com.rift.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,16 @@ public class GestioneNote {
 		if (req.getSession().getAttribute("username") != null) {
 		}
 		if(!titolo.isEmpty()) {
-			String username= "Giuseppe";
+			String username = null;
+			Cookie[] cookies = req.getCookies();
+
+			if (cookies != null) {
+			 for (Cookie cookie : cookies) {
+			   if (cookie.getName().equals("email")) {
+			     username = cookie.getValue();
+			    }
+			  }
+			}
 			Database.getIstance().getNotaDao().addNota(titolo,contenuto,pubblico,username);
 		}
 	}
@@ -31,26 +41,77 @@ public class GestioneNote {
 		if (req.getSession().getAttribute("username") != null) {
 		}
 		if(!titolo.isEmpty()){
-			String username= "Giuseppe";
+			String username = null;
+			Cookie[] cookies = req.getCookies();
+
+			if (cookies != null) {
+			 for (Cookie cookie : cookies) {
+			   if (cookie.getName().equals("email")) {
+			     username = cookie.getValue();
+			    }
+			  }
+			}
 			Database.getIstance().getQuadernoDao().addQuaderno(titolo,pubblico,username);
 		}
 	}
 	
 	@GetMapping("/getNotePersonali")
 	public List<Nota> getNote(HttpServletRequest request) {
-		String username= "Giuseppe";
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
 		return Database.getIstance().getNotaDao().findByUsername(username);
 	}
-	 
+	
+	@GetMapping("/getNotePubblicate")
+	public List<Nota> getNotePubblicate(HttpServletRequest request) {
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
+		return Database.getIstance().getNotaDao().findByUsername(username);
+	}
+	
 	@GetMapping("/getQuaderniPersonali")
 	public List<Quaderno> getQuaderni(HttpServletRequest request) {
-		String username= "Giuseppe";
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
 		return Database.getIstance().getQuadernoDao().findByUsername(username);
 	}
 	
 	@GetMapping("/getNoteOnline")
 	public List<Nota> getNoteOn(String id,HttpServletRequest request) {
-		String username= "Giuseppe";
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
 		return Database.getIstance().getNotaDao().findOnline(username);
 	}
 	
@@ -67,13 +128,31 @@ public class GestioneNote {
 	
 	@PostMapping("/deleteQuaderno")
 	public void removeQuaderno(String titolo,HttpServletRequest request) {
-		String username= "Giuseppe";
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
 		Database.getIstance().getQuadernoDao().removeQuaderno(titolo,username);
 	}
 	
 	@PostMapping("/changeVisibilityQ")
 	public void changeVisQuaderno(String titolo,HttpServletRequest request) {
-		String username= "Giuseppe";
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
 		Database.getIstance().getQuadernoDao().changeVisibilityNota(titolo,username,-1);
 	}
 	
@@ -84,7 +163,16 @@ public class GestioneNote {
 	
 	@PostMapping("/spostaNelCestinoQuaderno")
 	public void spostaCestQuaderno(String titolo,HttpServletRequest request) {
-		String username= "Giuseppe";
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
 		Database.getIstance().getQuadernoDao().moveOnTrashQuaderno(titolo,username);
 	}
 	
@@ -95,7 +183,16 @@ public class GestioneNote {
 	
 	@PostMapping("/ripristinaQuaderno")
 	public void ripristinaQ(String titolo,HttpServletRequest request) {
-		String username= "Giuseppe";
+		String username = null;
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+		 for (Cookie cookie : cookies) {
+		   if (cookie.getName().equals("email")) {
+		     username = cookie.getValue();
+		    }
+		  }
+		}
 		Database.getIstance().getQuadernoDao().restoreQuaderno(titolo, username);
 	}
 }
