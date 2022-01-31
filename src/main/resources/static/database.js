@@ -341,7 +341,7 @@ function notericerca(y,text,id_){
 				container1.appendChild(quad);
 				//autore
 				if(id_=="nps65"){
-					var creatoda=document.createElement("h5");
+					var creatoda=document.createElement("span");
 					creatoda.classList.add("nota-autore");
 					creatoda.classList.add("nunito");
 					creatoda.classList.add("elem");	
@@ -355,13 +355,17 @@ function notericerca(y,text,id_){
 					xhttp.open("GET","/getUtente?email="+enlighttext(b,wt,text), true);
 					xhttp.send();
  					xhttp.onreadystatechange = function() {
+ 					
     					if (this.readyState == 4 && this.status == 200) {
 							var utente=JSON.parse([this.response]);
-							$(creatoda).html("Pubblicato da "+utente.nome);
+							console.log ( creatoda.getAttribute("id") + utente.nome);
+							document.getElementById(enlighttext(b,wt,text)).innerHTML = "Pubblicato da " + utente.nome;
+							
  						}
-					};			
-						
-					container1.appendChild(creatoda);
+					};
+					
+					container1.appendChild(creatoda);	
+					
 				}
 				//immagine menu
 				var img=document.createElement("ion-icon");
@@ -402,8 +406,8 @@ function notericerca(y,text,id_){
 							contatta.classList.add("contatta");
 							
 							contatta.setAttribute("id", creatoda.getAttribute("id"));
-							contatta.setAttribute("onclick", "contattaUtente(contatta.getAttribute('id'))");
-							contatta.onclick = function() {contattaUtente(contatta.getAttribute('id'));};
+							contatta.setAttribute("onclick", "contattaUtente(this.getAttribute(\"id\"))");
+							contatta.onclick = function() {contattaUtente(this.getAttribute("id"));};
 							
 							contatta.textContent="Contatta";
 							list.appendChild(contatta);
