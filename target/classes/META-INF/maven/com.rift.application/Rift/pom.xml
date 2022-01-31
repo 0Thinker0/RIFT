@@ -17,21 +17,26 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-		 <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4.7</version>
+</dependency>
 
-        <dependency>
+	<dependency>
 
-            <groupId>org.postgresql</groupId>
+		<groupId>org.postgresql</groupId>
 
-            <artifactId>postgresql</artifactId>
+		<artifactId>postgresql</artifactId>
 
-            <version>42.2.24</version>
+		<version>42.2.24</version>
 
-        </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

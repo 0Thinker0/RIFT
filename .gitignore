@@ -4,3 +4,6 @@ target/classes/META-INF/MANIFEST.MF
 src/main/java/com/rift/Database.java
 target/classes/com/rift/Database.class
 target/classes/META-INF/MANIFEST.MF
+target/classes/META-INF/MANIFEST.MF
+target/classes/com/rift/Database.class
+src/main/java/com/rift/Database.java

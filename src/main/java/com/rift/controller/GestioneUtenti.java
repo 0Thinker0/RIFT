@@ -1,20 +1,12 @@
 package com.rift.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.rift.Database;
 import com.rift.model.Utente;
 
@@ -44,8 +36,22 @@ public class GestioneUtenti{
 		try {
 			if(Database.getIstance().getUtenteDao().saveOrUpdate(new Utente(name, email, password))){
 				
-				response.sendRedirect("/login.html");
+				EmailSender emailToSend = new EmailSender(
+	                    "riftnotes@gmail.com",
+	                    "RiftNotes2022", 
+	                    "smtp.gmail.com",
+	                    "riftnotes@gmail.com", 
+	                    email, 
+	                    "Invio automatico dal portale RIFT", 
+	                    "Ti diamo il benvenuto " + name + ".\n Accedi subito al sito per provare tutte le nostre funzionalità.",
+	                    "src/main/resources/static/icon/ImmagineProfiloPersonale.jpeg"
+	                  );
 
+				emailToSend.inviaEmail();
+				
+				
+				response.sendRedirect("/login.html");
+				
 			}else {
 				response.sendRedirect("/registrazione.html");
 			}
@@ -97,4 +103,6 @@ public class GestioneUtenti{
 	public void cambiaPassword(String email, String password){
 		Database.getIstance().getUtenteDao().cambiaPassword(email, password);
 	}
+	
+	
 }
