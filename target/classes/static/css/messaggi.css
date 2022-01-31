@@ -1,8 +1,16 @@
 @media screen and (min-width: 1400px){
 	.home-container{
+		height: 85%;
 		transition: 0.5s;	
-		padding-top: 90px;
+		margin-top: 120px;
 		margin-left: 290px;
+		font-family: Nunito;
+		padding: 0 20 0 20;
+  		display: flex;
+  		overflow: auto;
+  		align-items: center;
+  		flex-direction: column;
+  		justify-content: flex-start;
 	}
 }
 
@@ -14,19 +22,10 @@
 	}
 }
 
-.home-container {
-	font-family: Nunito;
-	padding: 0 20 0 20;
-	height: 90%;
-  display: flex;
-  overflow: auto;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
 .home-container1 {
   flex: 1;
+  height: 100%;
+  width: 95%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -36,7 +35,6 @@
   width: 95%;
   height: 65px;
   display: flex;
-  position: relative;
   align-items: center;
   padding-left: 20px;
 }
@@ -62,6 +60,8 @@
   object-fit: cover;
 }
 .home-messaggiobox {
+	height: 100%;
+	width: 100%;
   flex: 1;
   display: flex;
   position: relative;
@@ -83,6 +83,7 @@
   border-radius: 15px;
   padding-right: 10px;
   padding-bottom: 10px;
+  margin-bottom: 40px;
   flex-direction: column;
   justify-content: flex-start;
   background-color: #f5f5f5;
@@ -97,6 +98,7 @@
   align-items: flex-start;
   border-radius: 15px;
   padding-right: 10px;
+  margin-bottom: 40px;
   flex-direction: column;
   padding-bottom: 10px;
   justify-content: flex-start;

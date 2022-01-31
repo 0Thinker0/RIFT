@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+
 .home-container1 {
   flex: 1;
   width: 90%;
@@ -34,11 +35,13 @@
   padding-left: 20px;
   flex-direction: column;
 }
+
 .home-messaggitesto {
 	font-weight: bold;
   margin-bottom: 50px;
   font-size: 20px;
 }
+
 .home-conversazionebox {
   flex: 0 0 auto;
   width: 100%;
@@ -54,12 +57,15 @@
   border-top-width: 0px;
   border-left-width: 0px;
   border-right-width: 0px;
+  box-shadow: 0px 4px 10px 0px #d4d4d4;
 }
+
 .home-usericon {
   width: 100px;
   object-fit: cover;
   margin-right: 15px;
 }
+
 .home-testoconversazionebox {
   flex: 0 0 auto;
   width: 80%;
@@ -67,9 +73,10 @@
   display: flex;
   align-self: center;
   flex-direction: column;
+  
 }
 .home-nomeutente {
-	font-weight: bold;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 .home-option {
@@ -77,6 +84,23 @@
   width: 24px;
   object-fit: cover;
 }
+
+.messaggi{
+	 flex: 0 0 auto;
+  width: 100%;
+  height: var(--dl-size-size-large);
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  padding-top: 10px;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 1px;
+  padding-bottom: 30px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+
 .home-conversazionebox1 {
   flex: 0 0 auto;
   width: 100%;

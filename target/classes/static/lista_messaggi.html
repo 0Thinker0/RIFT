@@ -2,7 +2,70 @@
 <head>
 	<link rel="stylesheet" href="/css/lista_messaggi.css">
 	<link rel="stylesheet" href="/css/menu.css">
+	<script src="database.js"></script>
 	<script type="text/javascript">if (document.cookie.indexOf('email=') == -1) self.location='login.html';</script>
+	<script>
+	const email = document.cookie
+	  .split('; ')
+	  .find(row => row.startsWith('email'))
+	  .split('=')[1];
+	
+	var xhttp1 = new XMLHttpRequest();
+	xhttp1.open("GET","/getConversazioni?email="+email, true);
+	xhttp1.send();
+		xhttp1.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var conversazioni=JSON.parse([this.response]);
+			
+			if(conversazioni != null){
+
+				for(var i = 0; i < conversazioni.length; i++){
+				var xhttp = new XMLHttpRequest();
+			  	
+				xhttp.open("GET","/getUtente?email="+conversazioni[i].destinatario, true);
+				xhttp.send();
+					xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var utente=JSON.parse([this.response]);
+						
+						
+							var container = document.createElement("div");
+							container.classList.add("home-conversazionebox");
+							var image = document.createElement("img");
+							image.setAttribute("class", "home-usericon");
+							image.setAttribute("alt", "image");
+							image.setAttribute("src", "icon/ImmagineProfiloPersonale.jpeg");
+							var container1 = document.createElement("div");
+							container1.classList.add("home-testoconversazionebox");
+							var span1 = document.createElement("span");
+							span1.classList.add("home-nomeutente");
+							span1.innerHTML = utente.nome;
+							var span2 = document.createElement("span");
+							span2.innerHTML = "Premi sulla chat per vederne il contenuto";
+							var image1 = document.createElement("img");
+							image1.setAttribute("class", "home-option");
+							image1.setAttribute("src", "icon/more_horizontal.png");
+							image1.setAttribute("alt", "image");
+							
+							container.appendChild(image);
+							container1.appendChild(span1);
+							container1.appendChild(span2);
+							container.appendChild(container1);
+							container.appendChild(image1);
+							
+							container.setAttribute("onclick", "contattaUtente(utente.email)");
+							container.onclick = function() {contattaUtente(utente.email);};
+							
+							document.getElementById("lista_messaggi").appendChild(container);
+						}
+				};
+				}
+			}
+		}
+	};
+	
+	document.cookie = "emailToContact=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	</script>
 </head>
 
 <body>
@@ -99,38 +162,9 @@
         <span>Messaggi</span>
         <span></span>
       </span>
-      <div class="home-conversazionebox">
-        <img
-          src="icon/UserExample.png"
-          alt="image"
-          class="home-usericon"
-        />
-        <div class="home-testoconversazionebox">
-          <span class="home-nomeutente"><span>Nome Utente</span></span>
-          <span>Testo altro testo altro testo altro testo altro testo...</span>
-        </div>
-        <img
-          src="icon/more_horizontal.png"
-          alt="image"
-          class="home-option"
-        />
-      </div>
-      <div class="home-conversazionebox1">
-        <img
-          src="icon/UserExample.png"
-          alt="image"
-          class="home-usericon1"
-        />
-        <div class="home-testoconversazionebox1">
-          <span class="home-nomeutente1"><span>Nome Utente</span></span>
-          <span>Testo altro testo altro testo altro testo altro testo...</span>
-        </div>
-        <img
-          src="icon/more_horizontal.png"
-          alt="image"
-          class="home-option1"
-        />
-      </div>
+      
+      <div class="messaggi" id="lista_messaggi"></div>
+      
       <span class="home-testofinale">
         <span>Nessun&apos;altra conversazione da visualizzare</span>
       </span>

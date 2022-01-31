@@ -1,5 +1,4 @@
 //Query
-
 function addquaderno() {		
 	let id=document.getElementById("libadd").value;	
 	var xhttp = new XMLHttpRequest();
@@ -303,6 +302,7 @@ function enlighttext(b,wt,text){
 			if (b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) != -1){
 				tmp=wt.substring(b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()),b.toLocaleLowerCase().indexOf(text.toLocaleLowerCase())+text.length);
 			}
+			
 		}
   		while (b.indexOf(string1) != -1) {
     		b = b.replace(string1, '<span style="color:red;">' + arr[0] + '</span>');
@@ -347,8 +347,20 @@ function notericerca(y,text,id_){
 					creatoda.classList.add("elem");	
 					creatoda.setAttribute("style","color: grey;");
 					wt=y[i].creato_da;
-					b=y[i].creato_da;			
-					$(creatoda).html("Pubblicato da "+enlighttext(b,wt,text));
+					b=y[i].creato_da;
+					creatoda.setAttribute("id", enlighttext(b,wt,text));
+								
+					var xhttp = new XMLHttpRequest();
+  	
+					xhttp.open("GET","/getUtente?email="+enlighttext(b,wt,text), true);
+					xhttp.send();
+ 					xhttp.onreadystatechange = function() {
+    					if (this.readyState == 4 && this.status == 200) {
+							var utente=JSON.parse([this.response]);
+							$(creatoda).html("Pubblicato da "+utente.nome);
+ 						}
+					};			
+						
 					container1.appendChild(creatoda);
 				}
 				//immagine menu
@@ -387,7 +399,12 @@ function notericerca(y,text,id_){
 					}
 						if(id_=="nps65"){
 							var contatta= document.createElement("li");	
-							contatta.classList.add("contatta");	
+							contatta.classList.add("contatta");
+							
+							contatta.setAttribute("id", creatoda.getAttribute("id"));
+							contatta.setAttribute("onclick", "contattaUtente(contatta.getAttribute('id'))");
+							contatta.onclick = function() {contattaUtente(contatta.getAttribute('id'));};
+							
 							contatta.textContent="Contatta";
 							list.appendChild(contatta);
 							var copia= document.createElement("li");	
@@ -1132,4 +1149,9 @@ function notePubblicate(y){
 			document.getElementById("note_pubblicate").appendChild(container);
 		}
 	}
+}
+
+function contattaUtente(email){
+	document.cookie = "emailToContact=" + email +";";
+  	self.location='messaggi.html';
 }

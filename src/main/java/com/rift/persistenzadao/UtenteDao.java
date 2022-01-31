@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.rift.model.Chat;
 import com.rift.model.Utente;
 
 public class UtenteDao {
@@ -128,6 +130,49 @@ public class UtenteDao {
 			st.executeUpdate(query);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public String getConversazione(String email, String emailToContact) {
+		String query = "select * from chat where id_mittente ='" + email + "' and id_destinatario = '" + emailToContact + "'";
+
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			if(rs.next()) {
+				return rs.getString("conversazione");
+			}else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void setConversazione(String email, String emailToContact, String mittente, String destinatario) {
+		String query = "select * from chat where id_mittente ='" + email + "' and id_destinatario = '" + emailToContact + "'";
+		
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			if(rs.next()) {
+				String queryMittente = "UPDATE chat SET conversazione = '" + mittente + "' WHERE id_mittente = '" + email + "' and id_destinatario = '" + emailToContact + "'";
+				String queryDestinatario = "UPDATE chat SET conversazione = '" + destinatario + "' WHERE id_mittente = '" + emailToContact + "' and id_destinatario = '" + email + "'";
+				
+				st.executeUpdate(queryMittente);
+				st.executeUpdate(queryDestinatario);
+			}else {
+				String queryMittente = "insert into chat values('" + mittente + "', '" + email + "', '" + emailToContact + "')";
+				String queryDestinatario = "insert into chat values('" + destinatario + "', '" + emailToContact + "', '" + email + "')";
+				
+				st.executeUpdate(queryMittente);
+				st.executeUpdate(queryDestinatario);
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

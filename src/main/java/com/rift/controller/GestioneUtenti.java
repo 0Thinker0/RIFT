@@ -1,6 +1,8 @@
 package com.rift.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.rift.Database;
+import com.rift.model.Chat;
 import com.rift.model.Utente;
 
 @RestController
@@ -123,6 +126,11 @@ public class GestioneUtenti{
 		return Database.getIstance().getUtenteDao().findUtenteByEmail(email);
 	}
 	
+	@GetMapping("/getUtente")
+	public Utente getUtente(String email){
+		return Database.getIstance().getUtenteDao().findUtenteByEmail(email);
+	}
+	
 	@PostMapping("/cambiaEmail")
 	public void cambiaEmail(String oldEmail, String email){
 		if(Database.getIstance().getUtenteDao().findUtenteByEmail(email) == null) {
@@ -135,5 +143,18 @@ public class GestioneUtenti{
 		Database.getIstance().getUtenteDao().cambiaPassword(email, password);
 	}
 	
+	@GetMapping("/getConversazione")
+	public String getConversazione(String email, String emailToContact){
+		return Database.getIstance().getUtenteDao().getConversazione(email, emailToContact);
+	}
 	
+	@GetMapping("/getConversazioni")
+	public List<Chat> getConversazioni(String email){
+		return Database.getIstance().getChatDao().getConversazioni(email);
+	}
+	
+	@PostMapping("/setConversazione")
+	public void setConversazione(String email, String emailToContact, String mittente, String destinatario){
+		Database.getIstance().getUtenteDao().setConversazione(email, emailToContact, mittente, destinatario);
+	}
 }

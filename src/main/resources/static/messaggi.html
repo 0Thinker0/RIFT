@@ -3,6 +3,7 @@
 	<link rel="stylesheet" href="/css/messaggi.css">
 	<link rel="stylesheet" href="/css/menu.css">
 	<script type="text/javascript">if (document.cookie.indexOf('email=') == -1) self.location='login.html';</script>
+	
 </head>
 
 <body>
@@ -100,62 +101,143 @@
           src="icon/Expand_left.png"
           alt="image"
           class="home-backicon"
+          onclick="self.location='lista_messaggi.html'"
         />
         <img
           src="icon/UserExample.png"
           alt="image"
           class="home-usericon"
         />
-        <span class="home-nomeutente">Nome Utente</span>
+        <span class="home-nomeutente" id="nome_Utente"></span>
         <img
           src="icon/Broken_heart.png"
           alt="image"
           class="home-cancellachaticon"
         />
       </div>
-      <div class="home-messaggiobox">
-        <div class="home-messaggiobox1">
-          <span class="home-testomessaggio">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry&apos;s standard dummy
-            text ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make a type specimen book. It has survived
-            not only five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-          </span>
-          <span class="home-orariomessaggio">10:34 10/10/2021</span>
-        </div>
-        <div class="home-messaggiobox2">
-          <span class="home-testomessaggio1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry&apos;s standard dummy
-            text ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make a type specimen book. It has survived
-            not only five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-          </span>
-          <span class="home-orariomessaggio1">10:34 10/10/2021</span>
-        </div>
+      <div class="home-messaggiobox" id="boxMessaggi">
+        
       </div>
       <div class="home-inviomessaggiobox">
         <input
           type="text"
           placeholder="Digita il tuo testo qui ..."
           class="home-inputtesto input"
+          id="testo"
         />
         <img
           src="icon/Send_hor_fill.png"
           alt="image"
           class="home-image"
+          onclick="sendMessage(document.getElementById('testo').value)"
         />
       </div>
     </div>
   </div>
+  
+  <script type="text/javascript">
+	const spanArray = new Array();
+	
+	const emailToContact = document.cookie
+	  .split('; ')
+	  .find(row => row.startsWith('emailToContact'))
+	  .split('=')[1];	
+	
+	const email = document.cookie
+	  .split('; ')
+	  .find(row => row.startsWith('email'))
+	  .split('=')[1];
+	
+	var xhttp1 = new XMLHttpRequest();
+	xhttp1.open("GET","/getConversazione?email="+email + "&emailToContact=" + emailToContact, true);
+	xhttp1.send();
+		xhttp1.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var file=this.response;
+			if(file != null){
+				var conversazione = atob(file);
+				console.log(conversazione);
+				var id = 0;
+				while(conversazione.indexOf("MITTENTE#") != -1 || conversazione.indexOf("DESTINATARIO#") != -1){
+					if(conversazione.indexOf("MITTENTE#") != -1){
+						var messaggioMittente = conversazione.substring(conversazione.indexOf("MITTENTE#")+9, conversazione.indexOf("FINEMITTENTE#"));
+						conversazione = conversazione.substring(conversazione.indexOf("FINEMITTENTE#")+13, conversazione.length)
+						var container= document.createElement("div");
+						container.classList.add("home-messaggiobox2");
+						var span = document.createElement("span");
+						span.classList.add("home-testomessaggio");
+						span.setAttribute("id", "mittente");
+						span.innerHTML = messaggioMittente;
+						container.appendChild(span);
+						document.getElementById("boxMessaggi").appendChild(container);
+						spanArray.push(span);
+					}
+					if(conversazione.indexOf("DESTINATARIO#") != -1){
+						var messaggioDestinatario = conversazione.substring(conversazione.indexOf("DESTINATARIO#")+13, conversazione.indexOf("FINEDESTINATARIO#"));
+						conversazione = conversazione.substring(conversazione.indexOf("FINEDESTINATARIO#")+17, conversazione.length)
+						var container= document.createElement("div");
+						container.classList.add("home-messaggiobox1");
+						var span = document.createElement("span");
+						span.classList.add("home-testomessaggio1");
+						span.setAttribute("id", "destinatario");
+						span.innerHTML = messaggioDestinatario;
+						container.appendChild(span);
+						document.getElementById("boxMessaggi").appendChild(container);
+						spanArray.push(span);
+					}
+				}
+			}
+		}
+	};
+	
+	
+	function sendMessage(testo){console.log(spanArray.length);
+		var container= document.createElement("div");
+		container.classList.add("home-messaggiobox2");
+		var span = document.createElement("span");
+		span.classList.add("home-testomessaggio");
+		span.setAttribute("id", "mittente");
+		span.innerHTML = testo;
+		container.appendChild(span);
+		document.getElementById("boxMessaggi").appendChild(container);
+		spanArray.push(span);
+		document.getElementById('testo').value = "";
+		
+		var mittente = "";
+		var destinatario = "";
+		for(var i=0; i<spanArray.length; i++){
+			if(spanArray[i].getAttribute("id") == "mittente"){
+				mittente = mittente + "MITTENTE#" + spanArray[i].innerText + "FINEMITTENTE#";
+				destinatario = destinatario + "DESTINATARIO#" + spanArray[i].innerText + "FINEDESTINATARIO#";
+			}
+			
+			if(spanArray[i].getAttribute("id") == "destinatario"){
+				mittente = mittente + "DESTINATARIO#" + spanArray[i].innerText + "FINEDESTINATARIO#";
+				destinatario = destinatario + "MITTENTE#" + spanArray[i].innerText + "FINEMITTENTE#";
+			}
+		}
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST","/setConversazione?email="+email + "&emailToContact=" + emailToContact + "&mittente=" + btoa(mittente) + "&destinatario=" + btoa(destinatario), true);
+		xhttp.send();
+	}
+	
+	
+	</script>
+  
+  <script>
+  
+  
+  var xhttp = new XMLHttpRequest();
+	
+	xhttp.open("GET","/getUtente?email="+emailToContact, true);
+	xhttp.send();
+		xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var utente=JSON.parse([this.response]);
+  			document.getElementById("nome_Utente").innerHTML = utente.nome;
+		}
+	};
+  </script>
 </body>
 </html>
