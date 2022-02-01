@@ -121,19 +121,19 @@
 		<div class="container-nv">
 			<div class="notaveloce-container">
 				<div class="notaveloce-container1">
-					<input type="text" placeholder="Titolo nota" class="notaveloce-titolo nunito">
+					<input type="text" placeholder="Titolo nota" class="notaveloce-titolo nunito" id="titoloNotaRapida">
 					<div class="auxil-space"></div>
 					<div class="dropdown">	
 						<ion-icon class="opt-mt opt-mt-nv" id="v" name="ellipsis-horizontal-outline"></ion-icon>
 						<ul class="list listbar-nv" id="droplist-nv">
-							<li>Trasforma in nota</li>
+							<li onclick="trasformaInNota()">Trasforma in nota</li>
 							<li class="esportanota">Esporta in PDF</li>
 							<li class="svuotanota">Svuota</li>
 						</ul>
 					</div>
 				</div>
 				<div class="notaveloce-container2">
-					<textarea placeholder="Scrivi la tua nota qui.." class="textarea-nv"></textarea>
+					<textarea placeholder="Scrivi la tua nota qui.." class="textarea-nv" id="contenutoNotaRapida"></textarea>
 				</div>	
 			</div>	
 		</div>
@@ -144,7 +144,7 @@
 			<div class="menu-nr" id="nrm-home">
 				<h3 class="notarecenti nunito">Note recenti</h3>
 				<ion-icon class="opt-nr-tendina" name="chevron-down-outline"></ion-icon>
-				<a href="Library.html" style="text-decoration:none;"class="mostratutte nunito">Mostra tutte le note</a>
+				<a href="note.html" style="text-decoration:none;"class="mostratutte nunito">Mostra tutte le note</a>
 			</div>
 			
 			<div class="note-recenti" id="nr-sel"style="visibility: hidden;">
@@ -163,5 +163,13 @@
 		<script>noterecenti();</script>
 		
 	</div>
+	
+	<script type="text/javascript">
+		function trasformaInNota(){
+			document.cookie = "titoloNotaRapida=" + document.getElementById("titoloNotaRapida").value + ";";
+			document.cookie = "contenutoNotaRapida=" + document.getElementById("contenutoNotaRapida").value + ";";
+			self.location = "nota.html";
+		}
+	</script>
 </body>
 </html>

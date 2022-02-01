@@ -1,4 +1,5 @@
 //Query
+//Questa query permette di aggiungere i quaderni, libadd è il nome che l'utente vuole dare al quaderno. Successivamente viene passato come parametro ad una richiesta post
 function addquaderno() {		
 	let id=document.getElementById("libadd").value;	
 	var xhttp = new XMLHttpRequest();
@@ -11,6 +12,7 @@ function addquaderno() {
 	};
 }
 
+//Questo metodo ci permette di recuperare un quaderno che è stato precedentemente eliminato
 function restoreQ(id) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/ripristinaQuaderno?titolo="+id, true);
@@ -22,6 +24,7 @@ function restoreQ(id) {
 	};
 }
 
+//Questo metodo ci permette di recuperare le note passando un id al programma
 function restoreN(id) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/ripristinaNota?id="+id, true);
@@ -33,6 +36,7 @@ function restoreN(id) {
 	};
 }
 
+//Questo metodo ci permette di rimuovere un quaderno tramite il passaggio dell'id
 function removeQ(id) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/deleteQuaderno?titolo="+id, true);
@@ -44,6 +48,7 @@ function removeQ(id) {
 	};
 }
 
+//Questo metodo ci permette di rimuovere una nota tramite il passaggio dell'id
 function removeN(id) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/deleteNota?id="+id, true);
@@ -55,6 +60,7 @@ function removeN(id) {
 	};
 }
 
+//Questo metodo sposta nel cestino le note ed in base al parametro t che viene passato ricarica la lista
 function deletenota(id,t) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/spostaNelCestinoNota?id="+id, true);
@@ -77,6 +83,7 @@ function deletenota(id,t) {
 	};
 }
 
+//Questo metodo sposta nel cestino i quaderni ed in base al parametro t che viene passato ricarica la lista
 function deleteQ(id,t) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/spostaNelCestinoQuaderno?titolo="+id, true);
@@ -93,6 +100,7 @@ function deleteQ(id,t) {
 	};
 }
 
+//Questo metodo cambia la visibilità delle note e in base al parametro t viene ricaricata la lista
 function changevis(id,t) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/changeVisibility?id="+id, true);
@@ -120,6 +128,7 @@ function changevis(id,t) {
 	};
 }
 
+//Questo metodo cambia la visibilità dei quaderni ed in base al parametro t viene ricaricata la lista
 function changevisQ(id,t) {	
     var xhttp = new XMLHttpRequest();
 	xhttp.open("POST","/changeVisibilityQ?titolo="+id, true);
@@ -186,6 +195,7 @@ function pickbyautore(x,text){
 	}
 	return s;
 }
+
 //Home
 function creablocchinoterecenti(s){
 	//massimo 4, scarta i cestinati, ed evita i doppioni
@@ -969,7 +979,10 @@ function quaderniNote(y){
 					tit.classList.add("quaderno-titolo");
 					tit.classList.add("nunito");
 					tit.classList.add("elem");	
-					tit.textContent=y[i].titolo;			
+					tit.textContent=y[i].titolo;
+					tit.setAttribute("onclick", "modificaNota(y[i].id)");
+					tit.onclick = function (){ modificaNota(y[i].id);};
+					tit.setAttribute("style", "cursor: pointer");			
 					container1.appendChild(tit);
 					//titolo nota			
 					var quad=document.createElement("h5");
@@ -1158,4 +1171,25 @@ function notePubblicate(y){
 function contattaUtente(email){
 	document.cookie = "emailToContact=" + email +";";
   	self.location='messaggi.html';
+}
+
+function modificaNota(id){
+	var xhttp = new XMLHttpRequest();
+  	
+	xhttp.open("GET","/getNotePersonali", true);
+	xhttp.send();
+ 	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			var note=JSON.parse([this.response]);
+			
+
+			for(var i = 0; i < note.length; i++){
+				if(note[i].id == id){
+					document.cookie = "titolo=" + note[i].titolo + ";";
+					document.cookie = "contenuto=" + note[i].contenuto + ";";
+					self.location = "nota.html";
+				}
+			}
+ 		}
+	};
 }

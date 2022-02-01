@@ -215,6 +215,61 @@
 	</div>
 	
 	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+	
+	<script type="text/javascript">
+	var titoloNota = document.cookie
+	  .split('; ')
+	  .find(row => row.startsWith('titolo'))
+	  .split('=')[1];
+	
+	var contenuto = document.cookie
+	  .split('; ')
+	  .find(row => row.startsWith('contenuto'))
+	  .split('=')[1];
+	
+	contenuto = contenuto.replaceAll(" ", "+");
+	
+	var contenutoHTML = atob(contenuto);
+	
+	var iframe = document.getElementById("output");
+	var contentWindow = iframe.contentWindow,
+	contentDocument = contentWindow.document,
+	contentBody = contentDocument.body;
+	contentBody.innerHTML = contenutoHTML
+	
+	document.getElementById('titolo_nota').value = titoloNota;
+	
+		window.onbeforeunload = function(){
+			document.cookie = "titolo=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+			document.cookie = "contenuto=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+		};
+	</script>
+	
+	<script type="text/javascript">
+		var titoloNotaRapida = document.cookie
+	  	.split('; ')
+	  	.find(row => row.startsWith('titoloNotaRapida'))
+	  	.split('=')[1];
+	
+		var contenutoNotaRapida = document.cookie
+	  	.split('; ')
+	  	.find(row => row.startsWith('contenutoNotaRapida'))
+	  	.split('=')[1];
+	
+		var iframe = document.getElementById("output");
+		var contentWindow = iframe.contentWindow,
+		contentDocument = contentWindow.document,
+		contentBody = contentDocument.body;
+		contentBody.innerHTML = contenutoNotaRapida
+	
+		document.getElementById('titolo_nota').value = titoloNotaRapida;
+		
+		window.onbeforeunload = function(){
+			document.cookie = "titoloNotaRapida=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+			document.cookie = "contenutoNotaRapida=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+		};
+	</script>
+	
 	<script>
 	function showConferma(){
 		document.getElementById("conferma").style.display = "flex";
