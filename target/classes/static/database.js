@@ -348,18 +348,18 @@ function notericerca(y,text,id_){
 					creatoda.setAttribute("style","color: grey;");
 					wt=y[i].creato_da;
 					b=y[i].creato_da;
-					creatoda.setAttribute("id", enlighttext(b,wt,text));
+					creatoda.setAttribute("id", b);
 								
 					var xhttp = new XMLHttpRequest();
   	
-					xhttp.open("GET","/getUtente?email="+enlighttext(b,wt,text), true);
+					xhttp.open("GET","/getUtente?email="+b, true);
 					xhttp.send();
  					xhttp.onreadystatechange = function() {
  					
     					if (this.readyState == 4 && this.status == 200) {
 							var utente=JSON.parse([this.response]);
 							console.log ( creatoda.getAttribute("id") + utente.nome);
-							document.getElementById(enlighttext(b,wt,text)).innerHTML = "Pubblicato da " + utente.nome;
+							document.getElementById(b).innerHTML = "Pubblicato da " + enlighttext(utente.nome,utente.nome,text);
 							
  						}
 					};

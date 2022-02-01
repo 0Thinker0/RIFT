@@ -19,8 +19,6 @@ import com.rift.model.Quaderno;
 public class GestioneNote {
 	@PostMapping("/creaNota")
 	public void aggiungiNota(String titolo,String contenuto,boolean pubblico,HttpServletRequest req) {
-		if (req.getSession().getAttribute("username") != null) {
-		}
 		if(!titolo.isEmpty()) {
 			String username = null;
 			Cookie[] cookies = req.getCookies();
@@ -38,8 +36,6 @@ public class GestioneNote {
 	
 	@PostMapping("/creaQuaderno")
 	public void aggiungiQuaderno(String titolo,boolean pubblico,HttpServletRequest req) {
-		if (req.getSession().getAttribute("username") != null) {
-		}
 		if(!titolo.isEmpty()){
 			String username = null;
 			Cookie[] cookies = req.getCookies();
