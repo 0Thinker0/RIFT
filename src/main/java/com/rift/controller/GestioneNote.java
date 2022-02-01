@@ -113,7 +113,6 @@ public class GestioneNote {
 	
 	@PostMapping("/deleteNota")
 	public void removeNota(String id,HttpServletRequest request) {
-		System.out.println(id);
 		Database.getIstance().getNotaDao().removeNota(id);
 	}
 	

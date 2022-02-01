@@ -89,7 +89,7 @@ public class QuadernoDao {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
-				if(rs.getString("quaderno").equals(titolo)) {
+				if(rs.getString("quaderno")!=null&&rs.getString("quaderno").equals(titolo)) {
 					idNote.add(rs.getString("id"));
 				}
 			}
