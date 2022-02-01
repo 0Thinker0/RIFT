@@ -104,16 +104,12 @@
           onclick="self.location='lista_messaggi.html'"
         />
         <img
-          src="icon/UserExample.png"
+          src="icon/ImmagineProfiloPersonale.jpeg"
           alt="image"
           class="home-usericon"
         />
         <span class="home-nomeutente" id="nome_Utente"></span>
-        <img
-          src="icon/Broken_heart.png"
-          alt="image"
-          class="home-cancellachaticon"
-        />
+
       </div>
       <div class="home-messaggiobox" id="boxMessaggi">
         
@@ -130,6 +126,7 @@
           alt="image"
           class="home-image"
           onclick="sendMessage(document.getElementById('testo').value)"
+          
         />
       </div>
     </div>
@@ -221,8 +218,6 @@
 		xhttp.open("POST","/setConversazione?email="+email + "&emailToContact=" + emailToContact + "&mittente=" + btoa(mittente) + "&destinatario=" + btoa(destinatario), true);
 		xhttp.send();
 	}
-	
-	
 	</script>
   
   <script>

@@ -150,19 +150,14 @@
 							span1.innerHTML = utente.nome;
 							var span2 = document.createElement("span");
 							span2.innerHTML = "Premi sulla chat per vederne il contenuto";
-							var image1 = document.createElement("img");
-							image1.setAttribute("class", "home-option");
-							image1.setAttribute("src", "icon/more_horizontal.png");
-							image1.setAttribute("alt", "image");
 							
 							container.appendChild(image);
 							container1.appendChild(span1);
 							container1.appendChild(span2);
 							container.appendChild(container1);
-							container.appendChild(image1);
 							
 							container.setAttribute("onclick", "contattaUtente(utente.email)");
-							container.onclick = function() {contattaUtente(utente.email);};
+							container.onclick = function() {contattaUtente(utente.email); document.cookie = "emailToContact=" + utente.email + ";";};
 							
 							document.getElementById("lista_messaggi").appendChild(container);
 						}
