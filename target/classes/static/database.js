@@ -188,9 +188,27 @@ function pickbyautore(x,text){
 	const s= new Array();
 	for(var i=0;i<x.length;i++){
 		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		if(x[i].creato_da.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
-			nomi.push(x[i].creato_da.toLocaleLowerCase());
-			s.push(x[i]);
+		
+		const emailUtente = document.cookie
+	  	.split('; ')
+	  	.find(row => row.startsWith('email'))
+	  	.split('=')[1];
+		
+		if(!x[i].cestinato && x[i].creato_da !== emailUtente){
+		var xhttp = new XMLHttpRequest();
+  	
+		xhttp.open("GET","/getUtente?email=" + x[i].creato_da , true);
+		xhttp.send();
+ 		xhttp.onreadystatechange = function() {
+ 			if (this.readyState == 4 && this.status == 200) {
+			var utente=JSON.parse([this.response]);
+    			if(utente.nome.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1){
+					nomi.push(utente.nome.toLocaleLowerCase());
+					s.push(x[i]);
+				}
+			}
+		};
+			
 		}
 	}
 	return s;
@@ -331,6 +349,9 @@ function notericerca(y,text,id_){
 		var container= document.createElement("div");
 		container.classList.add("container");
 		container.setAttribute("id",y[i].id);
+		container.setAttribute("onclick", "modificaNota(this.getAttribute('id')");
+		container.onclick = function (){ modificaNota(this.getAttribute('id'));};
+		container.setAttribute("style", "cursor:pointer");
 			//nota
 			var container1= document.createElement("div");
 			container1.classList.add("container1");
