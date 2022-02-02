@@ -55,6 +55,7 @@ function eliminanota(obj){
 		deletenota(obj.target.parentNode.parentNode.parentNode.id,1);
 	}	
 	if(obj.target.classList.contains("elimina-l")){
+		console.log(obj.target.parentNode.parentNode.parentNode.id,2);
 		deletenota(obj.target.parentNode.parentNode.parentNode.id,2);
 	}
 	if(obj.target.classList.contains("elimina-q")){

@@ -116,18 +116,8 @@
 	width: 26px;
 }
 
-
-.dropdown{	
-	display: block;
-	position: absolute;
-	right: 70px;
-}
-
-.dropdown1{	
-	display: block;
-	position: absolute;
-	right: 50px !important;
-	top: 5px !important;
+.dropdown{
+	position: fixed;
 }
 
 /*elementi lista*/

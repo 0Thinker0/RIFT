@@ -158,12 +158,10 @@ function pick4different(x){
 
 
 function pickbytitolo(x,text){
-	const nomi= new Array();
 	const s= new Array();
 	for(var i=0;i<x.length;i++){
 		//se il titolo della nota ha il testo della searchbar e non è cestinato
 		if(x[i].titolo.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
-			nomi.push(x[i].titolo.toLocaleLowerCase());
 			s.push(x[i]);
 		}
 	}
@@ -178,37 +176,6 @@ function pickbytitoloquaderno(x,text){
 		if(x[i].quaderno!==null&&x[i].quaderno.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1&&!x[i].cestinato){
 			nomi.push(x[i].quaderno.toLocaleLowerCase());
 			s.push(x[i]);
-		}
-	}
-	return s;
-}
-
-function pickbyautore(x,text){
-	const nomi= new Array();
-	const s= new Array();
-	for(var i=0;i<x.length;i++){
-		//se il titolo della nota ha il testo della searchbar e non è cestinato
-		
-		const emailUtente = document.cookie
-	  	.split('; ')
-	  	.find(row => row.startsWith('email'))
-	  	.split('=')[1];
-		
-		if(!x[i].cestinato && x[i].creato_da !== emailUtente){
-		var xhttp = new XMLHttpRequest();
-  	
-		xhttp.open("GET","/getUtente?email=" + x[i].creato_da , true);
-		xhttp.send();
- 		xhttp.onreadystatechange = function() {
- 			if (this.readyState == 4 && this.status == 200) {
-			var utente=JSON.parse([this.response]);
-    			if(utente.nome.toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) !== -1){
-					nomi.push(utente.nome.toLocaleLowerCase());
-					s.push(x[i]);
-				}
-			}
-		};
-			
 		}
 	}
 	return s;
@@ -231,9 +198,6 @@ function creablocchinoterecenti(s){
 		blocco.classList.add("notarecente-container");
 		var idNota = x[i].id;
 		blocco.setAttribute("id",idNota);
-		blocco.setAttribute("onclick", "modificaNota(this.getAttribute('id')");
-		blocco.onclick = function (){ modificaNota(this.getAttribute('id'));};
-		blocco.setAttribute("style", "cursor:pointer");
 		//nota
 			var nota= document.createElement("div");
 			nota.classList.add("notarecente-container-attributi");
@@ -241,6 +205,9 @@ function creablocchinoterecenti(s){
 				titolonota.classList.add("notarecente-titolo");
 				titolonota.classList.add("nunito");	
 				titolonota.textContent=x[i].titolo;
+				titolonota.setAttribute("onclick", "modificaNota(this.parentNode.parentNode.getAttribute('id')");
+				titolonota.onclick = function (){ modificaNota(this.parentNode.parentNode.getAttribute('id'));};
+				titolonota.setAttribute("style", "cursor:pointer");
 				nota.appendChild(titolonota);
 				var titoloquaderno=document.createElement("h5");
 				titoloquaderno.classList.add("notarecente-titoloquaderno");
@@ -349,9 +316,6 @@ function notericerca(y,text,id_){
 		var container= document.createElement("div");
 		container.classList.add("container");
 		container.setAttribute("id",y[i].id);
-		container.setAttribute("onclick", "modificaNota(this.getAttribute('id')");
-		container.onclick = function (){ modificaNota(this.getAttribute('id'));};
-		container.setAttribute("style", "cursor:pointer");
 			//nota
 			var container1= document.createElement("div");
 			container1.classList.add("container1");
@@ -360,8 +324,11 @@ function notericerca(y,text,id_){
 				tit.classList.add("quaderno-titolo");
 				tit.classList.add("nunito");
 				tit.classList.add("elem");	
-				let wt=y[i].titolo;
-				let b=y[i].titolo;			
+				tit.setAttribute("onclick", "modificaNota(this.parentNode.parentNode.getAttribute('id')");
+				tit.onclick = function (){ modificaNota(this.parentNode.parentNode.getAttribute('id'));};
+				tit.setAttribute("style", "cursor:pointer");
+				wt=y[i].titolo;
+				b=y[i].titolo;			
 				$(tit).html(enlighttext(b,wt,text));
 				container1.appendChild(tit);
 				//titolo nota			
@@ -384,7 +351,6 @@ function notericerca(y,text,id_){
 					wt=y[i].creato_da;
 					b=y[i].creato_da;
 					creatoda.setAttribute("id", b);
-								
 					var xhttp = new XMLHttpRequest();
   	
 					xhttp.open("GET","/getUtente?email="+b, true);
@@ -393,9 +359,7 @@ function notericerca(y,text,id_){
  					
     					if (this.readyState == 4 && this.status == 200) {
 							var utente=JSON.parse([this.response]);
-							console.log ( creatoda.getAttribute("id") + utente.nome);
-							document.getElementById(b).innerHTML = "Pubblicato da " + enlighttext(utente.nome,utente.nome,text);
-							
+							document.getElementById(b).innerHTML = "Pubblicato da " + utente.nome;			
  						}
 					};
 					
@@ -494,7 +458,7 @@ function nps(x,text,t){
 	if(text!=""){
 		//selezione delle note
 		let z=pickbytitolo(x,text);	
-		let y=pickbytitoloquaderno(x,text);
+		y=pickbytitoloquaderno(x,text);
 		
 		//rimuovo i cloni facendo un merge
 		for(let i=0;i<z.length;i++){
@@ -502,16 +466,6 @@ function nps(x,text,t){
 	   	 		y.push(z[i]);
 			}
 		}
-		console.log(y);
-		if(t=="Online"){
-			let s=pickbyautore(x,text);
-			for(let i=0;i<s.length;i++){
- 				if(y.indexOf(s[i]) == -1){
-   	 				y.push(s[i]);
-				}
-			}
-		}
-	
 		//creo le note personali
 		if(t=="Personali"){
 			notericerca(y,text,"nps27");
@@ -587,6 +541,8 @@ function quaderniLib(quaderni,note){
 				//Droplist
 				var dropdown= document.createElement("div");
 				dropdown.classList.add("dropdown");
+				dropdown.setAttribute("id",quaderni[i].titolo);
+				dropdown.style.right=70+"px";
 					var list= document.createElement("ul");
 					list.classList.add("listbar-ns");
 						list.classList.add("listbar-nl");
@@ -624,9 +580,6 @@ function quaderniLib(quaderni,note){
 					var containerblocchi= document.createElement("div");
 					containerblocchi.classList.add("container-blocchi");
 					containerblocchi.setAttribute("id",note[j].id);
-					containerblocchi.setAttribute("onclick", "modificaNota(this.getAttribute('id')");
-					containerblocchi.onclick = function (){ modificaNota(this.getAttribute('id'));};
-					containerblocchi.setAttribute("style", "cursor:pointer");
 						var nota= document.createElement("div");
 						nota.classList.add("nota");
 						nota.setAttribute("id","nl"+j);
@@ -636,6 +589,9 @@ function quaderniLib(quaderni,note){
 								titoloN.classList.add("ns-tendina");
 								titoloN.classList.add("nunito");
 								titoloN.textContent=note[j].titolo;
+								titoloN.setAttribute("onclick", "modificaNota(this.parentNode.parentNode.parentNode.getAttribute('id')");
+								titoloN.onclick = function (){ modificaNota(this.parentNode.parentNode.parentNode.getAttribute('id'));};
+								titoloN.setAttribute("style", "cursor:pointer");
 								toflex.appendChild(titoloN);
 								var optionsN= document.createElement("ion-icon");
 								optionsN.classList.add("opt-mt");
@@ -654,6 +610,7 @@ function quaderniLib(quaderni,note){
 								var dropdownN= document.createElement("div");
 								dropdownN.classList.add("dropdown");
 								dropdownN.classList.add("dropdown1");
+								dropdownN.setAttribute("id",note[j].id);
 									var listN= document.createElement("ul");
 									listN.classList.add("listbar-ns");
 									listN.classList.add("list");
@@ -895,7 +852,7 @@ function sezioneTrash(quaderni,note){
 							//Contenuto
 							var ifr = document.createElement('iframe');
 							ifr.setAttribute("id","nota"+note[j].id);
-							var data = y[i].contenuto;
+							var data = note[j].contenuto;
 							decode(ifr,data);
 				
 							nota.appendChild(ifr);
