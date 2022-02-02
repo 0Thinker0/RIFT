@@ -211,7 +211,11 @@ function creablocchinoterecenti(s){
 	for(var i=0;i<x.length;i++){
 		var blocco= document.createElement("div");
 		blocco.classList.add("notarecente-container");
-		blocco.setAttribute("id",x[i].id);
+		var idNota = x[i].id;
+		blocco.setAttribute("id",idNota);
+		blocco.setAttribute("onclick", "modificaNota(this.getAttribute('id')");
+		blocco.onclick = function (){ modificaNota(this.getAttribute('id'));};
+		blocco.setAttribute("style", "cursor:pointer");
 		//nota
 			var nota= document.createElement("div");
 			nota.classList.add("notarecente-container-attributi");
@@ -599,6 +603,9 @@ function quaderniLib(quaderni,note){
 					var containerblocchi= document.createElement("div");
 					containerblocchi.classList.add("container-blocchi");
 					containerblocchi.setAttribute("id",note[j].id);
+					containerblocchi.setAttribute("onclick", "modificaNota(this.getAttribute('id')");
+					containerblocchi.onclick = function (){ modificaNota(this.getAttribute('id'));};
+					containerblocchi.setAttribute("style", "cursor:pointer");
 						var nota= document.createElement("div");
 						nota.classList.add("nota");
 						nota.setAttribute("id","nl"+j);
