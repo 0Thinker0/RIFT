@@ -248,3 +248,12 @@ label[for="profilo"]{
 .note_pubblicate{
 	width: 100%;
 }
+
+.listbar-ns{
+	bottom: -8px !important;
+	right: -3px !important;
+}
+
+.listbar-ns:after,.listbar-nso:after{
+	border-width: 0px !important;
+}

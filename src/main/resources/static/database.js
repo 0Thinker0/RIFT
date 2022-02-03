@@ -1081,7 +1081,7 @@ function notePubblicate(y){
 			var container= document.createElement("div");
 			container.classList.add("container");
 			container.setAttribute("id",y[i].id);
-			container.setAttribute("style", "margin-bottom: 40px; overflow-x: auto;");
+			container.setAttribute("style", "margin-bottom: 40px; overflow-x: auto;  overflow-x: hidden;");
 				//nota
 				var container1= document.createElement("div");
 				container1.classList.add("container1");
