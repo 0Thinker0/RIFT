@@ -388,7 +388,12 @@ function notericerca(y,text,id_){
 			container.appendChild(ifr);
 				//lista
 				var listcontainer= document.createElement("div");
-				listcontainer.classList.add("dropdown");	
+				if(id_=="nps65"){
+					listcontainer.classList.add("dropdown1");	
+				}
+				else{
+					listcontainer.classList.add("dropdown");	
+				}
 					var list= document.createElement("ul");
 					list.classList.add("list");
 					if(id_=="nps65"){
@@ -416,10 +421,6 @@ function notericerca(y,text,id_){
 							list.appendChild(copia);
 						}
 						else{
-							var sposta= document.createElement("li");	
-							sposta.classList.add("sposta");	
-							sposta.textContent="Sposta in..";
-							list.appendChild(sposta);
 							var vis= document.createElement("li");	
 							vis.classList.add("visibility");
 							vis.textContent="Rendi pubblica";
@@ -427,10 +428,6 @@ function notericerca(y,text,id_){
 								vis.textContent="Rendi privata";
 							}
 							list.appendChild(vis);
-							var PDF= document.createElement("li");	
-							PDF.classList.add("esporta");	
-							PDF.textContent="Esporta in PDF";
-							list.appendChild(PDF);
 							var elim= document.createElement("li");	
 							elim.classList.add("elimina");	
 							elim.textContent="Elimina";
