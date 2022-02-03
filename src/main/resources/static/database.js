@@ -547,9 +547,9 @@ function quaderniLib(quaderni,note){
 						//elementi in lista
 						var PDF= document.createElement("li");	
 						PDF.classList.add("visibility-q");	
-						PDF.textContent="Rendi Pubblico";
+						PDF.textContent="Rendi Note Pubblico";
 						if(quaderni[i].pubblico){
-							PDF.textContent="Rendi Privato";
+							PDF.textContent="Rendi Note Private";
 						}
 						list.appendChild(PDF);
 						var elim= document.createElement("li");	
