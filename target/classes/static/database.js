@@ -542,7 +542,6 @@ function quaderniLib(quaderni,note){
 				var dropdown= document.createElement("div");
 				dropdown.classList.add("dropdown");
 				dropdown.setAttribute("id",quaderni[i].titolo);
-				dropdown.style.right=70+"px";
 					var list= document.createElement("ul");
 					list.classList.add("listbar-ns");
 						list.classList.add("listbar-nl");
@@ -561,7 +560,7 @@ function quaderniLib(quaderni,note){
 						elim.textContent="Elimina";
 						list.appendChild(elim);
 				dropdown.appendChild(list);
-				quaderno.appendChild(dropdown);
+				container.appendChild(dropdown);
 			var c=0;	
 			let boolean=false;		
 			for(let j=0;j<note.length;j++){
@@ -651,7 +650,6 @@ function quaderniLib(quaderni,note){
 				contN.textContent="( "+c+" note )";
 				container.appendChild(quaderno);
 				document.getElementById("q35").appendChild(container);
-
 			}
 		}
 	}
@@ -955,7 +953,7 @@ function quaderniNote(y){
 			var container= document.createElement("div");
 			container.classList.add("container");
 			container.setAttribute("id",y[i].id);
-			container.setAttribute("style", "margin-bottom: 40px; overflow-x: auto;");
+			container.setAttribute("style", "margin-bottom: 40px;");
 				//nota
 				var container1= document.createElement("div");
 				container1.classList.add("container1");

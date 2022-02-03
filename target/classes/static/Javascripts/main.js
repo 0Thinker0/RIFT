@@ -59,7 +59,7 @@ function eliminanota(obj){
 		deletenota(obj.target.parentNode.parentNode.parentNode.id,2);
 	}
 	if(obj.target.classList.contains("elimina-q")){
-		deleteQ(obj.target.parentNode.parentNode.parentNode.parentNode.id,3);
+		deleteQ(obj.target.parentNode.parentNode.parentNode.id,3);
 	}
 	if(obj.target.classList.contains("elimina-n1")){
 		deletenota(obj.target.parentNode.parentNode.parentNode.id,4);
@@ -83,7 +83,7 @@ function cambiavis(obj){
 		changevis(obj.target.parentNode.parentNode.parentNode.id,2);
 	}
 	if(obj.target.classList.contains("visibility-q")){
-		changevisQ(obj.target.parentNode.parentNode.parentNode.parentNode.id,3);
+		changevisQ(obj.target.parentNode.parentNode.parentNode.id,3);
 	}
 	if(obj.target.classList.contains("visibility-n1")){
 		changevis(obj.target.parentNode.parentNode.parentNode.id,4);
