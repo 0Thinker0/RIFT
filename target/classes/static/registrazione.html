@@ -6,6 +6,7 @@
 <body>
 	<div class="registrazione_form">
 	<form method="post" action="register">
+	
 		<label for="registrati">Registrati</label><br> 
 		<i class="nome_icon" style="right: 0px; left: 0px; top: 5px;"></i>
 		<label for="nome">Nome</label><br>
@@ -34,11 +35,15 @@
 		<i class="eye_icon" style="right: 0px; left: -10px; top: 10px;" onclick="changeTypeRe()"></i>
 		</div>
 		<br> 
+		<input type="submit" style="display:none;" id="registrati_input"/><br> 
+		</form>
+		<button class="registrati_button" onclick="document.getElementById('registrati_input').click()"> Registrati</button>
 		
-		<input type="submit" class="registrati_button" value="Registrati" /><br> 
 		<label for="giaRegistrato">Sei già registrato?</label><br> 
 		<label for="accediAccount" onclick="location.href='login.html'">Accedi</label>
-		</form>
+		
+
+		
 	</div>
 
 
