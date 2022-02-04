@@ -1,3 +1,5 @@
+
+
 function open_navbar() {
 	document.getElementById("header-mobile-extended-container").style.display = "flex";
 	document.getElementById("hamburger").style.visibility = "hidden";

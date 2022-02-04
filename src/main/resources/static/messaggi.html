@@ -40,8 +40,8 @@
       </div>
       <img src="/icon/Logo_icon.png" alt="image" class="header-mobile-logomobile" onclick="location.href='index.html'"/>
       <div class="header-mobile-rightcontainer">
-        <input type="text" placeholder="Cerca ..." class="header-mobile-cercainput input" name="cerca_input_mobile" onchange="location.href='Search.html'"/>
-        <img src="/icon/Search_black_alt.png" alt="image" class="header-mobile-cercaiconmobile" onclick="location.href='Search.html'"/>
+        <input type="text" id="searchBar_mobile" placeholder="Cerca ..." class="header-mobile-cercainput input" name="cerca_input_mobile" onchange="searchPage();" oninput="document.getElementById('searchBar').setAttribute('value', this.value)"/>
+        <img src="/icon/Search_black_alt.png" alt="image" class="header-mobile-cercaiconmobile"/>
         <img src="/icon/Send_fill.png" alt="image" class="header-mobile-messaggiiconmobile" onclick="location.href='lista_messaggi.html'"/>
       </div>
     </div>
@@ -51,7 +51,7 @@
     <div class="header-container1">
       <div class="header-cercacontainer">
         <img src="/icon/Search_black_alt.png" alt="image" class="header-cercaicon" />
-        <input type="text" placeholder="Cerca ..." class="header-cercainput" name="cerca_input" onchange="location.href='Search.html'"/>
+        <input type="text" id="searchBar" placeholder="Cerca ..." class="header-cercainput" name="cerca_input" onchange="searchPage();" oninput="document.getElementById('searchBar_mobile').setAttribute('value', this.value)"/>
       </div>
       <img src="/icon/Send_fill.png" alt="image" class="header-messaggiicon" onclick="location.href='lista_messaggi.html'"/>
     </div>
@@ -187,6 +187,10 @@
 		}
 	};
 	
+	function searchPage(){
+		document.cookie = "searchPage=" + document.getElementById("searchBar").value + ";";
+		location.href='Search.html';
+	}
 	
 	function sendMessage(testo){console.log(spanArray.length);
 		var container= document.createElement("div");

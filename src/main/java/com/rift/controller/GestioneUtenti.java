@@ -105,7 +105,7 @@ public class GestioneUtenti{
 	            response.addCookie(cookie);
 	        }
 			
-			response.sendRedirect("login.html");
+			response.sendRedirect("FirstPage.html");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

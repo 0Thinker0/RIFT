@@ -47,7 +47,6 @@
   width: auto;
   height: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -56,7 +55,6 @@
   width: auto;
   height: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -65,7 +63,6 @@
   width: auto;
   height: auto;
   display: flex;
-  align-items: center;
   margin-bottom: 80px;
   justify-content: center;
 }
@@ -75,7 +72,6 @@
   width: auto;
   height: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 

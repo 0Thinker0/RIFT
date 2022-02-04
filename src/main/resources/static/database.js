@@ -623,7 +623,7 @@ function quaderniLib(quaderni,note){
 											vis.textContent="Rendi privata";
 										}
 										listN.appendChild(vis);
-										var PDFN= document.createElement("li");	
+										var PDFN= document.createElement("li");
 										PDFN.classList.add("esporta");	
 										PDFN.textContent="Esporta in PDF";
 										listN.appendChild(PDFN);
