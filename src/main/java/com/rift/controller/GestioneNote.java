@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rift.Database;
@@ -18,7 +16,7 @@ import com.rift.model.Quaderno;
 @RestController
 public class GestioneNote {
 	@PostMapping("/creaNota")
-	public void aggiungiNota(String titolo,String contenuto,boolean pubblico,HttpServletRequest req) {
+	public void aggiungiNota(String id,String titolo,String contenuto,boolean pubblico,HttpServletRequest req) {
 		if(!titolo.isEmpty()) {
 			String username = null;
 			Cookie[] cookies = req.getCookies();
@@ -30,7 +28,7 @@ public class GestioneNote {
 			    }
 			  }
 			}
-			Database.getIstance().getNotaDao().addNota(titolo,contenuto,pubblico,username);
+			Database.getIstance().getNotaDao().addNota(id,titolo,contenuto,pubblico,username);
 		}
 	}
 	

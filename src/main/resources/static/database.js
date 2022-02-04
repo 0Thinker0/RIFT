@@ -1167,6 +1167,8 @@ function modificaNota(id){
 				if(note[i].id == id){
 					document.cookie = "titolo=" + note[i].titolo + ";";
 					document.cookie = "contenuto=" + note[i].contenuto + ";";
+					document.cookie = "id=" +id+";";
+					
 					self.location = "nota.html";
 				}
 			}

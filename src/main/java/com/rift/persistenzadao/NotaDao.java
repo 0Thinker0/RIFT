@@ -166,20 +166,32 @@ public class NotaDao {
 			e.printStackTrace();
 		}
 	}
-
-	public void addNota(String titolo, String contenuto, boolean pubblico,String username) {
+	
+	public void addNota(String id,String titolo, String contenuto, boolean pubblico,String username) {
 		// TODO Auto-generated method stub
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
 		LocalDateTime now = LocalDateTime.now();
-		String query="insert into note(titolo,contenuto,pubblico,ultima_modifica,creato_da,cestinato) values ('"+
-		titolo+"','"+contenuto+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"','"+false+"')";
-		Statement st;
-		try {
-			st = con.createStatement();
-			st.execute(query);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(id.equals("-1")) {
+			String query="insert into note(titolo,contenuto,pubblico,ultima_modifica,creato_da,cestinato) values ('"+
+			titolo+"','"+contenuto+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"','"+false+"')";
+			Statement st;
+			try {
+				st = con.createStatement();
+				st.execute(query);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			String sql = "UPDATE note SET titolo ='"+titolo+"', contenuto='"+contenuto+"', ultima_modifica='"+dtf.format(now) +"',pubblico='"+pubblico +"'WHERE id = '"+id+"'";
+			try {
+				Statement st = con.createStatement();
+				st.executeUpdate(sql);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
