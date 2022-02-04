@@ -278,6 +278,7 @@
 		var nameFile = document.getElementById('titolo_nota').value;
 		var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
 		var content = "<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap); @import url(https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap);::-webkit-scrollbar {width: 10px;}::-webkit-scrollbar-track {background: #f1f1f1;}::-webkit-scrollbar-thumb {background: #888;border-radius: 10px;} </style>";
+		console.log(content);
 		frameContent = content + frameContent;
 		getBase64(nameFile,visibilità,frameContent);
 		document.getElementById("conferma").style.display = "none";	
