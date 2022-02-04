@@ -128,11 +128,38 @@
 		</div>
 	</div>
 	
-	<script>getNoteByNote();
+	<script>
+	getNoteByNote();
+	
 	function searchPage(){
 		document.cookie = "searchPage=" + document.getElementById("searchBar").value + ";";
 		console.log(document.getElementById("searchBar").value);
 		location.href='Search.html';
+	}
+	
+	function exportPdf(iframe, titolo){
+		var mime = "data:text/html;base64,";
+		var data = iframe.replaceAll(" ", "+");console.log(mime+data);
+		var source = atob(data);
+		
+		var specialElementHandlers = {
+	    	'#hidden-element': function (element, renderer) {
+	        	return true;
+	    	}
+		};
+		var doc = new jsPDF({
+	   	 orientation: 'landscape'
+		});
+		doc.setFont("courier");
+		doc.setFontType("normal");
+		doc.setFontSize(24);
+		doc.setTextColor(100);
+		doc.fromHTML(source, 15, 15, {
+	   	 'width': 170,
+	   	 'elementHandlers': specialElementHandlers
+		});
+		
+		doc.save(titolo + ".pdf");
 	}
 	</script>
 

@@ -251,7 +251,11 @@ function creablocchinoterecenti(s){
 					lista.appendChild(visib);
 					var pdf= document.createElement("li");
 					pdf.classList.add("pdf-nr");
-					pdf.textContent="Esporta in PDF";					
+					pdf.setAttribute("id", x[i].contenuto);
+					pdf.setAttribute("value", x[i].titolo);
+					pdf.setAttribute("onclick", "exportPdf(this.getAttribute('id'), this.getAttribute('value'))");
+					pdf.onclick = function(){exportPdf(this.getAttribute('id'), this.getAttribute('value'));};	
+					pdf.textContent="Esporta in PDF";		
 					lista.appendChild(pdf);
 					var elim= document.createElement("li");
 					elim.classList.add("elimina-nr");
@@ -626,6 +630,8 @@ function quaderniLib(quaderni,note){
 										var PDFN= document.createElement("li");
 										PDFN.classList.add("esporta");	
 										PDFN.textContent="Esporta in PDF";
+										PDFN.setAttribute("onclick", "exportPdf(note[j].contenuto, note[j].titolo)");
+										PDFN.onclick = function(){exportPdf(note[j].contenuto, note[j].titolo);};
 										listN.appendChild(PDFN);
 										var elimN= document.createElement("li");	
 										elimN.classList.add("elimina-l");	
@@ -1008,6 +1014,8 @@ function quaderniNote(y){
 						var PDF= document.createElement("li");	
 						PDF.classList.add("esporta");	
 						PDF.textContent="Esporta in PDF";
+						PDF.setAttribute("onclick", "exportPdf(y[i].contenuto, y[i].titolo)");
+						PDF.onclick = function(){exportPdf(y[i].contenuto, y[i].titolo);};
 						list.appendChild(PDF);
 						var elim= document.createElement("li");	
 						elim.classList.add("elimina-n1");	
@@ -1136,6 +1144,8 @@ function notePubblicate(y){
 						var PDF= document.createElement("li");	
 						PDF.classList.add("esporta");	
 						PDF.textContent="Esporta in PDF";
+						PDF.setAttribute("onclick", "exportPdf(y[i].contenuto, y[i].titolo)");
+						PDF.onclick = function(){exportPdf(y[i].contenuto, y[i].titolo);};
 						list.appendChild(PDF);
 						var elim= document.createElement("li");	
 						elim.classList.add("elimina-n1");	
