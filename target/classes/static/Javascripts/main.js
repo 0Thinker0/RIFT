@@ -39,6 +39,29 @@ function svuota(obj){
 	}	
 }
 
+function copy(obj){
+	if(obj.target.classList.contains("copy")){
+		var id=obj.target.parentNode.parentNode.parentNode.id;
+		var ifr=document.getElementById("nota"+id);
+		var data=ifr.src.split(",")[1];
+		var nameFile=obj.target.parentNode.parentNode.parentNode.firstChild.firstChild.textContent;
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST","/creaNota?id="+-1+ "&titolo="+nameFile + "&contenuto=" + data + "&pubblico="+false, true);
+		xhttp.onreadystatechange = function() {
+	    	if (this.readyState == 4 && this.status == 200) {
+				var txt = document.cookie
+		  		.split('; ')
+		  		.find(row => row.startsWith('searchPage'))
+		  		.split('=')[1];
+
+				cercalenote(txt);
+	 		}
+		};
+		xhttp.send();
+	}
+}
+
+
 function restore(obj){
 	if(obj.target.classList.contains("restore-nota")){
 		console.log(obj.target.parentNode.parentNode.parentNode.id);
@@ -266,7 +289,7 @@ window.onclick = function(obj){
 	//quasi tutte
 	optmenu(obj);
 	menuatendina(obj);
-	
+	copy(obj);
 	//funzioni
 	newquaderno(obj);
 	svuota(obj);
