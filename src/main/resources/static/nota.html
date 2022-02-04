@@ -235,8 +235,7 @@
 	var contentWindow = iframe.contentWindow,
 	contentDocument = contentWindow.document,
 	contentBody = contentDocument.body;
-	contentBody.innerHTML = contenutoHTML
-	
+	contentBody.innerHTML = contenutoHTML;
 	document.getElementById('titolo_nota').value = titoloNota;
 	
 		window.onbeforeunload = function(){
@@ -277,7 +276,7 @@
 	function hideConferma(visibilità){
 		var nameFile = document.getElementById('titolo_nota').value;
 		var frameContent = document.getElementById('output').contentWindow.document.body.innerHTML;
-		console.log(frameContent);
+		frameContent='<meta charset="UTF-8">'+frameContent;
 		getBase64(nameFile,visibilità,frameContent);
 		document.getElementById("conferma").style.display = "none";	
 	}
@@ -424,7 +423,7 @@
 		var iframe = document.getElementById("output");
 		var contentWindow = iframe.contentWindow,
     	contentDocument = contentWindow.document,
-    	contentBody = contentDocument.head;
+    	contentBody = contentDocument.body;
 		contentBody.innerHTML = '<style>@import url(https://fonts.googleapis.com/css2?family=Nunito&display=swap); @import url(https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap);::-webkit-scrollbar {width: 10px;}::-webkit-scrollbar-track {background: #f1f1f1;}::-webkit-scrollbar-thumb {background: #888;border-radius: 10px;}</style>';};
 	
 	const buttons = document.querySelectorAll('button');
