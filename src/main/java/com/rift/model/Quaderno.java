@@ -13,7 +13,6 @@ public class Quaderno {
 	private Date ultima_modifica;
 
 	public Quaderno(String id, String titolo, boolean pubblico, boolean cestinato, String creato_da, Date ultima_modifica) {
-		// TODO Auto-generated constructor stub
 		this.id=id;
 		this.setTitolo(titolo);
 		this.setPubblico(pubblico);

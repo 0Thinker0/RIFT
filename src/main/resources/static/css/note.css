@@ -15,8 +15,21 @@
 }
 
 .listbar-ns{
-	bottom: 100px !important;
+	bottom: -86px !important;
 	right: 35px !important;
+}
+
+.dropdownQuaderni{	
+	display: block;
+	position: relative;
+	float: right;
+	margin-right: 12px;
+	bottom: 38px;
+}
+.dropdownQuaderni >.list li,.dropdown1 >.list li  {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 div.container-new-nota{

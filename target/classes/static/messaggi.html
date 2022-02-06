@@ -59,8 +59,8 @@
   
 	<div class="menu-container">
     <div class="menu-container1">
-      <div class="menu-logocontainer">
-        <img src="/icon/Logo_icon_white.png" alt="image" class="menu-logo" onclick="location.href='index.html'"/>
+      <div class="menu-logocontainer" style="background-color: #FFEE93; border-bottom: 15px solid #D7C66F">
+        <img src="/icon/Logo_icon.png" alt="image" class="menu-logo" onclick="location.href='index.html'"/>
       </div>
       <div class="menu-middlecontainer">
         <div class="menu-containerprincipallink">
@@ -101,6 +101,7 @@
           src="icon/Expand_left.png"
           alt="image"
           class="home-backicon"
+          style="cursor: pointer"
           onclick="self.location='lista_messaggi.html'"
         />
         <img
@@ -111,7 +112,7 @@
         <span class="home-nomeutente" id="nome_Utente"></span>
 
       </div>
-      <div class="home-messaggiobox" id="boxMessaggi">
+      <div class="home-messaggiobox" id="boxMessaggi" style="font-family: Nunito" onscroll="scrollPosition = this.scrollTop;">
         
       </div>
       <div class="home-inviomessaggiobox">
@@ -133,95 +134,117 @@
   </div>
   
   <script type="text/javascript">
-	const spanArray = new Array();
-	
-	const emailToContact = document.cookie
-	  .split('; ')
-	  .find(row => row.startsWith('emailToContact'))
-	  .split('=')[1];	
-	
+  
+	var scrollPosition = scrollPosition;
+  	var spanArray = new Array();
+  	const emailToContact = document.cookie
+		  .split('; ')
+		  .find(row => row.startsWith('emailToContact'))
+		  .split('=')[1];	
+		
 	const email = document.cookie
-	  .split('; ')
-	  .find(row => row.startsWith('email'))
-	  .split('=')[1];
+		  .split('; ')
+		  .find(row => row.startsWith('email'))
+		  .split('=')[1];
 	
-	var xhttp1 = new XMLHttpRequest();
-	xhttp1.open("GET","/getConversazione?email="+email + "&emailToContact=" + emailToContact, true);
-	xhttp1.send();
-		xhttp1.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var file=this.response;
-			if(file != null){
-				var conversazione = atob(file);
-				console.log(conversazione);
-				var id = 0;
-				while(conversazione.indexOf("MITTENTE#") != -1 || conversazione.indexOf("DESTINATARIO#") != -1){
-					if(conversazione.indexOf("MITTENTE#") != -1){
-						var messaggioMittente = conversazione.substring(conversazione.indexOf("MITTENTE#")+9, conversazione.indexOf("FINEMITTENTE#"));
-						conversazione = conversazione.substring(conversazione.indexOf("FINEMITTENTE#")+13, conversazione.length)
-						var container= document.createElement("div");
-						container.classList.add("home-messaggiobox2");
-						var span = document.createElement("span");
-						span.classList.add("home-testomessaggio");
-						span.setAttribute("id", "mittente");
-						span.innerHTML = messaggioMittente;
-						container.appendChild(span);
-						document.getElementById("boxMessaggi").appendChild(container);
-						spanArray.push(span);
-					}
-					if(conversazione.indexOf("DESTINATARIO#") != -1){
-						var messaggioDestinatario = conversazione.substring(conversazione.indexOf("DESTINATARIO#")+13, conversazione.indexOf("FINEDESTINATARIO#"));
-						conversazione = conversazione.substring(conversazione.indexOf("FINEDESTINATARIO#")+17, conversazione.length)
-						var container= document.createElement("div");
-						container.classList.add("home-messaggiobox1");
-						var span = document.createElement("span");
-						span.classList.add("home-testomessaggio1");
-						span.setAttribute("id", "destinatario");
-						span.innerHTML = messaggioDestinatario;
-						container.appendChild(span);
-						document.getElementById("boxMessaggi").appendChild(container);
-						spanArray.push(span);
-					}
+	
+ 	 function readMessage(){
+		spanArray = new Array();
+		var e = document.getElementById("boxMessaggi");
+		 var child = e.lastElementChild; 
+        while (child) {
+            e.removeChild(child);
+            child = e.lastElementChild;
+        }
+		var xhttp1 = new XMLHttpRequest();
+		xhttp1.open("GET","/getConversazione?email="+email + "&emailToContact=" + emailToContact, true);
+		xhttp1.send();
+			xhttp1.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var file=this.response;
+				if(file != null){
+					var conversazione = atob(file);
+					console.log(conversazione);
+					var id = 0;
+					while(conversazione.indexOf("MITTENTE#") !== -1 || conversazione.indexOf("DESTINATARIO#") !== -1){
+						if(conversazione.charAt(0) == "M"){
+							if(conversazione.indexOf("MITTENTE#") !== -1){
+								var messaggioMittente = conversazione.substring(conversazione.indexOf("MITTENTE#")+9, conversazione.indexOf("FINEMITTENTE#"));
+								conversazione = conversazione.substring(conversazione.indexOf("FINEMITTENTE#")+13, conversazione.length);
+								var container= document.createElement("div");
+								container.classList.add("home-messaggiobox2");
+								var span = document.createElement("span");
+								span.classList.add("home-testomessaggio");
+								span.setAttribute("id", "mittente");
+								span.innerHTML = messaggioMittente;
+								container.appendChild(span);
+								document.getElementById("boxMessaggi").appendChild(container);
+								spanArray.push(span);
+							}
+						}else{
+							if(conversazione.indexOf("DESTINATARIO#") !== -1){
+								var messaggioDestinatario = conversazione.substring(conversazione.indexOf("DESTINATARIO#")+13, conversazione.indexOf("FINEDESTINATARIO#"));
+								conversazione = conversazione.substring(conversazione.indexOf("FINEDESTINATARIO#")+17, conversazione.length);
+								var container= document.createElement("div");
+								container.classList.add("home-messaggiobox1");
+								var span = document.createElement("span");
+								span.classList.add("home-testomessaggio1");
+								span.setAttribute("id", "destinatario");
+								span.innerHTML = messaggioDestinatario;
+								container.appendChild(span);
+								document.getElementById("boxMessaggi").appendChild(container);
+								spanArray.push(span);
+							
+							}
+						}
+						
+					}document.getElementById("boxMessaggi").scrollTop = scrollPosition;	
 				}
 			}
-		}
-	};
-	
+			
+		};
+		
+		
+	 	
+  	}
+ 	 setInterval(readMessage, 1000);
 	function searchPage(){
 		document.cookie = "searchPage=" + document.getElementById("searchBar").value + ";";
 		location.href='Search.html';
 	}
 	
-	function sendMessage(testo){console.log(spanArray.length);
-		var container= document.createElement("div");
-		container.classList.add("home-messaggiobox2");
-		var span = document.createElement("span");
-		span.classList.add("home-testomessaggio");
-		span.setAttribute("id", "mittente");
-		span.innerHTML = testo;
-		container.appendChild(span);
-		document.getElementById("boxMessaggi").appendChild(container);
-		spanArray.push(span);
-		document.getElementById('testo').value = "";
-		
-		var mittente = "";
-		var destinatario = "";
-		for(var i=0; i<spanArray.length; i++){
-			if(spanArray[i].getAttribute("id") == "mittente"){
-				mittente = mittente + "MITTENTE#" + spanArray[i].innerText + "FINEMITTENTE#";
-				destinatario = destinatario + "DESTINATARIO#" + spanArray[i].innerText + "FINEDESTINATARIO#";
+	function sendMessage(testo){
+		if(testo !== ""){
+			var container= document.createElement("div");
+			container.classList.add("home-messaggiobox2");
+			var span = document.createElement("span");
+			span.classList.add("home-testomessaggio");
+			span.setAttribute("id", "mittente");
+			span.innerHTML = testo;
+			container.appendChild(span);
+			document.getElementById("boxMessaggi").appendChild(container);
+			spanArray.push(span);
+			document.getElementById('testo').value = "";
+			
+			var mittente = "";
+			var destinatario = "";
+			for(var i=0; i<spanArray.length; i++){
+				if(spanArray[i].getAttribute("id") == "mittente"){
+					mittente = mittente + "MITTENTE#" + spanArray[i].innerText + "FINEMITTENTE#";
+					destinatario = destinatario + "DESTINATARIO#" + spanArray[i].innerText + "FINEDESTINATARIO#";
+				}
+				
+				if(spanArray[i].getAttribute("id") == "destinatario"){
+					mittente = mittente + "DESTINATARIO#" + spanArray[i].innerText + "FINEDESTINATARIO#";
+					destinatario = destinatario + "MITTENTE#" + spanArray[i].innerText + "FINEMITTENTE#";
+				}
 			}
 			
-			if(spanArray[i].getAttribute("id") == "destinatario"){
-				mittente = mittente + "DESTINATARIO#" + spanArray[i].innerText + "FINEDESTINATARIO#";
-				destinatario = destinatario + "MITTENTE#" + spanArray[i].innerText + "FINEMITTENTE#";
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST","/setConversazione?email="+email + "&emailToContact=" + emailToContact + "&mittente=" + btoa(mittente) + "&destinatario=" + btoa(destinatario), true);
+			xhttp.send();
 			}
 		}
-		
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST","/setConversazione?email="+email + "&emailToContact=" + emailToContact + "&mittente=" + btoa(mittente) + "&destinatario=" + btoa(destinatario), true);
-		xhttp.send();
-	}
 	</script>
   
   <script>

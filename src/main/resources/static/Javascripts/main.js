@@ -120,7 +120,7 @@ function optmenu(obj){
 	var x=document.getElementsByClassName("list");
 	
 	//click esterno chiudi tutti
-	if(!obj.target.classList.contains("opt-mt")&&!obj.target.classList.contains("list")){
+	if(!obj.target.classList.contains("opt-mt")&&!obj.target.classList.contains("list")&&!obj.target.classList.contains("sposta")&&!obj.target.classList.contains("sposta-nr")){
 		for(var i=0;i<x.length;i++){
 			if(x[i].classList.contains("show")){
 				x[i].classList.remove("show");
@@ -285,6 +285,17 @@ function autoheight(){
 	}
 }
 
+function eliminaDropdown(obj){
+	var x=document.getElementsByClassName("dropdownQuaderni");
+	
+	//click esterno chiudi tutti
+	if(!obj.target.classList.contains("sposta")){
+		for(var i=0;i<x.length;i++){
+			x[i].parentNode.removeChild(x[i].parentNode.lastChild);
+		}
+	}   
+}
+
 window.onclick = function(obj){
 	//quasi tutte
 	optmenu(obj);
@@ -305,8 +316,8 @@ window.onclick = function(obj){
 	
 	//search
 	resizeMenu();
+	
+	eliminaDropdown(obj);
 }
-
-
 			
 

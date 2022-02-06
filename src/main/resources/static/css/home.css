@@ -18,6 +18,30 @@
 	margin-top: 30px;
 }
 
+.listquaderni{
+	cursor: pointer;
+	bottom: -40px !important;
+	right: 176px !important;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	background-color: #f0f0f0;
+	border-radius: 10%;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+	width: 140px;
+}
+
+
+.dropdownQuaderni{	
+	display: block;
+	position: relative;
+	float: right;
+	margin-right: 12px;
+	bottom: 38px;
+}
+
+
 .notaveloce-container{
 	height: 440px;
 	margin-left: 20px;
@@ -84,6 +108,7 @@
 
 
 .listbar-nv{
+	font-family: Nunito;
   	visibility: hidden;
 	position: absolute;
 	padding: 0;
@@ -98,12 +123,15 @@
 
 /*elementi lista*/
 .dropdown >.listbar-nv li {
+	
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 .listbar-nr{
+	cursor: pointer;
+	font-family: Nunito;
   	visibility: hidden;
 	position: absolute;
 	padding: 0;
@@ -130,6 +158,12 @@
 .list li:hover {
 	background-color: #f9f9f9;
 	border-radius: 10%;
+}
+
+.dropdownQuaderni >.list li,.dropdown1 >.list li  {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 /*freccia*/

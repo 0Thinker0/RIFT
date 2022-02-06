@@ -250,10 +250,37 @@ label[for="profilo"]{
 }
 
 .listbar-ns{
-	bottom: -8px !important;
-	right: -3px !important;
+	bottom: -150px !important;
+	right: 35px !important;
 }
 
 .listbar-ns:after,.listbar-nso:after{
 	border-width: 0px !important;
+}
+
+.listquaderni{
+	bottom: -140px !important;
+	right: 170px !important;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	background-color: #f0f0f0;
+	border-radius: 10%;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+	width: 140px;
+}
+
+.dropdownQuaderni{	
+	display: block;
+	position: relative;
+	float: right;
+	margin-right: 12px;
+	bottom: 38px;
+}
+
+.dropdownQuaderni >.list li,.dropdown1 >.list li  {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }

@@ -45,6 +45,7 @@ public class GestioneNote {
 			    }
 			  }
 			}
+			
 			Database.getIstance().getQuadernoDao().addQuaderno(titolo,pubblico,username);
 		}
 	}
@@ -187,5 +188,10 @@ public class GestioneNote {
 		  }
 		}
 		Database.getIstance().getQuadernoDao().restoreQuaderno(titolo, username);
+	}
+	
+	@PostMapping("/modificaQuaderno")
+	public void modificaQuaderno(String titolo, String idNota) {
+		Database.getIstance().getQuadernoDao().modificaQuaderno(titolo, idNota);
 	}
 }

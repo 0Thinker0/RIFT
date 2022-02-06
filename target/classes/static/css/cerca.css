@@ -121,6 +121,14 @@
 	position: relative;
 	float: right;
 	margin-right: 12px;
+	bottom: 30px;
+}
+
+.dropdownQuaderni{	
+	display: block;
+	position: relative;
+	float: right;
+	margin-right: 12px;
 	bottom: 38px;
 }
 
@@ -133,6 +141,8 @@
 
 /*elementi lista*/
 .dropdown >.list li,.dropdown1 >.list li  {
+	cursor: pointer;
+	font-family: Nunito;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -171,7 +181,7 @@
 	position: absolute;
 	padding: 0;
 	margin: 0;
-	bottom: 139px;
+	bottom: -45px;
 	right: 35px;
 	background-color: #f0f0f0;
 	border-radius: 10%;
@@ -181,8 +191,22 @@
 }
 
 .listbar-sot{
-	bottom: 178px !important;
+	bottom: -15px !important;
 	right: 30px !important;
+}
+
+.listquaderni{
+	cursor: pointer;
+	bottom: -108px !important;
+	right: 176px !important;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	background-color: #f0f0f0;
+	border-radius: 10%;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+	width: 140px;
 }
 
 /*il cursore passa suggli elementi della list*/

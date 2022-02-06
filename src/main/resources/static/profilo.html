@@ -1,11 +1,11 @@
 <html>
 <head>
-	<link rel="stylesheet" href="/css/profilo.css">
+	
 	<link rel="stylesheet" href="/css/menu.css">
 	<link href="css/top.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="/css/menu.css">
 	<link href="css/cerca.css" rel="stylesheet"/>
-	
+	<link rel="stylesheet" href="/css/profilo.css">
 	<!-- Javascripts -->
 	<script src="Javascripts/main.js"></script>
 	<script src="database.js"></script>
@@ -72,8 +72,8 @@
   
 	<div class="menu-container">
     <div class="menu-container1">
-      <div class="menu-logocontainer">
-        <img src="/icon/Logo_icon_white.png" alt="image" class="menu-logo" onclick="location.href='index.html'"/>
+      <div class="menu-logocontainer" style="background-color: #FFEE93; border-bottom: 15px solid #D7C66F">
+        <img src="/icon/Logo_icon.png" alt="image" class="menu-logo" onclick="location.href='index.html'"/>
       </div>
       <div class="menu-middlecontainer">
         <div class="menu-containerprincipallink">
@@ -187,7 +187,7 @@
 		if(document.getElementById("password_utente").getAttribute("disabled") == null){
 			document.getElementById("password_utente").setAttribute("disabled", "disabled");
 			var xhttp = new XMLHttpRequest();
-			xhttp.open("POST","/cambiaPassword?email=" + document.getElementById("email_utente").value + "&password=" + document.getElementById("password_utente").value , true);
+			xhttp.open("POST","/cambiaPassword?email=" + document.getElementById("email_utente").placeholder + "&password=" + document.getElementById("password_utente").value , true);
 			xhttp.send();
 		}else{
 			document.getElementById("password_utente").removeAttribute("disabled");

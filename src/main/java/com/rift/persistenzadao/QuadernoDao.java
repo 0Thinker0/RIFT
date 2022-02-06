@@ -174,7 +174,9 @@ public class QuadernoDao {
 	}
 	
 	public void statusNota(String id,boolean cestinato) {
-		String sql = "UPDATE note SET cestinato ='"+cestinato+"' WHERE id = '"+id+"'";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+		LocalDateTime now = LocalDateTime.now();
+		String sql = "UPDATE note SET cestinato ='"+cestinato+"', ultima_modifica = '"+ dtf.format(now) + "' WHERE id = '"+id+"'";
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
@@ -283,10 +285,27 @@ public class QuadernoDao {
 		LocalDateTime now = LocalDateTime.now();
 		String query="insert into quaderno(titolo,pubblico,ultima_modifica,creato_da,cestinato) values ('"+
 		titolo+"','"+pubblico+"','"+dtf.format(now)+"','"+username+"','"+false+"')";
+		String check = "select titolo from quaderno where titolo = '" + titolo + "'";
 		Statement st;
 		try {
 			st = con.createStatement();
-			st.execute(query);
+			ResultSet rs = st.executeQuery(check);
+			if(!rs.next()) {
+				st.execute(query);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void modificaQuaderno(String titolo, String idNota) {
+		String sql = "UPDATE note SET quaderno ='"+titolo+"' WHERE id = '"+idNota+"'";
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

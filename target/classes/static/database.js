@@ -239,6 +239,9 @@ function creablocchinoterecenti(s){
 					var sposta= document.createElement("li");
 					sposta.classList.add("sposta-nr");
 					sposta.textContent="Sposta in..";
+					sposta.setAttribute("id", x[i].id);
+					sposta.setAttribute("onclick", "spostaIn(this.getAttribute('id'))");
+					sposta.onclick = function(){spostaIn(this.getAttribute('id'));};
 					lista.appendChild(sposta);
 					var visib= document.createElement("li");
 					visib.classList.add("visibility-nr");
@@ -354,7 +357,7 @@ function notericerca(y,text,id_){
 					creatoda.setAttribute("style","color: grey;");
 					wt=y[i].creato_da;
 					b=y[i].creato_da;
-					creatoda.setAttribute("id", b);
+					creatoda.setAttribute("id", b+ ";" + y[i].id);
 					var xhttp = new XMLHttpRequest();
   	
 					xhttp.open("GET","/getUtente?email="+b, true);
@@ -363,17 +366,18 @@ function notericerca(y,text,id_){
  					
     					if (this.readyState == 4 && this.status == 200) {
 							var utente=JSON.parse([this.response]);
-							document.getElementById(b).innerHTML = "Pubblicato da " + utente.nome;			
+							document.getElementById(b+ ";" + y[i].id).innerHTML = "Pubblicato da " + utente.nome;			
  						}
 					};
 					
-					container1.appendChild(creatoda);	
+					container1.appendChild(creatoda)	
 					
 				}
 				//immagine menu
 				var img=document.createElement("ion-icon");
 				img.classList.add("opt-mt1");
 				img.classList.add("opt-mt");
+				img.setAttribute("style", "cursor: pointer");
 				if(id_=="nps65"){
 					img.setAttribute("id","so"+i);
 					img.classList.add("opt-mt2");	
@@ -536,6 +540,7 @@ function quaderniLib(quaderni,note){
 				var options= document.createElement("ion-icon");
 				options.classList.add("opt-mt");
 				options.classList.add("opt-mtsq");
+				options.setAttribute("style", "cursor: pointer");
 				options.setAttribute("id","s"+i);
 				options.setAttribute("name","ellipsis-horizontal-outline");
 				quaderno.appendChild(options);
@@ -551,9 +556,9 @@ function quaderniLib(quaderni,note){
 						//elementi in lista
 						var PDF= document.createElement("li");	
 						PDF.classList.add("visibility-q");	
-						PDF.textContent="Rendi Note Pubblico";
+						PDF.textContent="Rendi Note Private";
 						if(quaderni[i].pubblico){
-							PDF.textContent="Rendi Note Private";
+							PDF.textContent="Rendi Note Pubbliche";
 						}
 						list.appendChild(PDF);
 						var elim= document.createElement("li");	
@@ -596,6 +601,7 @@ function quaderniLib(quaderni,note){
 								var optionsN= document.createElement("ion-icon");
 								optionsN.classList.add("opt-mt");
 								optionsN.classList.add("opt-nota");
+								optionsN.setAttribute("style", "cursor: pointer");
 								optionsN.setAttribute("id","l"+j);
 								optionsN.setAttribute("name","ellipsis-horizontal-outline");
 								toflex.appendChild(optionsN);
@@ -619,6 +625,9 @@ function quaderniLib(quaderni,note){
 										var spostaN= document.createElement("li");	
 										spostaN.classList.add("sposta");	
 										spostaN.textContent="Sposta in..";
+										spostaN.setAttribute("id", note[j].id);
+										spostaN.setAttribute("onclick", "spostaIn(note[j].id)");
+										spostaN.onclick = function(){spostaIn(note[j].id);};
 										listN.appendChild(spostaN);
 										var vis= document.createElement("li");	
 										vis.classList.add("visibility-l");
@@ -716,10 +725,12 @@ function sezioneTrash(quaderni,note){
 				quaderno.appendChild(contN);
 				var restoreQ = new Image();
             	restoreQ.src = "icon/restore_from_trash_black_24dp.png";
+            	restoreQ.setAttribute("style", "cursor:pointer");
 				restoreQ.classList.add("restore-quaderno");
 				quaderno.appendChild(restoreQ);
       			var removeQ = new Image();
             	removeQ.src = "icon/delete_forever_black_24dp.png";
+            	removeQ.setAttribute("style", "cursor:pointer");
 				removeQ.classList.add("delete-quaderno");
 				quaderno.appendChild(removeQ);
 				var c=0;
@@ -748,10 +759,12 @@ function sezioneTrash(quaderni,note){
 								toflex.appendChild(titoloN);
 								var restoreN = new Image();
 				            	restoreN.src = "icon/restore_from_trash_black_24dp.png";
+				            	restoreN.setAttribute("style", "cursor:pointer");
 								restoreN.classList.add("restore-nota");
 								toflex.appendChild(restoreN);
 				      			var removeN = new Image();
 				            	removeN.src = "icon/delete_forever_black_24dp.png";
+				            	removeN.setAttribute("style", "cursor:pointer");
 								removeN.classList.add("delete-nota");
 								toflex.appendChild(removeN);
 							nota.appendChild(toflex);
@@ -805,9 +818,11 @@ function sezioneTrash(quaderni,note){
 					var restoreQ = new Image();
 	            	restoreQ.src = "icon/restore_from_trash_black_24dp.png";
 					restoreQ.classList.add("restore-quaderno");
+					restoreQ.setAttribute("style", "cursor:pointer");
 					quaderno.appendChild(restoreQ);
 	      			var removeQ = new Image();
 	            	removeQ.src = "icon/delete_forever_black_24dp.png";
+	            	removeQ.setAttribute("style", "cursor:pointer");
 					removeQ.classList.add("delete-quaderno");
 					quaderno.appendChild(removeQ);
 				container.appendChild(quaderno);
@@ -843,10 +858,12 @@ function sezioneTrash(quaderni,note){
 								toflex.appendChild(titoloN);
 								var restoreN = new Image();
 				            	restoreN.src = "icon/restore_from_trash_black_24dp.png";
+				            	restoreN.setAttribute("style", "cursor:pointer");
 								restoreN.classList.add("restore-nota");
 								toflex.appendChild(restoreN);
 				      			var removeN = new Image();
 				            	removeN.src = "icon/delete_forever_black_24dp.png";
+				            	removeN.setAttribute("style", "cursor:pointer");
 								removeN.classList.add("delete-nota");
 								toflex.appendChild(removeN);
 							nota.appendChild(toflex);
@@ -892,10 +909,12 @@ function sezioneTrash(quaderni,note){
 							toflex.appendChild(titoloN);
 							var restoreN = new Image();
 			            	restoreN.src = "icon/restore_from_trash_black_24dp.png";
+			            	restoreN.setAttribute("style", "cursor:pointer");
 							restoreN.classList.add("restore-nota");
 							toflex.appendChild(restoreN);
 			      			var removeN = new Image();
 			            	removeN.src = "icon/delete_forever_black_24dp.png";
+			            	removeN.setAttribute("style", "cursor:pointer");
 							removeN.classList.add("delete-nota");
 							toflex.appendChild(removeN);
 						nota.appendChild(toflex);
@@ -980,6 +999,7 @@ function quaderniNote(y){
 					container1.appendChild(quad);
 					//immagine menu
 					var img=document.createElement("ion-icon");
+					img.setAttribute("style", "cursor: pointer");
 					img.classList.add("opt-mt1");
 					img.classList.add("opt-mt");
 					img.setAttribute("id","s"+i);
@@ -1003,6 +1023,9 @@ function quaderniNote(y){
 						var sposta= document.createElement("li");	
 						sposta.classList.add("sposta");	
 						sposta.textContent="Sposta in..";
+						sposta.setAttribute("id", y[i].id);
+						sposta.setAttribute("onclick", "spostaIn(y[i].id)");
+						sposta.onclick = function(){spostaIn(y[i].id);};
 						list.appendChild(sposta);
 						var vis= document.createElement("li");	
 						vis.classList.add("visibility-n1");
@@ -1112,6 +1135,7 @@ function notePubblicate(y){
 					var img=document.createElement("ion-icon");
 					img.classList.add("opt-mt1");
 					img.classList.add("opt-mt");
+					img.setAttribute("style", "cursor: pointer");
 					img.setAttribute("id","s"+i);
 					img.setAttribute("name","ellipsis-horizontal-outline");
 				container1.appendChild(img);
@@ -1133,12 +1157,16 @@ function notePubblicate(y){
 						var sposta= document.createElement("li");	
 						sposta.classList.add("sposta");	
 						sposta.textContent="Sposta in..";
+						sposta.setAttribute("id", y[i].id);
+						sposta.setAttribute("onclick", "spostaIn(y[i].id)");
+						sposta.onclick = function(){spostaIn(y[i].id);};
 						list.appendChild(sposta);
 						var vis= document.createElement("li");	
 						vis.classList.add("visibility-n1");
 						vis.textContent="Rendi pubblica";
 						if(y[i].pubblico){	
 							vis.textContent="Rendi privata";
+							vis.onclick = function (){getNotePubblicate();};
 						}
 						list.appendChild(vis);
 						var PDF= document.createElement("li");	
@@ -1184,4 +1212,63 @@ function modificaNota(id){
 			}
  		}
 	};
+}
+
+function spostaIn(idNota){
+	var xhttp = new XMLHttpRequest();
+  	
+	xhttp.open("GET","/getQuaderniPersonali", true);
+	xhttp.send();
+ 	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			var quaderni=JSON.parse([this.response]);
+			var listcontainer= document.createElement("div");
+				listcontainer.classList.add("dropdownQuaderni");	
+			var list= document.createElement("ul");
+				list.classList.add("list");
+				list.classList.add("listquaderni");
+				list.setAttribute("style", "height: 160px; overflow-y: auto; overflow-x: hidden; font-family: Nunito");
+				
+			for(var i = 0; i < quaderni.length; i++){
+				if(!quaderni[i].cestinato){
+					var quaderno= document.createElement("li");	
+					quaderno.classList.add("quadernodellalista");	
+					quaderno.textContent= quaderni[i].titolo;
+					quaderno.setAttribute("id", idNota);
+					quaderno.setAttribute("value", quaderni[i].titolo);
+					console.log(self.location);
+					if((self.location.pathname == "/note.html")){ 
+						quaderno.setAttribute("onclick", "spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); getNoteByNote();");
+						quaderno.onclick = function(){spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); getNoteByNote(); parentNode.parentNode.removeChild(parentNode.parentNode.lastChild)};
+					}
+					
+					if((self.location.pathname == "/Library.html")){ 
+						quaderno.setAttribute("onclick", "spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); quaderniLibreria();");
+						quaderno.onclick = function(){spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); quaderniLibreria(); parentNode.parentNode.removeChild(parentNode.parentNode.lastChild)};
+					}
+					
+					if((self.location.pathname == "/index.html")){ 
+						quaderno.setAttribute("onclick", "spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); noterecenti();");
+						quaderno.onclick = function(){spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); noterecenti(); parentNode.parentNode.removeChild(parentNode.parentNode.lastChild)};
+					}
+					
+					if((self.location.pathname == "/profilo.html")){ 
+						quaderno.setAttribute("onclick", "spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); getNotePubblicate();");
+						quaderno.onclick = function(){spostaNelQuaderno(this.getAttribute('value'), this.getAttribute('id')); getNotePubblicate(); parentNode.parentNode.removeChild(parentNode.parentNode.lastChild)};
+					}
+					
+					list.appendChild(quaderno);
+				}
+			}
+			
+			listcontainer.appendChild(list);
+			document.getElementById(idNota).appendChild(listcontainer);
+ 		}
+	};
+}
+
+function spostaNelQuaderno(titolo, idNota){
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST","/modificaQuaderno?titolo="+titolo+"&idNota="+idNota, true);
+	xhttp.send();
 }

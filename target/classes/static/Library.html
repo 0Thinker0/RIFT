@@ -78,8 +78,8 @@
   
 	<div class="menu-container">
     <div class="menu-container1">
-      <div class="menu-logocontainer">
-        <img src="/icon/Logo_icon_white.png" alt="image" class="menu-logo" onclick="location.href='index.html'"/>
+      <div class="menu-logocontainer" style="background-color: #FFEE93; border-bottom: 15px solid #D7C66F">
+        <img src="/icon/Logo_icon.png" alt="image" class="menu-logo" onclick="location.href='index.html'"/>
       </div>
       <div class="menu-middlecontainer">
         <div class="menu-containerprincipallink">
@@ -128,13 +128,13 @@
 	
 	<!-- Pulsante Crea quaderno -->
 	<div class="container-new-quaderno">
-		<img class="new-quaderno" src="icon/Folder_add.png">	
-		<div class="layout-newquaderno" id="b-menu"style="visibility: hidden;" >
+		<img class="new-quaderno" style="cursor:pointer" src="icon/Folder_add.png">	
+		<div class="layout-newquaderno" id="b-menu" style="visibility: hidden;" >
 			<div class="bottom-layout-newquaderno">
 				<div class="estetica-barra"></div>
 				<h2 class="crea-text nunito">Crea Quaderno</h2>
 				<input class="inserisci-titoloquaderno" id="libadd" type="text" placeholder="Inserisci il titolo..">
-				<div class="container-approved" onclick="addquaderno()">
+				<div class="container-approved" style="cursor:pointer" onclick="addquaderno(); document.getElementById('b-menu').setAttribute('style', 'visibility: hidden');">
 					<img class="create-newquaderno" src="icon/Check_ring.png" style="z-index: 1;">	
 				</div>
 			</div>

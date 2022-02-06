@@ -1,15 +1,19 @@
 package com.rift.persistenzadao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import com.rift.model.Nota;
@@ -21,6 +25,14 @@ public class NotaDao {
 		this.con = con;
 	}
 	
+	private boolean olderThan30Days(Date givenDate)
+	{
+		LocalDateTime dataNota = LocalDateTime.parse(givenDate.toString() + "T00:00:00");
+		LocalDateTime now = LocalDateTime.now();
+		boolean result = now.until(dataNota, ChronoUnit.DAYS) <= -30;
+	  	return result;
+	}
+	
 	public List<Nota> findByUsername(String username) {
 		List<Nota> note = new ArrayList<Nota>();
 		String query= "select * from note where creato_da = '"+username+"'"; 
@@ -28,15 +40,38 @@ public class NotaDao {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
-				Nota nota= new Nota(rs.getString("id"),
-									rs.getString("titolo"),
-									rs.getBoolean("pubblico"),
-									rs.getBoolean("cestinato"),
-									rs.getString("quaderno"),
-									rs.getDate("ultima_modifica"),
-									rs.getString("contenuto"),
-									rs.getString("creato_da"));
-				note.add(nota);
+				Nota nota = null;
+				if(rs.getBoolean("cestinato")) {
+					if(olderThan30Days(rs.getDate("ultima_modifica"))) {
+						String eliminaNota= "DELETE FROM note WHERE id = '"+rs.getString("id")+"'";
+						Statement sf = con.createStatement();
+						sf.executeUpdate(eliminaNota);
+					}else {
+						nota= new Nota(rs.getString("id"),
+								rs.getString("titolo"),
+								rs.getBoolean("pubblico"),
+								rs.getBoolean("cestinato"),
+								rs.getString("quaderno"),
+								rs.getDate("ultima_modifica"),
+								rs.getString("contenuto"),
+								rs.getString("creato_da"));
+						
+						note.add(nota);
+					}
+				}else {
+					nota = new Nota(rs.getString("id"),
+						rs.getString("titolo"),
+						rs.getBoolean("pubblico"),
+						rs.getBoolean("cestinato"),
+						rs.getString("quaderno"),
+						rs.getDate("ultima_modifica"),
+						rs.getString("contenuto"),
+						rs.getString("creato_da"));
+					
+					note.add(nota);
+				}
+
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -123,7 +158,9 @@ public class NotaDao {
 	}
 	
 	public void statusNota(String id,boolean cestinato) {
-		String sql = "UPDATE note SET cestinato ='"+cestinato+"' WHERE id = '"+id+"'";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+		LocalDateTime now = LocalDateTime.now();
+		String sql = "UPDATE note SET cestinato ='"+cestinato+"', ultima_modifica = '" + dtf.format(now) + "' WHERE id = '"+id+"'";
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
