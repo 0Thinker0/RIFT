@@ -41,7 +41,7 @@
 		<br> 
 		<input type="submit" style="display:none;" id="registrati_input"/><br> 
 		</form>
-		<button class="registrati_button" onclick="document.getElementById('registrati_input').click()"> Registrati</button>
+		<button class="registrati_button" onclick="if(document.getElementById('repassword').value == document.getElementById('password').value)document.getElementById('registrati_input').click()"> Registrati</button>
 		
 		<label for="giaRegistrato">Sei già registrato?</label><br> 
 		<label for="accediAccount" onclick="location.href='login.html'">Accedi</label>
