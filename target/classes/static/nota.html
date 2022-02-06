@@ -213,31 +213,45 @@
 	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
 	
 	<script type="text/javascript">
-	var titoloNota = document.cookie
+	var notaId = document.cookie
 	  .split('; ')
-	  .find(row => row.startsWith('titolo'))
+	  .find(row => row.startsWith('id'))
 	  .split('=')[1];
 	
-	var contenuto = document.cookie
-	  .split('; ')
-	  .find(row => row.startsWith('contenuto'))
-	  .split('=')[1];
+	if(notaId != -1){
+		var xhttp = new XMLHttpRequest();
+	  	
+		xhttp.open("GET","/getNotePersonali", true);
+		xhttp.send();
+	 	xhttp.onreadystatechange = function() {
+	    	if (this.readyState == 4 && this.status == 200) {
+				var note=JSON.parse([this.response]);
+				
+
+				for(var i = 0; i < note.length; i++){
+					if(note[i].id == notaId){
+						contenuto = note[i].contenuto;
+						contenuto = contenuto.replaceAll(" ", "+");
+						
+						var contenutoHTML = atob(contenuto);
+						
+						var iframe = document.getElementById("output");
+						var contentWindow = iframe.contentWindow,
+						contentDocument = contentWindow.document,
+						contentBody = contentDocument.body;
+						contentBody.innerHTML = contenutoHTML
+						
+						document.getElementById('titolo_nota').value = note[i].titolo;
+					}
+				}
+	 		}
+		};
+		
+	}
 	
-	contenuto = contenuto.replaceAll(" ", "+");
-	
-	var contenutoHTML = atob(contenuto);
-	
-	var iframe = document.getElementById("output");
-	var contentWindow = iframe.contentWindow,
-	contentDocument = contentWindow.document,
-	contentBody = contentDocument.body;
-	contentBody.innerHTML = contenutoHTML
-	
-	document.getElementById('titolo_nota').value = titoloNota;
 	
 		window.onbeforeunload = function(){
-			document.cookie = "titolo=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-			document.cookie = "contenuto=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+			document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 		};
 	</script>
 	
@@ -357,6 +371,7 @@
 		else{
 			id=document.cookie.split('; ').find(row => row.startsWith('id')).split('=')[1];	
 		}
+		
 		var data = btoa(frameContent);
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("POST","/creaNota?id="+id+ "&titolo="+nameFile + "&contenuto=" + data + "&pubblico="+visibilità, true);

@@ -1203,8 +1203,6 @@ function modificaNota(id){
 
 			for(var i = 0; i < note.length; i++){
 				if(note[i].id == id){
-					document.cookie = "titolo=" + note[i].titolo + ";";
-					document.cookie = "contenuto=" + note[i].contenuto + ";";
 					document.cookie = "id=" +id+";";
 					
 					self.location = "nota.html";
