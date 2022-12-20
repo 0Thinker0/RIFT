@@ -1,3 +1,3 @@
-Changelog ver 1.1:
+Changelog ver 1.2
 
 Il progetto è responsive, solo che abbiamo notato delle piccole incoerenze grafiche quando lo schermo del pc è impostato su 125% (nelle impostazioni di ridimensionamento e layout). Consigliamo quindi, di impostare la dimensione al 100% prima di utilizzare il progetto. 
